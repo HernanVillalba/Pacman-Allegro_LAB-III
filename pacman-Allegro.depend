@@ -14,18 +14,18 @@
 
 1591488124 c:\users\hernan\desktop\pacman-allegro\funciones_globales.h
 
-1591490081 source:c:\users\hernan\documents\github\pacman_allegro\main.cpp
+1591490172 source:c:\users\hernan\documents\github\pacman_allegro\main.cpp
 	<allegro.h>
 	<iostream>
 	"variables.h"
 	"funciones_globales.h"
 	"mapa.h"
 
-1591487408 c:\users\hernan\documents\github\pacman_allegro\variables.h
+1591490604 c:\users\hernan\documents\github\pacman_allegro\variables.h
 
-1591488124 c:\users\hernan\documents\github\pacman_allegro\funciones_globales.h
+1591490604 c:\users\hernan\documents\github\pacman_allegro\funciones_globales.h
 
-1591489064 c:\users\hernan\documents\github\pacman_allegro\mapa.h
+1591490604 c:\users\hernan\documents\github\pacman_allegro\mapa.h
 
 1591490263 source:c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\main.cpp
 	<allegro.h>

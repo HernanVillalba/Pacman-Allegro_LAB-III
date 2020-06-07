@@ -14,9 +14,8 @@ int main()
 
 
     while(!key[KEY_ESC]){
-        std::cout<<"hola gay";
-//        oMapa.planoMapa();
-//        oMapa.imprimirMapa();
+        oMapa.planoMapa();
+        oMapa.imprimirMapa();
     }
 }
 END_OF_MAIN();
