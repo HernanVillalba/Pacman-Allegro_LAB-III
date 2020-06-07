@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1591488124 source:c:\users\hernan\desktop\pacman-allegro\main.cpp
+	<allegro.h>
+	<iostream>
+	"variables.h"
+	"funciones_globales.h"
+	"mapa.h"
+
+1591486528 c:\users\hernan\desktop\pacman-allegro\iniciar_allegro.h
+
+1591489064 c:\users\hernan\desktop\pacman-allegro\mapa.h
+
+1591487408 c:\users\hernan\desktop\pacman-allegro\variables.h
+
+1591488124 c:\users\hernan\desktop\pacman-allegro\funciones_globales.h
+
