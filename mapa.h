@@ -3,6 +3,11 @@
 
 class Mapa{
     private:
+        /*X = ladrillos
+        P = porta
+        C = esquinas
+        F = donde aparecen los fantasmas
+        */
         char mapa[MAXFILAS][MAXCOL] = {
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
         "XC   C    CXC    CXC    C   CX",
@@ -10,19 +15,19 @@ class Mapa{
         "X XXX XXXX X      X XXXX XXX X",
         "XC   C    C C    C C    C   CX",
         "X XXX XX XXXXXXXXXXXX XX XXX X",
-        "X     XX     XXXX     XX     X",
+        "XC   CXXC   CXXXXC   CXXC   CX",
         "X XXX XXXXXX XXXX XXXXXX XXX X",
-        "X XXX XX              XX XXX X",
-        "      XX XXXXX  XXXXX XX      ",
-        "X XXX XX X          X XX XXX X",
-        "X XXX XX X          X XX XXX X",
+        "X XXX XXC            CXX XXX X",
+        "P    CXX XXXXXNNXXXXX XXC    P",
+        "X XXX XX XFFFFFFFFFFX XX XXX X",
+        "X XXX XX XFFFFFFFFFFX XX XXX X",
         "X XXX XX XXXXXXXXXXXX XX XXX X",
-        "X     XX              XX     X",
+        "XC   CXXC            CXXC   CX",
         "X XXX XX XXXXXXXXXXXX XX XXX X",
-        "X XXX                    XXX X",
+        "X XXXC  C C        C C  CXXX X",
         "X XXX XXXX XXXXXXXX XXXX XXX X",
-        "X XXX XXXX          XXXX XXX X",
-        "X          XXXXXXXX          X",
+        "X XXX XXXXC        CXXXX XXX X",
+        "XC   C    CXXXXXXXXC    C   CX",
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };
     public:
@@ -36,6 +41,9 @@ void Mapa::planoMapa(){
         for(int col=0; col<MAXCOL; col++){
             if(mapa[fil][col] == 'X'){
                 draw_sprite(buffer, bloque, col*32, fil*32);
+            }
+            if(mapa[fil][col] == ' ' || mapa[fil][col] == 'C'){
+                draw_sprite(buffer, comida, col*32, fil*32);
             }
         }
     }
