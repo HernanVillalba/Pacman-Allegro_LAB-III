@@ -19,11 +19,11 @@ void main()
         else if(key[KEY_LEFT]) dir = 2; //DER vale 2
         else if(key[KEY_DOWN]) dir = 3; //ABAJ vale 3
 
-        if(dir == 0) px += TAM;
-        if(dir == 1) py -= TAM;
-        if(dir == 2) px -= TAM;
-        if(dir == 3) py += TAM;
-
+        if(dir == 0 && oMapa.bordeMapa()) px += TAM;
+        if(dir == 1 && oMapa.bordeMapa()) py -= TAM;
+        if(dir == 2 && oMapa.bordeMapa()) px -= TAM;
+        if(dir == 3 && oMapa.bordeMapa()) py += TAM;
+        oMapa.portalMapa();
         //imprime el pacman con la boca abierta
         clear(buffer);
         oMapa.planoMapa();
