@@ -12,9 +12,11 @@ int main()
 
     Mapa oMapa; //objeto de la clase mapa
 
+
     while(!key[KEY_ESC]){
-        oMapa.planoMapa();
-        oMapa.imprimirMapa();
+        std::cout<<"hola gay";
+//        oMapa.planoMapa();
+//        oMapa.imprimirMapa();
     }
 }
 END_OF_MAIN();
