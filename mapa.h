@@ -5,10 +5,10 @@ class Mapa{
     private:
         char mapa[MAXFILAS][MAXCOL] = {
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "X          X      X          X",
+        "XC   C    CXC    CXC    C   CX",
         "X XXX XXXX X XXXX X XXXX XXX X",
         "X XXX XXXX X      X XXXX XXX X",
-        "X                            X",
+        "XC   C    C C    C C    C   CX",
         "X XXX XX XXXXXXXXXXXX XX XXX X",
         "X     XX     XXXX     XX     X",
         "X XXX XXXXXX XXXX XXXXXX XXX X",
