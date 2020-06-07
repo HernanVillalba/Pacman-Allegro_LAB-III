@@ -13,7 +13,7 @@ BITMAP *pacBMP;
 BITMAP *pacman;
 
 int dir=0;
-int px=TAM*10, py = TAM*10;
+int px=TAM*16, py = TAM*15;
 
 
 //FUNCIONES

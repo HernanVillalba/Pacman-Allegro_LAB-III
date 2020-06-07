@@ -15,7 +15,7 @@ void iniciar_allegro(){
     pacman = create_bitmap(TAM,TAM);
 }
 
-int se_preciono_una_tecla(){
+int se_presiono_una_tecla(){
     //devuelve el valor de la tecla que se precionó;
 
     if(key[KEY_RIGHT]) return 0; //IZQ vale 0
