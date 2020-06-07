@@ -13,7 +13,7 @@ class Mapa{
         "XC   C    CXC    CXC    C   CX",
         "X XXX XXXX X XXXX X XXXX XXX X",
         "X XXX XXXX X      X XXXX XXX X",
-        "XC   C    C C    C C    C   CX",
+        "XC   C  C C C    C C C  C   CX",
         "X XXX XX XXXXXXXXXXXX XX XXX X",
         "XC   CXXC   CXXXXC   CXXC   CX",
         "X XXX XXXXXX XXXX XXXXXX XXX X",
@@ -40,10 +40,10 @@ void Mapa::planoMapa(){
     for(int fil=0; fil<MAXFILAS; fil++){
         for(int col=0; col<MAXCOL; col++){
             if(mapa[fil][col] == 'X'){
-                draw_sprite(buffer, bloque, col*32, fil*32);
+                draw_sprite(buffer, bloque, col*TAM, fil*TAM);
             }
             if(mapa[fil][col] == ' ' || mapa[fil][col] == 'C'){
-                draw_sprite(buffer, comida, col*32, fil*32);
+                draw_sprite(buffer, comida, col*TAM, fil*TAM);
             }
         }
     }
@@ -53,4 +53,9 @@ void Mapa::imprimirMapa(){
     //
     blit(buffer,screen,0,0,0,0,1200,640);
 }
+
+
+
+
+
 #endif // MAPA_H_INCLUDED
