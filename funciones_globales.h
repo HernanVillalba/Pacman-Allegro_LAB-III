@@ -1,5 +1,6 @@
 #ifndef FUNCIONES_GLOBALES_H_INCLUDED
 #define FUNCIONES_GLOBALES_H_INCLUDED
+#include "mapa.h"
 
 void iniciar_allegro(){
     allegro_init();
@@ -13,17 +14,16 @@ void iniciar_allegro(){
     comida = load_bitmap("images/mapa/mapa_comida.bmp",NULL);
     pacBMP = load_bitmap("images/pacman/pacman.bmp",NULL);
     pacman = create_bitmap(TAM,TAM);
+    portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
+    portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
 }
 
-int se_presiono_una_tecla(){
-    //devuelve el valor de la tecla que se precionó;
-
-    if(key[KEY_RIGHT]) return 0; //IZQ vale 0
-    else if(key[KEY_UP]) return 1; //ARRIB vale 1
-    else if(key[KEY_LEFT]) return 2; //DER vale 2
-    else if(key[KEY_DOWN]) return 3; //ABAJ vale 3
-
-    return -1; //si es otra tecla que no sea una flecha, devuelve -1;
+void se_presiono_una_tecla(){
+    // detecta la tecla que se precinó para asignarle el numero correspondiente a la dirección
+    if(key[KEY_RIGHT] || key[KEY_D]) dir = 0; //DER vale 0
+    else if(key[KEY_UP] || key[KEY_W]) dir = 1; //ARRIB vale 1
+    else if(key[KEY_LEFT] || key[KEY_A]) dir = 2; //IZQ vale 2
+    else if(key[KEY_DOWN] || key[KEY_S]) dir = 3; //ABAJ vale 3
 }
 
 int inicia_audio(int izquierda, int derecha){
@@ -34,6 +34,13 @@ int inicia_audio(int izquierda, int derecha){
 
 	set_volume(izquierda, derecha);
     return 0;
+}
+
+void mover_pacman(Mapa oMapa){
+    if(dir == 0 && oMapa.bordeMapa()) px += TAM;
+    if(dir == 1 && oMapa.bordeMapa()) py -= TAM;
+    if(dir == 2 && oMapa.bordeMapa()) px -= TAM;
+    if(dir == 3 && oMapa.bordeMapa()) py += TAM;
 }
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

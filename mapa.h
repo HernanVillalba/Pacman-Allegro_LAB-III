@@ -7,27 +7,28 @@ class Mapa{
         P = porta
         C = esquinas
         F = donde aparecen los fantasmas
+        N = espacios entre los bloques
         */
         char mapa[MAXFILAS][MAXCOL] = {
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XC   C CXC          CXC C   CX",
+        "X       X            X       X",
         "X XXX X X XXXXXXXXXX X X XXX X",
-        "X XC CX X XC      CX X XC CX X",
+        "X X   X X X        X X X   X X",
         "X X XXX X X XXXXXX X X XXX X X",
-        "XC   C C C C      C C C C C CX",
-        "X XXX X XXXXXXXXXXXXXX X XXX X",
-        "X XXX XC  CXXXXXXXXC  CX XXX X",
-        "X XXX XXXXC        CXXXX XXX X",
-        "PC   C  CX XXXNNXXX XC  C   CP",
-        "X XXXXXX X XXFFFFXX X XXXXXX X",
-        "XC    CX X XXFFFFXX X XC    CX",
-        "X XXXX X X XXXXXXXX X X XXXX X",
-        "XC C CCXC C        C CXCC   CX",
-        "XXX X XX XXXXXXXXXXXX XX X XXX",
-        "XC CXC  C C        C C  CXC CX",
-        "X XXX XXXX XXXXXXXX XXXX XXX X",
-        "X XXX XXXXC        CXXXX XXX X",
-        "XC   C    CXXXXXXXXC    C   CX",
+        "X                            X",
+        "XXXXX X XXXXXXXXXXXXXX X XXXXX",
+        "XNNNX X    XXXXXXXX    X XNNNX",
+        "XXXXX XXXX          XXXX XXXXX",
+        "P        X XXXNNXXX X        P",
+        "XXXXX XX X XFFFFFFX X XX XXXXX",
+        "XNNNX XX X XFFFFFFX X XX XNNNX",
+        "XXXXX XX X XXXXXXXX X XX XXXXX",
+        "X     XX              XX     X",
+        "X XXX XX XXXXXXXXXXXX XX XXX X",
+        "X XNX                    XNX X",
+        "X XNX XXXX XXXXXXXX XXXX XNX X",
+        "X XXX XXXX          XXXX XXX X",
+        "X          XXXXXXXX          X",
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };
     public:
@@ -35,6 +36,7 @@ class Mapa{
         void imprimirMapa();
         bool bordeMapa();
         void portalMapa();
+        bool hayComida();
 };
 
 void Mapa::planoMapa(){
@@ -42,11 +44,23 @@ void Mapa::planoMapa(){
     for(int fil=0; fil<MAXFILAS; fil++){
         for(int col=0; col<MAXCOL; col++){
             if(mapa[fil][col] == 'X'){
+                //dibuja los bloques del mapa;
                 draw_sprite(buffer, bloque, col*TAM, fil*TAM);
             }
-            if(mapa[fil][col] == ' ' || mapa[fil][col] == 'C'){
+            if(mapa[fil][col] == ' '){
+                //dibuja la comida
                 draw_sprite(buffer, comida, col*TAM, fil*TAM);
-            }if ((py/TAM == fil) && (px/TAM == col)) {mapa[fil][col] = 'K';}
+            }
+            if ((py/TAM == fil) && (px/TAM == col) && (mapa[fil][col] != 'P')){
+                //el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman
+                //si las coordenadas del pacman coincide donde está la comida, pongo un punto para que las borre;
+                mapa[fil][col] = '.';
+            }
+            if(mapa[fil][col] == 'P'){
+                //dibuja los portales
+                if(fil==9 && col ==0)draw_sprite(buffer,portal_IZQ,col*TAM,fil*TAM);
+                if(fil==9 && col ==29)draw_sprite(buffer,portal_DER,col*TAM,fil*TAM);
+            }
         }
     }
 }
@@ -57,24 +71,37 @@ void Mapa::imprimirMapa(){
 }
 
 bool Mapa::bordeMapa(){
-    switch(dir)
-{
-    case 0:if ((mapa[py/TAM][(px+TAM)/TAM]!='X') && (mapa[py/TAM][(px+TAM)/TAM]!='N'))
-            return true; else return false;break;
-    case 1:if ((mapa[(py-TAM)/TAM][px/TAM]!='X') && (mapa[(py-TAM)/TAM][px/TAM]!='N'))
-            return true; else return false;break;
-    case 2:if ((mapa[py/TAM][(px-TAM)/TAM]!='X') && (mapa[py/TAM][(px-TAM)/TAM]!='N'))
-            return true; else return false;break;
-    case 3:if ((mapa[(py+TAM)/TAM][px/TAM]!='X') && (mapa[(py+TAM)/TAM][px/TAM]!='N'))
-            return true; else return false;break;
-    default :return true; break;
+    switch(dir){
+    case 0:
+        if ((mapa[py/TAM][(px+TAM)/TAM]!='X') && (mapa[py/TAM][(px+TAM)/TAM]!='N'))return true;
+            else return false; break;
+    case 1:
+        if ((mapa[(py-TAM)/TAM][px/TAM]!='X') && (mapa[(py-TAM)/TAM][px/TAM]!='N'))return true;
+            else return false; break;
+    case 2:
+        if ((mapa[py/TAM][(px-TAM)/TAM]!='X') && (mapa[py/TAM][(px-TAM)/TAM]!='N'))return true;
+            else return false; break;
+    case 3:
+        if ((mapa[(py+TAM)/TAM][px/TAM]!='X') && (mapa[(py+TAM)/TAM][px/TAM]!='N'))return true;
+            else return false; break;
+    default: return true; break;
         }
 }
-void Mapa::portalMapa(){
 
-if (px<0)px=930;
-        else if (px>930) px=0;
+void Mapa::portalMapa(){
+    if (px<0)px=930;
+    else if (px>930) px=0;
 }
 
+bool Mapa::hayComida(){
+    for(int fil=0; fil<MAXFILAS; fil++){
+        for(int col=0; col<MAXCOL; col++){
+            if(mapa[fil][col] == ' '){
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 #endif // MAPA_H_INCLUDED

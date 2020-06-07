@@ -13,30 +13,29 @@ void main()
     Mapa oMapa; //objeto de la clase mapa
     Pacman oPacman;
 
-    while(!key[KEY_ESC]){
-        if(key[KEY_RIGHT]) dir = 0; //IZQ vale 0
-        else if(key[KEY_UP]) dir = 1; //ARRIB vale 1
-        else if(key[KEY_LEFT]) dir = 2; //DER vale 2
-        else if(key[KEY_DOWN]) dir = 3; //ABAJ vale 3
+    while(!key[KEY_ESC] && !game_over){
 
-        if(dir == 0 && oMapa.bordeMapa()) px += TAM;
-        if(dir == 1 && oMapa.bordeMapa()) py -= TAM;
-        if(dir == 2 && oMapa.bordeMapa()) px -= TAM;
-        if(dir == 3 && oMapa.bordeMapa()) py += TAM;
+        se_presiono_una_tecla();
+        mover_pacman(oMapa);
         oMapa.portalMapa();
+
         //imprime el pacman con la boca abierta
         clear(buffer);
         oMapa.planoMapa();
         oPacman.imprimirPacmanComiendo();
         oMapa.imprimirMapa();
-        rest(110);
+        rest(115);
 
         //imprime el pacman con la boca cerrada
         clear(pacman);
         oPacman.imprimirPacmanQuieto();
         oMapa.imprimirMapa();
-        rest(110);
+        rest(115);
+        oMapa.imprimirMapa();
 
+        if(!oMapa.hayComida()){ //si no hay comida... termina el juego
+            game_over = true;
+        }
     }
 }
 END_OF_MAIN();
