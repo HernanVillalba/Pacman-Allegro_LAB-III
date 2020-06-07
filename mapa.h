@@ -72,8 +72,8 @@ bool Mapa::bordeMapa(){
 }
 void Mapa::portalMapa(){
 
-
-
+if (px<0)px=930;
+        else if (px>930) px=0;
 }
 
 

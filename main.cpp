@@ -23,7 +23,7 @@ void main()
         if(dir == 1 && oMapa.bordeMapa()) py -= TAM;
         if(dir == 2 && oMapa.bordeMapa()) px -= TAM;
         if(dir == 3 && oMapa.bordeMapa()) py += TAM;
-
+        oMapa.portalMapa();
         //imprime el pacman con la boca abierta
         clear(buffer);
         oMapa.planoMapa();
