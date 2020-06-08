@@ -14,11 +14,12 @@ BITMAP *pacBMP;
 BITMAP *pacman;
 BITMAP *portal_IZQ;
 BITMAP *portal_DER;
-
+BITMAP *inicio; //pantalla de inicio
+BITMAP *cursor; // cursor
 //posiciones iniciales del pacman y las que controlan X e Y del mismo
 int dir=4;
 int px=TAM*15, py = TAM*17;
-
+int cx=TAM*10, cy=TAM*8; //Ubicacion del cursor
 
 //FUNCIONES
 int inicia_audio(int izquierda, int derecha);

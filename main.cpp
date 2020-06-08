@@ -12,7 +12,7 @@ void main()
 
     Mapa oMapa; //objeto de la clase mapa
     Pacman oPacman;
-
+    pantalla_inicial();
     while(!key[KEY_ESC] && !game_over){
 
         se_presiono_una_tecla();

@@ -16,6 +16,34 @@ void iniciar_allegro(){
     pacman = create_bitmap(TAM,TAM);
     portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
     portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
+    inicio = load_bitmap("images/menu/inicio.bmp",NULL);
+    cursor = load_bitmap("images/menu/cursor.bmp",NULL);
+}
+//pone el bitmap en el inicio
+void poner_inicio()
+{
+    blit(buffer,screen,0,0,0,0,1200,640);
+    blit(inicio,buffer,0,0,0,0,1200,640);
+
+   }
+//movimiento del cursor
+void mover_cursor()
+{
+    if (key[KEY_UP] && cy>256)  {cy-=TAM*3;}
+    else if (key[KEY_DOWN] && cy<544)  {cy+=TAM*3;}
+    rest(100);
+    clear_keybuf();
+    }
+//impresion de la pantalla y funcionalidad
+void pantalla_inicial()
+{   bool continuar=true;
+    while (continuar)
+    {
+    poner_inicio();
+    draw_sprite (buffer,cursor,cx,cy);
+    mover_cursor();
+    //pantalla();
+    if (key[KEY_ENTER]) continuar= false;}
 }
 
 void se_presiono_una_tecla(){
