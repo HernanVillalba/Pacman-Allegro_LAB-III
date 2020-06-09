@@ -43,7 +43,7 @@ void pantalla_inicial()
     draw_sprite (buffer,cursor,cx,cy);
     mover_cursor();
     //pantalla();
-    if (key[KEY_ENTER]) continuar= false;}
+    if (key[KEY_ENTER] && cy==256) continuar= false;}
 }
 
 void se_presiono_una_tecla(){
