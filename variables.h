@@ -16,7 +16,8 @@ BITMAP *portal_IZQ;
 BITMAP *portal_DER;
 BITMAP *inicio; //pantalla de inicio
 BITMAP *cursor; // cursor
-
+BITMAP *fantBMP;
+BITMAP *fantas;
 
 //posiciones iniciales del pacman y las que controlan X e Y del mismo
 int dir=4;

@@ -18,6 +18,8 @@ void iniciar_allegro(){
     portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
     inicio = load_bitmap("images/menu/inicio.bmp",NULL);
     cursor = load_bitmap("images/menu/cursor.bmp",NULL);
+    fantBMP= load_bitmap("images/pacman/fantas.bmp",NULL);
+    fantas= create_bitmap(TAM,TAM);
 }
 //pone el bitmap en el inicio
 void poner_inicio()
