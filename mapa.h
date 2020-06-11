@@ -10,26 +10,26 @@ class Mapa{
         N = espacios entre los bloques
         */
         char mapa[MAXFILAS][MAXCOL] = {
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "X       X            X       X",
-        "X XXX X X XXXXXXXXXX X X XXX X",
-        "X X   X X X        X X X   X X",
-        "X X XXX X X XXXXXX X X XXX X X",
-        "X                            X",
-        "XXXXX X XXXXXXXXXXXXXX X XXXXX",
-        "XNNNX X    XXXXXXXX    X XNNNX",
-        "XXXXX XXXX          XXXX XXXXX",
-        "P        X XXXNNXXX X        P",
-        "XXXXX XX X XFFFFFFX X XX XXXXX",
-        "XNNNX XX X XFFFFFFX X XX XNNNX",
-        "XXXXX XX X XXXXXXXX X XX XXXXX",
-        "X     XX              XX     X",
-        "X XXX XX XXXXXXXXXXXX XX XXX X",
-        "X XNX                    XNX X",
-        "X XNX XXXX XXXXXXXX XXXX XNX X",
-        "X XXX XXXX          XXXX XXX X",
-        "X          XXXXXXXX          X",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "X       X           X       X",
+        "X XXX X X XXXXXXXXX X X XXX X",
+        "X X   X X X       X X X   X X",
+        "X X XXX X X XXXXX X X XXX X X",
+        "X                           X",
+        "XXXXX X XXXXXXXXXXXXX X XXXXX",
+        "XNNNX X    XXXXXXX    X XNNNX",
+        "XXXXX XXXX         XXXX XXXXX",
+        "P        X XXXNXXX X        P",
+        "XXXXX XX X XFFFFFX X XX XXXXX",
+        "XNNNX XX X XFFFFFX X XX XNNNX",
+        "XXXXX XX X XXXXXXX X XX XXXXX",
+        "X     XX             XX     X",
+        "X XXX XX XXXXXXXXXXX XX XXX X",
+        "X XNX                   XNX X",
+        "X XNX XXXX XXXXXXX XXXX XNX X",
+        "X XXX XXXX         XXXX XXX X",
+        "X          XXXXXXX          X",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };
     public:
         void planoMapa();
@@ -60,7 +60,7 @@ void Mapa::planoMapa(){
             if(mapa[fil][col] == 'P'){
                 //dibuja los portales
                 if(fil==9 && col ==0)draw_sprite(buffer,portal_IZQ,col*TAM,fil*TAM);
-                if(fil==9 && col ==29)draw_sprite(buffer,portal_DER,col*TAM,fil*TAM);
+                if(fil==9 && col ==28)draw_sprite(buffer,portal_DER,col*TAM,fil*TAM);
             }
         }
     }
@@ -91,8 +91,8 @@ bool Mapa::bordeMapa1(){
 
 
 void Mapa::portalMapa(){
-    if (px<0)px=930;
-    else if (px>930) px=0;
+    if (px<0)px=898;
+    else if (px>898) px=0;
 }
 
 bool Mapa::hayComida(){

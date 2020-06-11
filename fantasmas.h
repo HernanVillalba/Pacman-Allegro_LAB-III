@@ -7,40 +7,41 @@ private:
     int fx,fy;
     int colorfant;
     char mapa[MAXFILAS][MAXCOL] = {
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XJ   J JXJ          JXJ J   JX",
-        "X XXX X X XXXXXXXXXX X X XXX X",
-        "X XJ JX X XJ      JX X XJ JX X",
-        "X X XXX X X XXXXXX X X XXX X X",
-        "XJ J J J J J      J J J J J JX",
-        "XXXXX X XXXXXXXXXXXXXX X XXXXX",
-        "XNNNX XJ  JXXXXXXXXJ  JX XNNNX",
-        "XXXXX XXXXJ   JJ   JXXXX XXXXX",
-        "P    J  JX XXXNNXXX XJ  J    P",
-        "XXXXX XX X XJ YY JX X XX XXXXX",
-        "XNNNX XX X XJ    JX X XX XNNNX",
-        "XXXXX XX X XXXXXXXX X XX XXXXX",
-        "XJ   JXXJ J        J JXXJ   JX",
-        "X XXX XX XXXXXXXXXXXX XX XXX X",
-        "X XNXJ  J J        J J  JXNX X",
-        "X XNX XXXX XXXXXXXX XXXX XNX X",
-        "X XXX XXXXJ        JXXXX XXX X",
-        "XJ   J    JXXXXXXXXJ    J   JX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XJ   J JXJ         JXJ J   JX",
+        "X XXX X X XXXXXXXXX X X XXX X",
+        "X XJ JX X XJ     JX X XJ JX X",
+        "X X XXX X X XXXXX X X XXX X X",
+        "XJ J J J J J     J J J J J JX",
+        "XXXXX X XXXXXXXXXXXXX X XXXXX",
+        "XNNNX XJ  JXXXXXXXJ  JX XNNNX",
+        "XXXXX XXXXJ   J   JXXXX XXXXX",
+        "P    J  JX XXXNXXX XJ  J    P",
+        "XXXXX XX X XhhYHHX X XX XXXXX",
+        "XNNNX XX X XhhYHHX X XX XNNNX",
+        "XXXXX XX X XXXXXXX X XX XXXXX",
+        "XJ   JXXJ J       J JXXJ   JX",
+        "X XXX XX XXXXXXXXXXX XX XXX X",
+        "X XNXJ  J J       J J  JXNX X",
+        "X XNX XXXX XXXXXXX XXXX XNX X",
+        "X XXX XXXXJ       JXXXX XXX X",
+        "XJ   J    JXXXXXXXJ    J   JX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };
 public:
-    Fantasma(int x, int y); //construimos el fantasma
+    Fantasma(int x, int y, int col); //construimos el fantasma
     void dibujarFantasma();
     bool bordeMapa2();
     void moverFantasma();
     bool caminoFantasma();
     bool salidaFantasma();
+    void centroFantasma();
 };
 
-Fantasma::Fantasma(int x, int y){
+Fantasma::Fantasma(int x, int y, int col){
     fx=x;
     fy=y;
-    colorfant=rand()%5;
+    colorfant=col;
     fdir=rand()%4;
 
 }
@@ -72,6 +73,13 @@ bool Fantasma::salidaFantasma(){
     if (mapa[fy/TAM][fx/TAM]=='Y')return true;
     else return false;
 }
+void Fantasma::centroFantasma(){
+    if (mapa[fy/TAM][fx/TAM]=='H')
+        fdir=2;
+    else if(mapa[fy/TAM][fx/TAM]=='h')
+            fdir=0;
+}
+
 bool Fantasma::caminoFantasma(){
     //Los fantas leen los bifurcaciones
     if (mapa[fy/TAM][fx/TAM]=='J')return true;
@@ -79,6 +87,7 @@ bool Fantasma::caminoFantasma(){
 }
 void Fantasma::moverFantasma(){
     //Los fantasmas se mueven
+    Fantasma::centroFantasma();
     if     (fdir == 0 && bordeMapa2())  fx += TAM;
     else if(fdir == 1 && bordeMapa2())  fy -= TAM;
     else if(fdir == 2 && bordeMapa2())  fx -= TAM;
@@ -86,7 +95,7 @@ void Fantasma::moverFantasma(){
     if (caminoFantasma()) fdir=rand()%4;
     if (salidaFantasma()) fdir=1;
     //Los fantis atraviesan el portal
-    if      (fx<0)fx=930;
-    else if (fx>930) fx=0;
+    if      (fx<0)fx=898;
+    else if (fx>898) fx=0;
  }
 #endif // FANTASMAS_H_INCLUDED
