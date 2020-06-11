@@ -8,6 +8,7 @@
 #include "pacman.h"
 #include "fantasmas.h"
 
+
 void main()
 {
     iniciar_allegro();
@@ -15,25 +16,31 @@ void main()
     Mapa oMapa; //objeto de la clase mapa
     Pacman oPacman;
     Fantasma oFantasma1(TAM*5,TAM*10);
-    Fantasma oFAntasma2(TAM*9,TAM*15);
-    Fantasma oFAntasma3(TAM*6,TAM*15);
-    Fantasma oFAntasma4(TAM*15,TAM*15);
-
+    Fantasma oFantasma2(TAM*9,TAM*15);
+    Fantasma oFantasma3(TAM*6,TAM*15);
+    Fantasma oFantasma4(TAM*15,TAM*15);
+    Fantasma oFantasma5(TAM*20,TAM*15);
     pantalla_inicial();
     while(!key[KEY_ESC] && !game_over){
 
         se_presiono_una_tecla();
         mover_pacman(oMapa);
+        oFantasma1.moverFantasma();
+        oFantasma2.moverFantasma();
+        oFantasma3.moverFantasma();
+        oFantasma4.moverFantasma();
+        oFantasma5.moverFantasma();
+
         oMapa.portalMapa();
         //imprime el pacman con la boca abierta
         clear(buffer);
         oMapa.planoMapa();
         oPacman.imprimirPacmanComiendo();
         oFantasma1.dibujarFantasma();
-        oFAntasma2.dibujarFantasma();
-        oFAntasma3.dibujarFantasma();
-        oFAntasma4.dibujarFantasma();
-
+        oFantasma2.dibujarFantasma();
+        oFantasma3.dibujarFantasma();
+        oFantasma4.dibujarFantasma();
+        oFantasma5.dibujarFantasma();
         oMapa.imprimirMapa();
 
         rest(115);
@@ -49,5 +56,6 @@ void main()
             game_over = true;
         }
     }
+destruir();
 }
 END_OF_MAIN();

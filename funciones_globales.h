@@ -67,10 +67,24 @@ int inicia_audio(int izquierda, int derecha){
 }
 
 void mover_pacman(Mapa oMapa){
-    if(dir == 0 && oMapa.bordeMapa()) px += TAM;
-    if(dir == 1 && oMapa.bordeMapa()) py -= TAM;
-    if(dir == 2 && oMapa.bordeMapa()) px -= TAM;
-    if(dir == 3 && oMapa.bordeMapa()) py += TAM;
+    if(dir == 0 && oMapa.bordeMapa1()) px += TAM;
+    if(dir == 1 && oMapa.bordeMapa1()) py -= TAM;
+    if(dir == 2 && oMapa.bordeMapa1()) px -= TAM;
+    if(dir == 3 && oMapa.bordeMapa1()) py += TAM;
 }
 
+void destruir(){
+    destroy_bitmap(buffer);
+    destroy_bitmap(pacBMP);
+    destroy_bitmap(pacman);
+    destroy_bitmap(fantas);
+    destroy_bitmap(fantBMP);
+    destroy_bitmap(bloque);
+    destroy_bitmap(comida);
+    destroy_bitmap(portal_IZQ);
+    destroy_bitmap(portal_DER);
+    destroy_bitmap(inicio);
+    destroy_bitmap(cursor);
+
+}
 #endif // FUNCIONES_GLOBALES_H_INCLUDED
