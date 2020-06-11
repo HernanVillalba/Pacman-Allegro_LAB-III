@@ -15,11 +15,11 @@ void main()
 
     Mapa oMapa; //objeto de la clase mapa
     Pacman oPacman;
-    Fantasma oFantasma1(TAM*5,TAM*10);
-    Fantasma oFantasma2(TAM*9,TAM*15);
-    Fantasma oFantasma3(TAM*6,TAM*15);
-    Fantasma oFantasma4(TAM*15,TAM*15);
-    Fantasma oFantasma5(TAM*20,TAM*15);
+    Fantasma oFantasma1(TAM*12,TAM*10);
+    Fantasma oFantasma2(TAM*13,TAM*10);
+    Fantasma oFantasma3(TAM*14,TAM*10);
+    Fantasma oFantasma4(TAM*15,TAM*10);
+    Fantasma oFantasma5(TAM*16,TAM*10);
     pantalla_inicial();
     while(!key[KEY_ESC] && !game_over){
 

@@ -8,6 +8,7 @@ class Pacman{
     public:
         void imprimirPacmanComiendo();
         void imprimirPacmanQuieto();
+
 };
 
 void Pacman::imprimirPacmanComiendo(){

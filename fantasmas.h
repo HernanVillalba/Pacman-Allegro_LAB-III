@@ -15,10 +15,10 @@ private:
         "XJ J J J J J      J J J J J JX",
         "XXXXX X XXXXXXXXXXXXXX X XXXXX",
         "XNNNX XJ  JXXXXXXXXJ  JX XNNNX",
-        "XXXXX XXXXJ        JXXXX XXXXX",
+        "XXXXX XXXXJ   JJ   JXXXX XXXXX",
         "P    J  JX XXXNNXXX XJ  J    P",
-        "XXXXX XX X XFFFFFFX X XX XXXXX",
-        "XNNNX XX X XFFFFFFX X XX XNNNX",
+        "XXXXX XX X XJ YY JX X XX XXXXX",
+        "XNNNX XX X XJ    JX X XX XNNNX",
         "XXXXX XX X XXXXXXXX X XX XXXXX",
         "XJ   JXXJ J        J JXXJ   JX",
         "X XXX XX XXXXXXXXXXXX XX XXX X",
@@ -34,6 +34,7 @@ public:
     bool bordeMapa2();
     void moverFantasma();
     bool caminoFantasma();
+    bool salidaFantasma();
 };
 
 Fantasma::Fantasma(int x, int y){
@@ -44,41 +45,48 @@ Fantasma::Fantasma(int x, int y){
 
 }
 void Fantasma::dibujarFantasma(){
-
+    //Impresion de los fantasmas
 blit(fantBMP,fantas,colorfant*TAM,0,0,0,32,32);
 draw_sprite(buffer,fantas,fx,fy);
 }
 
 bool Fantasma::bordeMapa2(){
+    //Los fantasmas leen los bordes
     switch(fdir){
     case 0:
-        if ((mapa[fy/TAM][(fx+TAM)/TAM]!='X') && (mapa[fy/TAM][(fx+TAM)/TAM]!='N'))return true;
+        if (mapa[fy/TAM][(fx+TAM)/TAM]!='X')return true;
             else return false; break;
     case 1:
-        if ((mapa[(fy-TAM)/TAM][fx/TAM]!='X') && (mapa[(fy-TAM)/TAM][fx/TAM]!='N'))return true;
+        if (mapa[(fy-TAM)/TAM][fx/TAM]!='X')return true;
             else return false; break;
     case 2:
-        if ((mapa[fy/TAM][(fx-TAM)/TAM]!='X') && (mapa[fy/TAM][(fx-TAM)/TAM]!='N'))return true;
+        if (mapa[fy/TAM][(fx-TAM)/TAM]!='X')return true;
             else return false; break;
     case 3:
-        if ((mapa[(fy+TAM)/TAM][fx/TAM]!='X') && (mapa[(fy+TAM)/TAM][fx/TAM]!='N'))return true;
+        if (mapa[(fy+TAM)/TAM][fx/TAM]!='X')return true;
             else return false; break;
     default: return true; break;
         }
 }
-
+bool Fantasma::salidaFantasma(){
+    if (mapa[fy/TAM][fx/TAM]=='Y')return true;
+    else return false;
+}
 bool Fantasma::caminoFantasma(){
+    //Los fantas leen los bifurcaciones
     if (mapa[fy/TAM][fx/TAM]=='J')return true;
             else return false; ;
 }
 void Fantasma::moverFantasma(){
-
-    if(fdir == 0 && bordeMapa2())       fx += TAM;
+    //Los fantasmas se mueven
+    if     (fdir == 0 && bordeMapa2())  fx += TAM;
     else if(fdir == 1 && bordeMapa2())  fy -= TAM;
     else if(fdir == 2 && bordeMapa2())  fx -= TAM;
     else if(fdir == 3 && bordeMapa2())  fy += TAM;
     if (caminoFantasma()) fdir=rand()%4;
-    if (fx<0)fx=930;
+    if (salidaFantasma()) fdir=1;
+    //Los fantis atraviesan el portal
+    if      (fx<0)fx=930;
     else if (fx>930) fx=0;
  }
 #endif // FANTASMAS_H_INCLUDED
