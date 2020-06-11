@@ -16,6 +16,36 @@ void iniciar_allegro(){
     pacman = create_bitmap(TAM,TAM);
     portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
     portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
+    inicio = load_bitmap("images/menu/inicio.bmp",NULL);
+    cursor = load_bitmap("images/menu/cursor.bmp",NULL);
+    fantBMP= load_bitmap("images/pacman/fantas.bmp",NULL);
+    fantas= create_bitmap(TAM,TAM);
+}
+//pone el bitmap en el inicio
+void poner_inicio()
+{
+    blit(buffer,screen,0,0,0,0,1200,640);
+    blit(inicio,buffer,0,0,0,0,1200,640);
+
+   }
+//movimiento del cursor
+void mover_cursor()
+{
+    if (key[KEY_UP] && cy>256)  {cy-=TAM*3;}
+    else if (key[KEY_DOWN] && cy<544)  {cy+=TAM*3;}
+    rest(100);
+    clear_keybuf();
+    }
+//impresion de la pantalla y funcionalidad
+void pantalla_inicial()
+{   bool continuar=true;
+    while (continuar)
+    {
+    poner_inicio();
+    draw_sprite (buffer,cursor,cx,cy);
+    mover_cursor();
+    //pantalla();
+    if (key[KEY_ENTER] && cy==256) continuar= false;}
 }
 
 void se_presiono_una_tecla(){
@@ -37,10 +67,24 @@ int inicia_audio(int izquierda, int derecha){
 }
 
 void mover_pacman(Mapa oMapa){
-    if(dir == 0 && oMapa.bordeMapa()) px += TAM;
-    if(dir == 1 && oMapa.bordeMapa()) py -= TAM;
-    if(dir == 2 && oMapa.bordeMapa()) px -= TAM;
-    if(dir == 3 && oMapa.bordeMapa()) py += TAM;
+    if(dir == 0 && oMapa.bordeMapa1()) px += TAM;
+    if(dir == 1 && oMapa.bordeMapa1()) py -= TAM;
+    if(dir == 2 && oMapa.bordeMapa1()) px -= TAM;
+    if(dir == 3 && oMapa.bordeMapa1()) py += TAM;
 }
 
+void destruir(){
+    destroy_bitmap(buffer);
+    destroy_bitmap(pacBMP);
+    destroy_bitmap(pacman);
+    destroy_bitmap(fantas);
+    destroy_bitmap(fantBMP);
+    destroy_bitmap(bloque);
+    destroy_bitmap(comida);
+    destroy_bitmap(portal_IZQ);
+    destroy_bitmap(portal_DER);
+    destroy_bitmap(inicio);
+    destroy_bitmap(cursor);
+
+}
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

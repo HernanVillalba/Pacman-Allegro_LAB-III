@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="fantasmas.h" />
 		<Unit filename="funciones_globales.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="mapa.h" />

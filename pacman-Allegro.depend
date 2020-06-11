@@ -29,34 +29,47 @@
 
 1591571262 c:\users\hernan\documents\github\pacman_allegro\mapa.h
 
-1591490263 source:c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\main.cpp
-	<allegro.h>
-	<iostream>
-	"variables.h"
-	"funciones_globales.h"
-	"mapa.h"
-
-1591490514 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\variables.h
-
-1591490514 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\funciones_globales.h
-
-1591490514 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\mapa.h
-
-1591501879 c:\users\hernan\documents\github\pacman_allegro\pacman.h
-
-1591553736 source:c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\main.cpp
+1591843970 source:c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\main.cpp
 	<allegro.h>
 	<conio.h>
+	<stdlib.h>
 	"variables.h"
 	"funciones_globales.h"
 	"mapa.h"
 	"pacman.h"
+	"fantasmas.h"
 
-1591545273 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\variables.h
+1591840213 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\variables.h
 
-1591557739 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\funciones_globales.h
+1591843960 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\funciones_globales.h
+	"mapa.h"
 
-1591553390 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\mapa.h
+1591837124 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\mapa.h
 
-1591541039 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\pacman.h
+1591501879 c:\users\hernan\documents\github\pacman_allegro\pacman.h
+
+1591890442 source:c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\main.cpp
+	<allegro.h>
+	<conio.h>
+	<stdlib.h>
+	"variables.h"
+	"funciones_globales.h"
+	"mapa.h"
+	"pacman.h"
+	"fantasmas.h"
+
+1591888552 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\variables.h
+
+1591888552 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\funciones_globales.h
+	"mapa.h"
+
+1591888552 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\mapa.h
+
+1591889305 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\pacman.h
+
+1591560821 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\pacman.h
+
+1591844089 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\fantasmas.h
+
+1591896877 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\fantasmas.h
 

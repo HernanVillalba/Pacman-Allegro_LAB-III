@@ -34,7 +34,8 @@ class Mapa{
     public:
         void planoMapa();
         void imprimirMapa();
-        bool bordeMapa();
+        bool bordeMapa1();
+        bool bordeMapa2();
         void portalMapa();
         bool hayComida();
 };
@@ -70,7 +71,7 @@ void Mapa::imprimirMapa(){
     blit(buffer,screen,0,0,0,0,1200,640);
 }
 
-bool Mapa::bordeMapa(){
+bool Mapa::bordeMapa1(){
     switch(dir){
     case 0:
         if ((mapa[py/TAM][(px+TAM)/TAM]!='X') && (mapa[py/TAM][(px+TAM)/TAM]!='N'))return true;
@@ -87,6 +88,7 @@ bool Mapa::bordeMapa(){
     default: return true; break;
         }
 }
+
 
 void Mapa::portalMapa(){
     if (px<0)px=930;
