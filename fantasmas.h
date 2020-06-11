@@ -63,7 +63,7 @@ bool Fantasma::bordeMapa2(){
         if (mapa[fy/TAM][(fx-TAM)/TAM]!='X')return true;
             else return false; break;
     case 3:
-        if (mapa[(fy+TAM)/TAM][fx/TAM]!='X')return true;
+        if ((mapa[(fy+TAM)/TAM][fx/TAM]!='X') && (mapa[(fy+TAM)/TAM][fx/TAM]!='N'))return true;
             else return false; break;
     default: return true; break;
         }
