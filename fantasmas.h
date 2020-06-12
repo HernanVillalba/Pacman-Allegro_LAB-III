@@ -6,6 +6,8 @@ private:
     int fdir;
     int fx,fy;
     int colorfant;
+    int primerfy,primerfx;
+    bool estadoFantas;
     char mapa[MAXFILAS][MAXCOL] = {
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
         "XJ   J JXJ         JXJ J   JX",
@@ -36,14 +38,18 @@ public:
     bool caminoFantasma();
     bool salidaFantasma();
     void centroFantasma();
+    void choqueFantasma();
+    void cambiarEstado();
 };
 
 Fantasma::Fantasma(int x, int y, int col){
     fx=x;
     fy=y;
+    primerfy=y;
+    primerfx=x;
     colorfant=col;
     fdir=rand()%4;
-
+    estadoFantas=1;
 }
 void Fantasma::dibujarFantasma(){
     //Impresion de los fantasmas
@@ -80,6 +86,10 @@ void Fantasma::centroFantasma(){
             fdir=0;
 }
 
+void Fantasma::cambiarEstado(){
+    //vuelve a los fantasmas comestibles
+estadoFantas=0;
+}
 bool Fantasma::caminoFantasma(){
     //Los fantas leen los bifurcaciones
     if (mapa[fy/TAM][fx/TAM]=='J')return true;
@@ -87,6 +97,7 @@ bool Fantasma::caminoFantasma(){
 }
 void Fantasma::moverFantasma(){
     //Los fantasmas se mueven
+    choqueFantasma();
     Fantasma::centroFantasma();
     if     (fdir == 0 && bordeMapa2())  fx += TAM;
     else if(fdir == 1 && bordeMapa2())  fy -= TAM;
@@ -97,5 +108,22 @@ void Fantasma::moverFantasma(){
     //Los fantis atraviesan el portal
     if      (fx<0)fx=898;
     else if (fx>898) fx=0;
+ }
+ void Fantasma::choqueFantasma(){
+    //Choque fantasma, tanto muerte del pac, como del fantasma
+    if ((py==fy && px==fx )||(fx==anteriorpx && fy==anteriorpy)){
+    if (estadoFantas){
+    clear(pacman);
+    clear(buffer);
+    blit(buffer,screen,0,0,0,0,1200,640);
+    px=TAM*14;
+    py=TAM*17;}
+    else {
+    clear(buffer);
+    fy=primerfy;
+    fx=primerfx;}
+    }
+
+
  }
 #endif // FANTASMAS_H_INCLUDED
