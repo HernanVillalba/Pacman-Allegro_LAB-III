@@ -97,6 +97,7 @@ void Mapa::portalMapa(){
 }
 
 bool Mapa::fichaGrande(){
+    //funcion para comer la pastilla grande
 if(mapa[py/TAM][px/TAM] == 'L') return true;
 else return false;
 }

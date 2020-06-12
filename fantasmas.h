@@ -87,6 +87,7 @@ void Fantasma::centroFantasma(){
 }
 
 void Fantasma::cambiarEstado(){
+    //vuelve a los fantasmas comestibles
 estadoFantas=0;
 }
 bool Fantasma::caminoFantasma(){
@@ -109,6 +110,7 @@ void Fantasma::moverFantasma(){
     else if (fx>898) fx=0;
  }
  void Fantasma::choqueFantasma(){
+    //Choque fantasma, tanto muerte del pac, como del fantasma
     if ((py==fy && px==fx )||(fx==anteriorpx && fy==anteriorpy)){
     if (estadoFantas){
     clear(pacman);
