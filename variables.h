@@ -18,6 +18,7 @@ BITMAP *inicio; //pantalla de inicio
 BITMAP *cursor; // cursor
 BITMAP *fantBMP;
 BITMAP *fantas;
+BITMAP *comida_grande;
 
 //posiciones iniciales del pacman y las que controlan X e Y del mismo
 int dir=4;

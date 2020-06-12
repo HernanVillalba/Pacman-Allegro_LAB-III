@@ -6,10 +6,15 @@ class Pacman{
         int vidas;
 
     public:
+        Pacman();
         void imprimirPacmanComiendo();
         void imprimirPacmanQuieto();
 
 };
+
+Pacman::Pacman(){
+    vidas = 3;
+}
 
 void Pacman::imprimirPacmanComiendo(){
     blit(pacBMP,pacman,dir*TAM,0,0,0,TAM,TAM);

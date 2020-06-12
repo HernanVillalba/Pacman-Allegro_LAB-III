@@ -5,13 +5,13 @@ class Mapa{
     private:
         /*X = ladrillos
         P = porta
-        C = esquinas
+        C = comida GRANDE
         F = donde aparecen los fantasmas
         N = espacios entre los bloques
         */
         char mapa[MAXFILAS][MAXCOL] = {
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "X       X           X       X",
+        "XC      X           X      CX",
         "X XXX X X XXXXXXXXX X X XXX X",
         "X X   X X X       X X X   X X",
         "X X XXX X X XXXXX X X XXX X X",
@@ -28,7 +28,7 @@ class Mapa{
         "X XNX                   XNX X",
         "X XNX XXXX XXXXXXX XXXX XNX X",
         "X XXX XXXX         XXXX XXX X",
-        "X          XXXXXXX          X",
+        "XC         XXXXXXX         CX",
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };
     public:
@@ -51,6 +51,10 @@ void Mapa::planoMapa(){
             if(mapa[fil][col] == ' '){
                 //dibuja la comida
                 draw_sprite(buffer, comida, col*TAM, fil*TAM);
+
+            }
+            if(mapa[fil][col] == 'C'){
+                draw_sprite(buffer,comida_grande,col*TAM,fil*TAM);
             }
             if ((py/TAM == fil) && (px/TAM == col) && (mapa[fil][col] != 'P')){
                 //el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman

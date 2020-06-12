@@ -3,6 +3,7 @@
 #include "mapa.h"
 
 void iniciar_allegro(){
+    //inicia allegro junto con sus imagenes
     allegro_init();
     install_keyboard();
     set_color_depth(32);
@@ -18,27 +19,27 @@ void iniciar_allegro(){
     portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
     inicio = load_bitmap("images/menu/inicio.bmp",NULL);
     cursor = load_bitmap("images/menu/cursor.bmp",NULL);
-    fantBMP= load_bitmap("images/pacman/fantas.bmp",NULL);
-    fantas= create_bitmap(TAM,TAM);
+    fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
+    fantas = create_bitmap(TAM,TAM);
+    comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
 }
 //pone el bitmap en el inicio
-void poner_inicio()
-{
+void poner_inicio(){
     blit(buffer,screen,0,0,0,0,1200,640);
     blit(inicio,buffer,0,0,0,0,1200,640);
 
    }
-//movimiento del cursor
-void mover_cursor()
-{
+
+void mover_cursor(){
+    //movimiento del cursor
     if (key[KEY_UP] && cy>256)  {cy-=TAM*3;}
     else if (key[KEY_DOWN] && cy<544)  {cy+=TAM*3;}
     rest(100);
     clear_keybuf();
-    }
+}
 //impresion de la pantalla y funcionalidad
-void pantalla_inicial()
-{   bool continuar=true;
+void pantalla_inicial(){
+    bool continuar=true;
     while (continuar)
     {
     poner_inicio();
