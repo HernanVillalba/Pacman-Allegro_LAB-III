@@ -21,9 +21,9 @@ BITMAP *fantas;
 
 //posiciones iniciales del pacman y las que controlan X e Y del mismo
 int dir=4;
-int px=TAM*15, py=TAM*17;
+int px=TAM*14, py=TAM*17;
 int cx=TAM*10, cy=TAM*8; //Ubicacion del cursor
-
+int anteriorpx, anteriorpy;
 //FUNCIONES
 int inicia_audio(int izquierda, int derecha);
 

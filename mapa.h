@@ -28,7 +28,7 @@ class Mapa{
         "X XNX                   XNX X",
         "X XNX XXXX XXXXXXX XXXX XNX X",
         "X XXX XXXX         XXXX XXX X",
-        "X          XXXXXXX          X",
+        "XL         XXXXXXX          X",
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };
     public:
@@ -38,6 +38,7 @@ class Mapa{
         bool bordeMapa2();
         void portalMapa();
         bool hayComida();
+        bool fichaGrande();
 };
 
 void Mapa::planoMapa(){
@@ -93,6 +94,11 @@ bool Mapa::bordeMapa1(){
 void Mapa::portalMapa(){
     if (px<0)px=898;
     else if (px>898) px=0;
+}
+
+bool Mapa::fichaGrande(){
+if(mapa[py/TAM][px/TAM] == 'L') return true;
+else return false;
 }
 
 bool Mapa::hayComida(){
