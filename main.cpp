@@ -1,6 +1,6 @@
 #include <allegro.h>
 #include <conio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 #include "variables.h"
 #include "funciones_globales.h"
@@ -15,11 +15,13 @@ void main()
 
     Mapa oMapa; //objeto de la clase mapa
     Pacman oPacman;
+
     Fantasma oFantasma1(TAM*12,TAM*10,0);
     Fantasma oFantasma2(TAM*13,TAM*10,1);
     Fantasma oFantasma3(TAM*14,TAM*10,2);
     Fantasma oFantasma4(TAM*15,TAM*10,3);
     Fantasma oFantasma5(TAM*16,TAM*10,4);
+
     pantalla_inicial();
     while(!key[KEY_ESC] && !game_over){
 
@@ -28,7 +30,7 @@ void main()
 
         se_presiono_una_tecla();
         mover_pacman(oMapa);
-        if(oMapa.fichaGrande()){
+        if(oMapa.comidaGrande()){
         oFantasma1.cambiarEstado();
         oFantasma2.cambiarEstado();
         oFantasma3.cambiarEstado();

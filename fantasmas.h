@@ -111,15 +111,14 @@ void Fantasma::moverFantasma(){
  }
  void Fantasma::choqueFantasma(){
     //Choque fantasma, tanto muerte del pac, como del fantasma
-    if ((py==fy && px==fx )||(fx==anteriorpx && fy==anteriorpy)){
+    if ((fy==py && fx==px) || (fx==anteriorpx && fy==anteriorpy)){
     if (estadoFantas){
     clear(pacman);
-    clear(buffer);
     blit(buffer,screen,0,0,0,0,1200,640);
     px=TAM*14;
     py=TAM*17;}
     else {
-    clear(buffer);
+
     fy=primerfy;
     fx=primerfx;}
     }
