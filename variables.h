@@ -22,6 +22,7 @@ BITMAP *comida_grande;
 BITMAP *muerte;
 BITMAP *vidas_pacmanBMP;
 BITMAP *vidas_pacman;
+BITMAP *vidass;
 
 //coordenadas,
 
@@ -30,7 +31,7 @@ int dir=4;
 int px=TAM*14, py=TAM*17;
 int cx=TAM*10, cy=TAM*8; //Ubicacion del cursor
 int anteriorpx, anteriorpy;
-int vidas;
+int vidas=3;
 //FUNCIONES
 int inicia_audio(int izquierda, int derecha);
 

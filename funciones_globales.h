@@ -24,12 +24,13 @@ void iniciar_allegro(){
     fantas = create_bitmap(TAM,TAM);
     comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
-    vidas_pacman = create_bitmap(TAM,TAM);
+    vidas_pacman = create_bitmap(TAM*3,TAM);
+    vidass=load_bitmap("images/menu/vidas.bmp",NULL);
 }
 //pone el bitmap en el inicio
 void poner_inicio(){
     blit(buffer,screen,0,0,0,0,1200,640);
-    blit(inicio,buffer,0,0,0,0,1200,640);
+    blit(inicio,buffer,0,0,0,0,960,640);
 
    }
 
@@ -89,13 +90,17 @@ void destruir(){
     destroy_bitmap(portal_DER);
     destroy_bitmap(inicio);
     destroy_bitmap(cursor);
-
+    destroy_bitmap(vidas_pacman);
+    destroy_bitmap(vidas_pacmanBMP);
 }
 
 void dibujar_vidas_pacman(int vid){
 //    if(vid == 3){
-        blit(vidas_pacmanBMP,vidas_pacman,0*TAM,0,0,0,TAM,TAM);
-        draw_sprite(buffer,vidas_pacman,33,33);
+
+        blit(vidas_pacmanBMP,vidas_pacman,vid*TAM,0,0,0,TAM*3,TAM);
+        draw_sprite(buffer,vidass,30*TAM,288);
+        draw_sprite(buffer,vidas_pacman,960,320);
+        blit(buffer,screen,0,0,0,0,1200,640);
 //    }
 }
 

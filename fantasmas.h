@@ -41,6 +41,7 @@ public:
     void choqueFantasma();
     void cambiarEstado();
     void volverFantasma();
+    bool getEstado();
 };
 
 Fantasma::Fantasma(int x, int y, int col){
@@ -114,10 +115,10 @@ void Fantasma::choqueFantasma(){
         if (estadoFantas){
             clear(pacman);
             clear(buffer);
-            blit(buffer,screen,0,0,0,0,1200,640);
+            blit(buffer,screen,0,0,0,0,960,640);
             px=TAM*14;
             py=TAM*17;
-
+            vidas--;
         }
         else{
             clear(buffer);
@@ -126,4 +127,8 @@ void Fantasma::choqueFantasma(){
         }
     }
 }
+// bool Fantasma::getEstado(){
+//    if(estadoFantas) return true;
+//    else return false;
+// }
 #endif // FANTASMAS_H_INCLUDED

@@ -3,17 +3,18 @@
 
 class Pacman{
     private:
-        int vidas;
+        //int vidas;
 
     public:
-        Pacman();
+        Pacman(int );
         void imprimirPacmanComiendo();
         void imprimirPacmanQuieto();
-        int getVidas();
+       // int getVidas();
+      //  void restarVida();
 };
 
-Pacman::Pacman(){
-    vidas = 3;
+Pacman::Pacman(int aux){
+    vidas = aux;
 }
 
 void Pacman::imprimirPacmanComiendo(){
@@ -25,7 +26,10 @@ void Pacman::imprimirPacmanQuieto(){
     draw_sprite(buffer,pacman,px,py);
 }
 
-int Pacman::getVidas(){
-    return vidas;
-}
+//int Pacman::getVidas(){
+//    return vidas;
+//}
+//void Pacman::restarVida(){
+//    vidas--;
+//}
 #endif // PACMAN_H_INCLUDED

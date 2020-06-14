@@ -32,7 +32,7 @@
 
 1592098062 c:\users\hernan\documents\github\pacman_allegro\mapa.h
 
-1591913992 source:c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\main.cpp
+1592173544 source:c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\main.cpp
 	<allegro.h>
 	<conio.h>
 	<stdlib.h>
@@ -42,12 +42,13 @@
 	"pacman.h"
 	"fantasmas.h"
 
-1591912570 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\variables.h
+1592174214 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\variables.h
 
-1591914313 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\funciones_globales.h
+1592174358 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\funciones_globales.h
 	"mapa.h"
+	"fantasmas.h"
 
-1591913948 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\mapa.h
+1592168431 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\mapa.h
 
 1592100166 c:\users\hernan\documents\github\pacman_allegro\pacman.h
 
@@ -70,9 +71,9 @@
 
 1591997368 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\pacman.h
 
-1591899392 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\pacman.h
+1592172262 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\pacman.h
 
-1591913469 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\fantasmas.h
+1592172254 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\fantasmas.h
 
 1592000028 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\fantasmas.h
 

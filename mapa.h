@@ -73,7 +73,7 @@ void Mapa::planoMapa(){
 
 void Mapa::imprimirMapa(){
     //
-    blit(buffer,screen,0,0,0,0,1200,640);
+    blit(buffer,screen,0,0,0,0,960,640);
 }
 
 bool Mapa::comidaGrande(){

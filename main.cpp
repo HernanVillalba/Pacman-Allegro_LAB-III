@@ -14,29 +14,32 @@ void main()
     iniciar_allegro();
 
     Mapa oMapa; //objeto de la clase mapa
-    Pacman oPacman;
+    Pacman oPacman(3);
     Fantasma oFantasma1(TAM*12,TAM*10,0);
     Fantasma oFantasma2(TAM*13,TAM*10,1);
     Fantasma oFantasma3(TAM*14,TAM*10,2);
     Fantasma oFantasma4(TAM*15,TAM*10,3);
     Fantasma oFantasma5(TAM*16,TAM*10,4);
     pantalla_inicial();
+//    vidas = oPacman.getVidas();
 
     while(!key[KEY_ESC] && !game_over){
 
+
+        dibujar_vidas_pacman(vidas);
 
         anteriorpx=px;
         anteriorpy=py;
 
         se_presiono_una_tecla();
         mover_pacman(oMapa);
-//        if(oMapa.fichaGrande()){
-//        oFantasma1.cambiarEstado();
-//        oFantasma2.cambiarEstado();
-//        oFantasma3.cambiarEstado();
-//        oFantasma4.cambiarEstado();
-//        oFantasma5.cambiarEstado();
-//        }
+        if(oMapa.comidaGrande()){
+        oFantasma1.cambiarEstado();
+        oFantasma2.cambiarEstado();
+        oFantasma3.cambiarEstado();
+        oFantasma4.cambiarEstado();
+        oFantasma5.cambiarEstado();
+        }
 
         oFantasma1.moverFantasma();
         oFantasma2.moverFantasma();
@@ -64,11 +67,10 @@ void main()
         oMapa.imprimirMapa();
         rest(115);
         oMapa.imprimirMapa();
-        vidas = oPacman.getVidas();
-        dibujar_vidas_pacman(vidas);
+      //  oPacman.restarVida();
 //        dibujar_vidas_pacman();
 
-        if(!oMapa.hayComida() || vidas == 0){ //si no hay comida... termina el juego
+        if(!oMapa.hayComida() || vidas == -1){ //si no hay comida... termina el juego
             game_over = true;
 
         }
