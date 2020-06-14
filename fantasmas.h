@@ -40,6 +40,7 @@ public:
     void centroFantasma();
     void choqueFantasma();
     void cambiarEstado();
+    void volverFantasma();
 };
 
 Fantasma::Fantasma(int x, int y, int col){
@@ -88,7 +89,7 @@ void Fantasma::centroFantasma(){
 
 void Fantasma::cambiarEstado(){
     //vuelve a los fantasmas comestibles
-estadoFantas=0;
+    estadoFantas=0;
 }
 bool Fantasma::caminoFantasma(){
     //Los fantas leen los bifurcaciones
@@ -112,18 +113,18 @@ void Fantasma::moverFantasma(){
  void Fantasma::choqueFantasma(){
     //Choque fantasma, tanto muerte del pac, como del fantasma
     if ((py==fy && px==fx )||(fx==anteriorpx && fy==anteriorpy)){
-    if (estadoFantas){
-    clear(pacman);
-    clear(buffer);
-    blit(buffer,screen,0,0,0,0,1200,640);
-    px=TAM*14;
-    py=TAM*17;}
-    else {
-    clear(buffer);
-    fy=primerfy;
-    fx=primerfx;}
+        if (estadoFantas){
+            clear(pacman);
+            clear(buffer);
+            blit(buffer,screen,0,0,0,0,1200,640);
+            px=TAM*14;
+            py=TAM*17;
+        }
+        else{
+            clear(buffer);
+            fy=primerfy;
+            fx=primerfx;
+        }
     }
-
-
- }
+}
 #endif // FANTASMAS_H_INCLUDED

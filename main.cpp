@@ -28,13 +28,13 @@ void main()
 
         se_presiono_una_tecla();
         mover_pacman(oMapa);
-        if(oMapa.fichaGrande()){
-        oFantasma1.cambiarEstado();
-        oFantasma2.cambiarEstado();
-        oFantasma3.cambiarEstado();
-        oFantasma4.cambiarEstado();
-        oFantasma5.cambiarEstado();
-        }
+//        if(oMapa.fichaGrande()){
+//        oFantasma1.cambiarEstado();
+//        oFantasma2.cambiarEstado();
+//        oFantasma3.cambiarEstado();
+//        oFantasma4.cambiarEstado();
+//        oFantasma5.cambiarEstado();
+//        }
 
         oFantasma1.moverFantasma();
         oFantasma2.moverFantasma();
