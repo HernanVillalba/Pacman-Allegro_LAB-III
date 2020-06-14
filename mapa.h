@@ -38,6 +38,7 @@ class Mapa{
         bool bordeMapa2();
         void portalMapa();
         bool hayComida();
+        bool comidaGrande();
 };
 
 void Mapa::planoMapa(){
@@ -73,6 +74,12 @@ void Mapa::planoMapa(){
 void Mapa::imprimirMapa(){
     //
     blit(buffer,screen,0,0,0,0,1200,640);
+}
+
+bool Mapa::comidaGrande(){
+if(mapa[py/TAM][px/TAM] == 'C') return true;
+else return false;
+
 }
 
 bool Mapa::bordeMapa1(){
