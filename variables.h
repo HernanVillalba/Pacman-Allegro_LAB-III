@@ -19,12 +19,18 @@ BITMAP *cursor; // cursor
 BITMAP *fantBMP;
 BITMAP *fantas;
 BITMAP *comida_grande;
+BITMAP *muerte;
+BITMAP *vidas_pacmanBMP;
+BITMAP *vidas_pacman;
+
+//coordenadas,
 
 //posiciones iniciales del pacman y las que controlan X e Y del mismo
 int dir=4;
 int px=TAM*14, py=TAM*17;
 int cx=TAM*10, cy=TAM*8; //Ubicacion del cursor
 int anteriorpx, anteriorpy;
+int vidas;
 //FUNCIONES
 int inicia_audio(int izquierda, int derecha);
 

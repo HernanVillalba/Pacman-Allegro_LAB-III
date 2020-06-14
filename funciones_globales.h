@@ -1,6 +1,7 @@
 #ifndef FUNCIONES_GLOBALES_H_INCLUDED
 #define FUNCIONES_GLOBALES_H_INCLUDED
 #include "mapa.h"
+#include "fantasmas.h"
 
 void iniciar_allegro(){
     //inicia allegro junto con sus imagenes
@@ -22,6 +23,8 @@ void iniciar_allegro(){
     fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
     fantas = create_bitmap(TAM,TAM);
     comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
+    vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
+    vidas_pacman = create_bitmap(TAM,TAM);
 }
 //pone el bitmap en el inicio
 void poner_inicio(){
@@ -40,13 +43,13 @@ void mover_cursor(){
 //impresion de la pantalla y funcionalidad
 void pantalla_inicial(){
     bool continuar=true;
-    while (continuar)
-    {
-    poner_inicio();
-    draw_sprite (buffer,cursor,cx,cy);
-    mover_cursor();
-    //pantalla();
-    if (key[KEY_ENTER] && cy==256) continuar= false;}
+    while (continuar){
+        poner_inicio();
+        draw_sprite (buffer,cursor,cx,cy);
+        mover_cursor();
+        //pantalla();
+        if (key[KEY_ENTER] && cy==256) continuar= false;
+    }
 }
 
 void se_presiono_una_tecla(){
@@ -88,4 +91,12 @@ void destruir(){
     destroy_bitmap(cursor);
 
 }
+
+void dibujar_vidas_pacman(int vid){
+//    if(vid == 3){
+        blit(vidas_pacmanBMP,vidas_pacman,0*TAM,0,0,0,TAM,TAM);
+        draw_sprite(buffer,vidas_pacman,33,33);
+//    }
+}
+
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

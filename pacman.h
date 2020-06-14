@@ -9,7 +9,7 @@ class Pacman{
         Pacman();
         void imprimirPacmanComiendo();
         void imprimirPacmanQuieto();
-
+        int getVidas();
 };
 
 Pacman::Pacman(){
@@ -25,4 +25,7 @@ void Pacman::imprimirPacmanQuieto(){
     draw_sprite(buffer,pacman,px,py);
 }
 
+int Pacman::getVidas(){
+    return vidas;
+}
 #endif // PACMAN_H_INCLUDED

@@ -81,10 +81,8 @@ bool Fantasma::salidaFantasma(){
     else return false;
 }
 void Fantasma::centroFantasma(){
-    if (mapa[fy/TAM][fx/TAM]=='H')
-        fdir=2;
-    else if(mapa[fy/TAM][fx/TAM]=='h')
-            fdir=0;
+    if (mapa[fy/TAM][fx/TAM]=='H') fdir=2;
+    else if(mapa[fy/TAM][fx/TAM]=='h') fdir=0;
 }
 
 void Fantasma::cambiarEstado(){
@@ -110,7 +108,7 @@ void Fantasma::moverFantasma(){
     if      (fx<0)fx=898;
     else if (fx>898) fx=0;
  }
- void Fantasma::choqueFantasma(){
+void Fantasma::choqueFantasma(){
     //Choque fantasma, tanto muerte del pac, como del fantasma
     if ((py==fy && px==fx )||(fx==anteriorpx && fy==anteriorpy)){
         if (estadoFantas){
@@ -119,6 +117,7 @@ void Fantasma::moverFantasma(){
             blit(buffer,screen,0,0,0,0,1200,640);
             px=TAM*14;
             py=TAM*17;
+
         }
         else{
             clear(buffer);

@@ -21,7 +21,9 @@ void main()
     Fantasma oFantasma4(TAM*15,TAM*10,3);
     Fantasma oFantasma5(TAM*16,TAM*10,4);
     pantalla_inicial();
+
     while(!key[KEY_ESC] && !game_over){
+
 
         anteriorpx=px;
         anteriorpy=py;
@@ -62,9 +64,13 @@ void main()
         oMapa.imprimirMapa();
         rest(115);
         oMapa.imprimirMapa();
+        vidas = oPacman.getVidas();
+        dibujar_vidas_pacman(vidas);
+//        dibujar_vidas_pacman();
 
-        if(!oMapa.hayComida()){ //si no hay comida... termina el juego
+        if(!oMapa.hayComida() || vidas == 0){ //si no hay comida... termina el juego
             game_over = true;
+
         }
     }
 destruir();
