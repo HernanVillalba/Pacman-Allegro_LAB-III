@@ -119,11 +119,14 @@ void Fantasma::choqueFantasma(){
             px=TAM*14;
             py=TAM*17;
             vidas--;
+            if (puntaje<100) puntaje=0;
+            else puntaje-=100;
         }
         else{
             clear(buffer);
             fy=primerfy;
             fx=primerfx;
+            puntaje+=50;
             estadoFantas=1;
         }
     }

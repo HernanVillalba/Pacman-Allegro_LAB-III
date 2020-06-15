@@ -11,10 +11,11 @@
 
 void main()
 {
-    iniciar_allegro();
 
+    iniciar_allegro();
     Mapa oMapa; //objeto de la clase mapa
     Pacman oPacman(3);
+
     Fantasma oFantasma1(TAM*12,TAM*10,0);
     Fantasma oFantasma2(TAM*13,TAM*10,1);
     Fantasma oFantasma3(TAM*14,TAM*10,2);
@@ -25,9 +26,8 @@ void main()
 
     while(!key[KEY_ESC] && !game_over){
 
-
         dibujar_vidas_pacman(vidas);
-        dibujar_puntaje(1);
+        dibujar_puntaje(puntaje);
 
         anteriorpx=px;
         anteriorpy=py;

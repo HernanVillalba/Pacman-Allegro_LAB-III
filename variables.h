@@ -28,7 +28,7 @@ BITMAP *unidad;
 BITMAP *decena;
 BITMAP *centena;
 BITMAP *milesima;
-BITMAP *puntaje;
+BITMAP *score;
 
 //coordenadas,
 
@@ -38,6 +38,8 @@ int px=TAM*14, py=TAM*17;
 int cx=TAM*10, cy=TAM*8; //Ubicacion del cursor
 int anteriorpx, anteriorpy;
 int vidas=3;
+int puntaje=0;
+int puntajemax;
 //FUNCIONES
 int inicia_audio(int izquierda, int derecha);
 

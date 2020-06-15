@@ -57,10 +57,10 @@ void Mapa::planoMapa(){
             if(mapa[fil][col] == 'C'){
                 draw_sprite(buffer,comida_grande,col*TAM,fil*TAM);
             }
-            if ((py/TAM == fil) && (px/TAM == col) && (mapa[fil][col] != 'P')){
+            if ((py/TAM == fil) && (px/TAM == col) && (mapa[fil][col] != 'P') && ((mapa[fil][col] == ' ') ||(mapa[py/TAM][px/TAM] == 'C'))){
                 //el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman
                 //si las coordenadas del pacman coincide donde está la comida, pongo un punto para que las borre;
-                mapa[fil][col] = '.';
+                mapa[fil][col] = '.'; puntaje++;
             }
             if(mapa[fil][col] == 'P'){
                 //dibuja los portales
@@ -77,7 +77,7 @@ void Mapa::imprimirMapa(){
 }
 
 bool Mapa::comidaGrande(){
-if(mapa[py/TAM][px/TAM] == 'C') return true;
+if(mapa[py/TAM][px/TAM] == 'C') {puntaje+=24;return true;}
 else return false;
 
 }

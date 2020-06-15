@@ -1,1 +1,23 @@
 # depslib dependency file v1.0
+1592249707 source:c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\main.cpp
+	<allegro.h>
+	<conio.h>
+	<stdlib.h>
+	"variables.h"
+	"funciones_globales.h"
+	"mapa.h"
+	"pacman.h"
+	"fantasmas.h"
+
+1592252348 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\variables.h
+
+1592252933 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\funciones_globales.h
+	"mapa.h"
+	"fantasmas.h"
+
+1592253126 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\mapa.h
+
+1592252103 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\fantasmas.h
+
+1592172262 c:\users\oscar\desktop\facultad\github\nueva carpeta\pacman_allegro\pacman.h
+

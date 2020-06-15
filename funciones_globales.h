@@ -27,11 +27,12 @@ void iniciar_allegro(){
     vidas_pacman = create_bitmap(TAM*3,TAM);
     vidass=load_bitmap("images/menu/vidas.bmp",NULL);
     numeros=load_bitmap("images/menu/numeros.bmp",NULL);
-    puntaje=load_bitmap("images/menu/puntaje.bmp",NULL);
+    score=load_bitmap("images/menu/puntaje.bmp",NULL);
     unidad=create_bitmap(TAM,TAM);
     decena=create_bitmap(TAM,TAM);
     centena=create_bitmap(TAM,TAM);
     milesima=create_bitmap(TAM,TAM);
+    puntajemax=100;
 }
 //pone el bitmap en el inicio
 void poner_inicio(){
@@ -103,6 +104,7 @@ void destruir(){
     destroy_bitmap(decena);
     destroy_bitmap(centena);
     destroy_bitmap(milesima);
+    destroy_bitmap(score);
 }
 
 void dibujar_vidas_pacman(int vid){
@@ -116,12 +118,23 @@ void dibujar_vidas_pacman(int vid){
 }
 
 void dibujar_puntaje(int puntaje){
-int nunidad =1 ,ndecena=3,ncentena= 5,nmilesima=9;
+int nunidad,ndecena,ncentena,nmilesima;
+        //decomponemos el num
+        if (puntaje>=9999) puntaje=9999;
+        nmilesima=puntaje/1000;
+        puntaje=puntaje%1000;
+        ncentena=puntaje/100;
+        puntaje=puntaje%100;
+        ndecena=puntaje/10;
+        puntaje=puntaje%10;
+        nunidad=puntaje/1;
 
+        //usamos la descomposicion para buscar el num
         blit(numeros,unidad,nunidad*TAM,0,0,0,TAM,TAM);
         blit(numeros,decena,ndecena*TAM,0,0,0,TAM,TAM);
         blit(numeros,centena,ncentena*TAM,0,0,0,TAM,TAM);
         blit(numeros,milesima,nmilesima*TAM,0,0,0,TAM,TAM);
+        //imprimimos el num descompuesto
         draw_sprite(buffer,milesima,30*TAM,5*TAM);
         draw_sprite(buffer,centena,31*TAM,5*TAM);
         draw_sprite(buffer,decena,32*TAM,5*TAM);
