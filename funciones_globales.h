@@ -26,6 +26,12 @@ void iniciar_allegro(){
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
     vidas_pacman = create_bitmap(TAM*3,TAM);
     vidass=load_bitmap("images/menu/vidas.bmp",NULL);
+    numeros=load_bitmap("images/menu/numeros.bmp",NULL);
+    puntaje=load_bitmap("images/menu/puntaje.bmp",NULL);
+    unidad=create_bitmap(TAM,TAM);
+    decena=create_bitmap(TAM,TAM);
+    centena=create_bitmap(TAM,TAM);
+    milesima=create_bitmap(TAM,TAM);
 }
 //pone el bitmap en el inicio
 void poner_inicio(){
@@ -92,16 +98,38 @@ void destruir(){
     destroy_bitmap(cursor);
     destroy_bitmap(vidas_pacman);
     destroy_bitmap(vidas_pacmanBMP);
+    destroy_bitmap(numeros);
+    destroy_bitmap(unidad);
+    destroy_bitmap(decena);
+    destroy_bitmap(centena);
+    destroy_bitmap(milesima);
 }
 
 void dibujar_vidas_pacman(int vid){
 //    if(vid == 3){
 
         blit(vidas_pacmanBMP,vidas_pacman,vid*TAM,0,0,0,TAM*3,TAM);
-        draw_sprite(buffer,vidass,30*TAM,288);
-        draw_sprite(buffer,vidas_pacman,960,320);
+        draw_sprite(buffer,vidass,30*TAM,14*TAM);
+        draw_sprite(buffer,vidas_pacman,960,15*TAM);
         blit(buffer,screen,0,0,0,0,1200,640);
 //    }
+}
+
+void dibujar_puntaje(int puntaje){
+int nunidad =1 ,ndecena=3,ncentena= 5,nmilesima=9;
+
+        blit(numeros,unidad,nunidad*TAM,0,0,0,TAM,TAM);
+        blit(numeros,decena,ndecena*TAM,0,0,0,TAM,TAM);
+        blit(numeros,centena,ncentena*TAM,0,0,0,TAM,TAM);
+        blit(numeros,milesima,nmilesima*TAM,0,0,0,TAM,TAM);
+        draw_sprite(buffer,milesima,30*TAM,5*TAM);
+        draw_sprite(buffer,centena,31*TAM,5*TAM);
+        draw_sprite(buffer,decena,32*TAM,5*TAM);
+        draw_sprite(buffer,unidad,33*TAM,5*TAM);
+        blit(buffer,screen,0,0,0,0,1200,640);
+
+
+
 }
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

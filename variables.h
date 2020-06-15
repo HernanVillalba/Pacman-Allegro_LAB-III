@@ -23,6 +23,12 @@ BITMAP *muerte;
 BITMAP *vidas_pacmanBMP;
 BITMAP *vidas_pacman;
 BITMAP *vidass;
+BITMAP *numeros;
+BITMAP *unidad;
+BITMAP *decena;
+BITMAP *centena;
+BITMAP *milesima;
+BITMAP *puntaje;
 
 //coordenadas,
 

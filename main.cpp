@@ -27,6 +27,7 @@ void main()
 
 
         dibujar_vidas_pacman(vidas);
+        dibujar_puntaje(1);
 
         anteriorpx=px;
         anteriorpy=py;

@@ -124,6 +124,7 @@ void Fantasma::choqueFantasma(){
             clear(buffer);
             fy=primerfy;
             fx=primerfx;
+            estadoFantas=1;
         }
     }
 }
