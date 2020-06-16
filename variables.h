@@ -29,6 +29,7 @@ BITMAP *decena;
 BITMAP *centena;
 BITMAP *milesima;
 BITMAP *score;
+BITMAP *maxscore;
 
 //coordenadas,
 

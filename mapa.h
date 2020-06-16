@@ -27,7 +27,7 @@ class Mapa{
         "X XXX XX XXXXXXXXXXX XX XXX X",
         "X XNX                   XNX X",
         "X XNX XXXX XXXXXXX XXXX XNX X",
-        "X XXX XXXX         XXXX XXX X",
+        "X XXX XXXX    .    XXXX XXX X",
         "XC         XXXXXXX         CX",
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };
