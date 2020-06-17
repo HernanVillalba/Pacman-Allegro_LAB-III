@@ -29,6 +29,7 @@ void Pacman::imprimirPacmanQuieto(){
 //int Pacman::getVidas(){
 //    return vidas;
 //}
+
 //void Pacman::restarVida(){
 //    vidas--;
 //}

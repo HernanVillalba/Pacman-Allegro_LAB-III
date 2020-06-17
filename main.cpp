@@ -21,6 +21,7 @@ void main()
     Fantasma oFantasma3(TAM*14,TAM*10,2);
     Fantasma oFantasma4(TAM*15,TAM*10,3);
     Fantasma oFantasma5(TAM*16,TAM*10,4);
+    Fantasma oFantasma6(TAM*12,TAM*11,1);
     pantalla_inicial();
 //    vidas = oPacman.getVidas();
 
@@ -47,7 +48,7 @@ void main()
         oFantasma3.moverFantasma();
         oFantasma4.moverFantasma();
         oFantasma5.moverFantasma();
-
+        oFantasma6.moverFantasma();
         oMapa.portalMapa();
 //      imprime el pacman con la boca abierta
         clear(buffer);
@@ -58,9 +59,11 @@ void main()
         oFantasma3.dibujarFantasma();
         oFantasma4.dibujarFantasma();
         oFantasma5.dibujarFantasma();
+        oFantasma6.dibujarFantasma();
         oMapa.imprimirMapa();
 
         rest(115);
+
 
         //imprime el pacman con la boca cerrada
         clear(pacman);

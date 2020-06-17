@@ -106,17 +106,15 @@ void destruir(){
     destroy_bitmap(centena);
     destroy_bitmap(milesima);
     destroy_bitmap(score);
+    destroy_bitmap(vidass);
 }
 
 void dibujar_vidas_pacman(int vid){
 
-    //    if(vid == 3){
-
         blit(vidas_pacmanBMP,vidas_pacman,vid*TAM,0,0,0,TAM*3,TAM);
         draw_sprite(buffer,vidass,30*TAM,14*TAM);
-        draw_sprite(buffer,vidas_pacman,960,15*TAM);
-        blit(buffer,screen,0,0,0,0,1200,640);
-//    }
+        draw_sprite(buffer,vidas_pacman,30*TAM,15*TAM);
+//        blit(buffer,screen,0,0,0,0,1200,640);
 }
 
 void dibujar_puntaje(int puntaje){
