@@ -18,19 +18,18 @@ class Mapa{
         "X                           X",
         "XXXXX X XXXXXXXXXXXXX X XXXXX",
         "XNNNX X    XXXXXXX    X XNNNX",
-        "XXXXX XXXX         XXXX XXXXX",
-        "P        X XXXNXXX X        P",
-        "XXXXX XX X XFFFFFX X XX XXXXX",
-        "XNNNX XX X XFFFFFX X XX XNNNX",
-        "XXXXX XX X XXXXXXX X XX XXXXX",
-        "X     XX             XX     X",
+        "XXXXX XXXX.........XXXX XXXXX",
+        "P        X.XXXNXXX.X        P",
+        "XXXXX XX X.XFFFFFX.X XX XXXXX",
+        "XNNNX XX X.XFFFFFX.X XX XNNNX",
+        "XXXXX XX X.XXXXXXX.X XX XXXXX",
+        "X     XX ........... XX     X",
         "X XXX XX XXXXXXXXXXX XX XXX X",
         "X XNX                   XNX X",
         "X XNX XXXX XXXXXXX XXXX XNX X",
         "X XXX XXXX    .    XXXX XXX X",
         "XC         XXXXXXX         CX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-};
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",};
     public:
         void planoMapa();
         void imprimirMapa();
@@ -39,7 +38,27 @@ class Mapa{
         void portalMapa();
         bool hayComida();
         bool comidaGrande();
+        char getbordeIzq(int,int);
+        char getbordeDer(int,int);
+        char getbordeArri(int,int);
+        char getbordeAba(int,int);
 };
+
+char Mapa::getbordeIzq(int px, int py){
+    return mapa[py/TAM][(px/TAM)-1];
+}
+
+char Mapa::getbordeDer(int px, int py){
+    return mapa[py/TAM][(px/TAM)+1];
+}
+
+char Mapa::getbordeArri(int px, int py){
+    return mapa[(py/TAM)-1][px/TAM];
+}
+
+char Mapa::getbordeAba(int px, int py){
+    return mapa[(py/TAM)+1][px];
+}
 
 void Mapa::planoMapa(){
     //aca dibujo los limites del mapa, en este caso son las 'X' de la matriz
@@ -57,9 +76,15 @@ void Mapa::planoMapa(){
             if(mapa[fil][col] == 'C'){
                 draw_sprite(buffer,comida_grande,col*TAM,fil*TAM);
             }
-            if ((py/TAM == fil) && (px/TAM == col) && (mapa[fil][col] != 'P') && ((mapa[fil][col] == ' ') ||(mapa[py/TAM][px/TAM] == 'C'))){
+            if ((posicion_pacman_y / TAM == fil) && (posicion_pacman_x/TAM == col) && (mapa[fil][col] != 'P')
+                && ((mapa[fil][col] == ' ') ||(mapa[posicion_pacman_y/TAM][posicion_pacman_x/TAM] == 'C'))){
                 //el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman
                 //si las coordenadas del pacman coincide donde está la comida, pongo un punto para que las borre;
+                if(mapa[fil][col] == 'C'){
+                    play_sample(big_food,150,100,1000,0);
+                }
+                else play_sample(bolitas,150,70,1000,0);
+
                 mapa[fil][col] = '.'; puntaje++;
             }
             if(mapa[fil][col] == 'P'){
@@ -77,7 +102,7 @@ void Mapa::imprimirMapa(){
 }
 
 bool Mapa::comidaGrande(){
-if(mapa[py/TAM][px/TAM] == 'C') {puntaje+=24;return true;}
+if(mapa[posicion_pacman_y / TAM][posicion_pacman_x/TAM] == 'C') {puntaje+=24;return true;}
 else return false;
 
 }
@@ -85,16 +110,20 @@ else return false;
 bool Mapa::bordeMapa1(){
     switch(dir){
     case 0:
-        if ((mapa[py/TAM][(px+TAM)/TAM]!='X') && (mapa[py/TAM][(px+TAM)/TAM]!='N'))return true;
+        if ((mapa[posicion_pacman_y / TAM][(posicion_pacman_x+TAM) / TAM]!='X') &&
+            (mapa[posicion_pacman_y / TAM][(posicion_pacman_x+TAM) / TAM]!='N'))return true;
             else return false; break;
     case 1:
-        if ((mapa[(py-TAM)/TAM][px/TAM]!='X') && (mapa[(py-TAM)/TAM][px/TAM]!='N'))return true;
+        if ((mapa[(posicion_pacman_y - TAM) / TAM][posicion_pacman_x/TAM]!='X') &&
+            (mapa[(posicion_pacman_y - TAM) / TAM][posicion_pacman_x/TAM]!='N'))return true;
             else return false; break;
     case 2:
-        if ((mapa[py/TAM][(px-TAM)/TAM]!='X') && (mapa[py/TAM][(px-TAM)/TAM]!='N'))return true;
+        if ((mapa[posicion_pacman_y / TAM][(posicion_pacman_x-TAM) / TAM]!='X') &&
+            (mapa[posicion_pacman_y / TAM][(posicion_pacman_x-TAM) / TAM]!='N'))return true;
             else return false; break;
     case 3:
-        if ((mapa[(py+TAM)/TAM][px/TAM]!='X') && (mapa[(py+TAM)/TAM][px/TAM]!='N'))return true;
+        if ((mapa[(posicion_pacman_y + TAM) / TAM][posicion_pacman_x/TAM]!='X') &&
+            (mapa[(posicion_pacman_y + TAM) / TAM][posicion_pacman_x/TAM]!='N'))return true;
             else return false; break;
     default: return true; break;
         }
@@ -102,8 +131,8 @@ bool Mapa::bordeMapa1(){
 
 
 void Mapa::portalMapa(){
-    if (px<0)px=898;
-    else if (px>898) px=0;
+    if (posicion_pacman_x<0)posicion_pacman_x=898;
+    else if (posicion_pacman_x>=898) posicion_pacman_x=0;
 }
 
 bool Mapa::hayComida(){
