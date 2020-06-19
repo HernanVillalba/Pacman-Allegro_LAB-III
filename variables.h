@@ -38,12 +38,8 @@ SAMPLE *big_food;
 SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
 
-//posiciones iniciales del pacman y las que controlan X e Y del mismo
-int posicion_pacman_x, posicion_pacman_y;
-int dir=4;
+
 int cx=TAM*10, cy=TAM*8; //Ubicacion del cursor
-int anteriorpx, anteriorpy;
-int vidas;
 int puntaje=0;
 int puntajemax;
 int anterior_dir_Pacman;

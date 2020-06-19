@@ -15,9 +15,8 @@ void main()
     iniciar_allegro();
     Mapa oMapa;
     Pacman oPacman;
-    vidas = oPacman.getVidas();
-    posicion_pacman_x = oPacman.getPosXPac();
-    posicion_pacman_y = oPacman.getPosYPac();
+//    posicion_pacman_x = oPacman.getPosXPac();
+//    posicion_pacman_y = oPacman.getPosYPac();
     bool primera_vez = false;
 
     Fantasma oFantasma1(TAM*12,TAM*10,0);
@@ -34,16 +33,13 @@ void main()
             //para pausar la pantalla al comienzo
             pantalla_princio(&primera_vez,oMapa,oPacman);
         }
-        dibujar_vidas_pacman(vidas);
+        dibujar_vidas_pacman(oPacman.getVidas());
         dibujar_puntaje(puntaje);
 
-        anteriorpx = posicion_pacman_x;
-        anteriorpy = posicion_pacman_y;
+//        se_presiono_una_tecla(oMapa);
+        oPacman.mover_pacman();
 
-        se_presiono_una_tecla(oMapa);
-        mover_pacman(oMapa);
-
-        if(oMapa.comidaGrande()){
+        if(oPacman.comidaGrande()){
         oFantasma1.cambiarEstado();
         oFantasma2.cambiarEstado();
         oFantasma3.cambiarEstado();
@@ -56,11 +52,10 @@ void main()
         oFantasma3.moverFantasma();
         oFantasma4.moverFantasma();
         oFantasma5.moverFantasma();
-//        oFantasma6.moverFantasma();
 
 //      imprime el pacman con la boca abierta
         clear(buffer);
-        oMapa.planoMapa();
+        oPacman.Comer();
         oPacman.imprimirPacmanComiendo();
         oFantasma1.dibujarFantasma();
         oFantasma2.dibujarFantasma();
@@ -82,7 +77,7 @@ void main()
       //  oPacman.restarVida();
 //        dibujar_vidas_pacman();
 
-        if(!oMapa.hayComida() || vidas == 0){ //si no hay comida... termina el juego
+        if(!oMapa.hayComida() || oPacman.getVidas() == 0){ //si no hay comida... termina el juego
             game_over = true;
         }
     }

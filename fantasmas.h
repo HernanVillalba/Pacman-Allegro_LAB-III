@@ -1,35 +1,37 @@
 #ifndef FANTASMAS_H_INCLUDED
 #define FANTASMAS_H_INCLUDED
+#include "mapa.h"
+#include "pacman.h"
 
-class Fantasma{
+class Fantasma:public Pacman{
 private:
     int fdir;
     int fx,fy;
     int colorfant;
     int primerfy,primerfx;
     bool estadoFantas;
-    char mapa[MAXFILAS][MAXCOL] = {
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XJ   J JXJ         JXJ J   JX",
-        "X XXX X X XXXXXXXXX X X XXX X",
-        "X XJ JX X XJ     JX X XJ JX X",
-        "X X XXX X X XXXXX X X XXX X X",
-        "XJ   J   J J     J J   J J JX",
-        "XXXXX X XXXXXXXXXXXXX X XXXXX",
-        "XNNNX XJ  JXXXXXXXJ  JX XNNNX",
-        "XXXXX XXXXJ   J   JXXXX XXXXX",
-        "P       JX XXXNXXX XJ       P",
-        "XXXXX XX X XJJYJJX X XX XXXXX",
-        "XXXXX XX X XNNNNNX X XX XXXXX",
-        "XJ    XX X XXXXXXX X XX    JX",
-        "X XXX XXJ J       J JXX XX  X",
-        "XJ JX XX XXXXXXXXXXX XX XJ JX",
-        "XXX XJ  J J       J J  JX XXX",
-        "X  JX XXXX XXXXXXX XXXX XJ JX",
-        "X XXX XXXXJ   .   JXXXX XXX X",
-        "XJ   J    JXXXXXXXJ    J   JX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-};
+//    char mapa[MAXFILAS][MAXCOL] = {
+//        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+//        "XJ   J JXJ         JXJ J   JX",
+//        "X XXX X X XXXXXXXXX X X XXX X",
+//        "X XJ JX X XJ     JX X XJ JX X",
+//        "X X XXX X X XXXXX X X XXX X X",
+//        "XJ J J   J J     J J   J J JX",
+//        "XXXXX X XXXXXXXXXXXXX X XXXXX",
+//        "XNNNX XJ  JXXXXXXXJ  JX XNNNX",
+//        "XXXXX XXXXJ   J   JXXXX XXXXX",
+//        "P       JX XXXNXXX XJ       P",
+//        "XXXXX XX X XJJYJJX X XX XXXXX",
+//        "XXXXX XX X XNNNNNX X XX XXXXX",
+//        "XJ    XX X XXXXXXX X XX    JX",
+//        "X XXX XXJ J       J JXX XX  X",
+//        "XJ JX XX XXXXXXXXXXX XX XJ JX",
+//        "XXX XJ  J J       J J  JX XXX",
+//        "XJ JX XXXX XXXXXXX XXXX XJ JX",
+//        "X XXX XXXXJ   .   JXXXX XXX X",
+//        "XJ   J    JXXXXXXXJ    J   JX",
+//        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+//};
 public:
     Fantasma(int x, int y, int col); //construimos el fantasma
     void dibujarFantasma();
@@ -63,27 +65,27 @@ bool Fantasma::bordeMapa2(){
     //Los fantasmas leen los bordes
     switch(fdir){
     case 0:
-        if (mapa[fy/TAM][(fx+TAM)/TAM]!='X')return true;
+        if (mapaF[fy/TAM][(fx+TAM)/TAM]!='X')return true;
             else return false; break;
     case 1:
-        if (mapa[(fy-TAM)/TAM][fx/TAM]!='X')return true;
+        if (mapaF[(fy-TAM)/TAM][fx/TAM]!='X')return true;
             else return false; break;
     case 2:
-        if (mapa[fy/TAM][(fx-TAM)/TAM]!='X')return true;
+        if (mapaF[fy/TAM][(fx-TAM)/TAM]!='X')return true;
             else return false; break;
     case 3:
-        if ((mapa[(fy+TAM)/TAM][fx/TAM]!='X') && (mapa[(fy+TAM)/TAM][fx/TAM]!='N'))return true;
+        if ((mapaF[(fy+TAM)/TAM][fx/TAM]!='X') && (mapaF[(fy+TAM)/TAM][fx/TAM]!='N'))return true;
             else return false; break;
     default: return true; break;
         }
 }
 bool Fantasma::salidaFantasma(){
-    if (mapa[fy/TAM][fx/TAM]=='Y')return true;
+    if (mapaF[fy/TAM][fx/TAM]=='Y')return true;
     else return false;
 }
 void Fantasma::centroFantasma(){
-    if (mapa[fy/TAM][fx/TAM]=='H') fdir=2;
-    else if(mapa[fy/TAM][fx/TAM]=='h') fdir=0;
+    if (mapaF[fy/TAM][fx/TAM]=='H') fdir=2;
+    else if(mapaF[fy/TAM][fx/TAM]=='h') fdir=0;
 }
 
 void Fantasma::cambiarEstado(){
@@ -92,8 +94,8 @@ void Fantasma::cambiarEstado(){
 }
 bool Fantasma::caminoFantasma(){
     //Los fantas leen los bifurcaciones
-    if (mapa[fy/TAM][fx/TAM]=='J')return true;
-            else return false; ;
+    if (mapaF[fy/TAM][fx/TAM]=='J')return true;
+            else return false;
 }
 void Fantasma::moverFantasma(){
     //Los fantasmas se mueven
@@ -109,16 +111,16 @@ void Fantasma::moverFantasma(){
     if      (fx<0)fx=898;
     else if (fx>898) fx=0;
  }
+
 void Fantasma::choqueFantasma(){
     //Choque fantasma, tanto muerte del pac, como del fantasma
-    if ((posicion_pacman_y == fy && posicion_pacman_x==fx) ||
-        (fx==anteriorpx && fy==anteriorpy)){
+    if ((pos_y == fy && pos_x==fx)){
         if (estadoFantas){
             clear(pacman);
             clear(buffer);
             blit(buffer,screen,0,0,0,0,960,640);
-            posicion_pacman_x=TAM*14;
-            posicion_pacman_y = TAM*17;
+            pos_x=TAM*14;
+            pos_y=TAM*17;
             vidas--;
             if (puntaje<100) puntaje=0;
             else puntaje-=100;
@@ -132,8 +134,8 @@ void Fantasma::choqueFantasma(){
         }
     }
 }
-// bool Fantasma::getEstado(){
-//    if(estadoFantas) return true;
-//    else return false;
-// }
+ bool Fantasma::getEstado(){
+    if(estadoFantas) return true;
+    else return false;
+ }
 #endif // FANTASMAS_H_INCLUDED
