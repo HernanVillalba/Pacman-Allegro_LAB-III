@@ -1,6 +1,6 @@
 #include <allegro.h>
 #include <conio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 #include "variables.h"
 #include "funciones_globales.h"
@@ -28,7 +28,7 @@ void main()
 //    Fantasma oFantasma6(TAM*12,TAM*11,1);
     pantalla_inicial();
 
-    play_midi(musica,1);
+    play_midi(sountrack_stage_1,1);
     while(!key[KEY_ESC] && !game_over){
         if(!primera_vez){
             //para pausar la pantalla al comienzo

@@ -19,14 +19,14 @@ class Mapa{
         "XXXXX X XXXXXXXXXXXXX X XXXXX",
         "XNNNX X    XXXXXXX    X XNNNX",
         "XXXXX XXXX.........XXXX XXXXX",
-        "P        X.XXXNXXX.X        P",
+        "P....    X.XXXNXXX.X    ....P",
         "XXXXX XX X.XFFFFFX.X XX XXXXX",
-        "XNNNX XX X.XFFFFFX.X XX XNNNX",
-        "XXXXX XX X.XXXXXXX.X XX XXXXX",
-        "X     XX ........... XX     X",
-        "X XXX XX XXXXXXXXXXX XX XXX X",
-        "X XNX                   XNX X",
-        "X XNX XXXX XXXXXXX XXXX XNX X",
+        "XXXXX XX X.XFFFFFX.X XX XXXXX",
+        "X     XX X.XXXXXXX.X XX     X",
+        "X XXX XX ........... XX XXX X",
+        "X   X XX XXXXXXXXXXX XX X   X",
+        "XXX X                   X XXX",
+        "X   X XXXX XXXXXXX XXXX X   X",
         "X XXX XXXX    .    XXXX XXX X",
         "XC         XXXXXXX         CX",
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",};
@@ -38,6 +38,8 @@ class Mapa{
         void portalMapa();
         bool hayComida();
         bool comidaGrande();
+
+        //estos get son para devolver la posición del pacman + 1;
         char getbordeIzq(int,int);
         char getbordeDer(int,int);
         char getbordeArri(int,int);
@@ -81,9 +83,11 @@ void Mapa::planoMapa(){
                 //el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman
                 //si las coordenadas del pacman coincide donde está la comida, pongo un punto para que las borre;
                 if(mapa[fil][col] == 'C'){
-                    play_sample(big_food,150,100,1000,0);
+                    play_sample(big_food,70,100,1000,0);
                 }
-                else play_sample(bolitas,150,70,1000,0);
+                else if(mapa[fil][col] == ' ') play_sample(bolitas,70,70,1000,0);
+                else{}
+
 
                 mapa[fil][col] = '.'; puntaje++;
             }
@@ -131,8 +135,14 @@ bool Mapa::bordeMapa1(){
 
 
 void Mapa::portalMapa(){
-    if (posicion_pacman_x<0)posicion_pacman_x=898;
-    else if (posicion_pacman_x>=898) posicion_pacman_x=0;
+    if (posicion_pacman_x<0){
+            posicion_pacman_x=898;
+        play_sample(portal_sountrack,150,70,1500,0);
+    }
+    else if (posicion_pacman_x>=898){
+        posicion_pacman_x=0;
+        play_sample(portal_sountrack,150,70,1000,0);
+    }
 }
 
 bool Mapa::hayComida(){

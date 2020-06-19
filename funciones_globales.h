@@ -40,10 +40,12 @@ void iniciar_allegro(){
     milesima=create_bitmap(TAM,TAM);
     puntajemax=100; /////////////////////////////////////////WTF???? que hace esto aca?;
 
+    //carga de los sonidos
     iniciar_sonido();
-    musica = load_midi("sounds/Map/sound_game.mid");
+    sountrack_stage_1 = load_midi("sounds/Map/sountrack_game-stage_01.mid");
     big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
     bolitas = load_wav("sounds/pacman/wakawaka_pacman.wav");
+    portal_sountrack = load_wav ("sounds/Map/the-portal-sound-effect.wav");
 
 }
 //pone el bitmap en el inicio
@@ -51,7 +53,7 @@ void poner_inicio(){
     blit(buffer,screen,0,0,0,0,1200,640);
     blit(inicio,buffer,0,0,0,0,960,640);
 
-   }
+}
 
 void mover_cursor(){
     //movimiento del cursor
@@ -190,7 +192,7 @@ void pantalla_princio(bool *primera_vez,Mapa oMapa,Pacman oPacman){
     clear(buffer);
     oMapa.planoMapa();
     oMapa.imprimirMapa();
-    rest(3600);
+    rest(5000);
 }
 
 void iniciar_sonido(){

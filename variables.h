@@ -33,9 +33,10 @@ BITMAP *score;
 BITMAP *maxscore;
 
 //sonidos
-MIDI *musica;
+MIDI *sountrack_stage_1;
 SAMPLE *big_food;
 SAMPLE *bolitas;
+SAMPLE *portal_sountrack;
 
 //posiciones iniciales del pacman y las que controlan X e Y del mismo
 int posicion_pacman_x, posicion_pacman_y;
