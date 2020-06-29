@@ -31,6 +31,12 @@ BITMAP *centena;
 BITMAP *milesima;
 BITMAP *score;
 BITMAP *maxscore;
+//menu slegir skin
+BITMAP *cursor_elegir_skin;
+BITMAP *fondo_elegir_skin;
+BITMAP *fondo_elegir_skin1;
+BITMAP *fondo_elegir_skin2;
+BITMAP *fondo_elegir_skin3;
 
 //sonidos
 MIDI *sountrack_stage_1;

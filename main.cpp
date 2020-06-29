@@ -14,7 +14,6 @@ void main()
 
     iniciar_allegro();
     Mapa oMapa;
-    Pacman oPacman;
 //    posicion_pacman_x = oPacman.getPosXPac();
 //    posicion_pacman_y = oPacman.getPosYPac();
     bool primera_vez = false;
@@ -25,9 +24,14 @@ void main()
     Fantasma oFantasma4(TAM*15,TAM*10,3);
     Fantasma oFantasma5(TAM*16,TAM*10,4);
 //    Fantasma oFantasma6(TAM*12,TAM*11,1);
+
+
     pantalla_inicial();
+    pantalla_elegir_skin();
+    Pacman oPacman;
 
     play_midi(sountrack_stage_1,1);
+
     while(!key[KEY_ESC] && !game_over){
         if(!primera_vez){
             //para pausar la pantalla al comienzo

@@ -15,12 +15,13 @@ void iniciar_allegro(){
     set_color_depth(32);
     set_gfx_mode(GFX_AUTODETECT_WINDOWED,1200,640,0,0);
     buffer = create_bitmap(1200,640);
+    install_mouse(); //para usar el mouse con allegro;
 
     //cargar la imagen
     bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
     comida = load_bitmap("images/mapa/mapa_comida.bmp",NULL);
-    pacBMP = load_bitmap("images/pacman/pacman.bmp",NULL);
-    pacman = create_bitmap(TAM,TAM);
+//    pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
+//    pacman = create_bitmap(TAM,TAM);
     portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
     portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
     inicio = load_bitmap("images/menu/inicio.bmp",NULL);
@@ -39,6 +40,14 @@ void iniciar_allegro(){
     centena=create_bitmap(TAM,TAM);
     milesima=create_bitmap(TAM,TAM);
     puntajemax=100; /////////////////////////////////////////WTF???? que hace esto aca?;
+    //cargar imagenes -menu elegir skin-;
+    cursor_elegir_skin = load_bitmap("images/menu/elegir_skin/cursor_skin.bmp",NULL);
+    fondo_elegir_skin = load_bitmap("images/menu/elegir_skin/fondo.bmp",NULL);
+    fondo_elegir_skin1 = load_bitmap("images/menu/elegir_skin/fondo_skin1.bmp",NULL);
+    fondo_elegir_skin2 = load_bitmap("images/menu/elegir_skin/fondo_skin2.bmp",NULL);
+    fondo_elegir_skin3 = load_bitmap("images/menu/elegir_skin/fondo_skin3.bmp",NULL);
+
+
 
     //carga de los sonidos
     iniciar_sonido();
@@ -202,6 +211,47 @@ void iniciar_sonido(){
        return;
     }
     set_volume(150, 150);
+}
+
+void pantalla_elegir_skin(){
+//    960,640);
+    bool salir = false;
+    clear(buffer);
+    while(!salir){
+        blit(fondo_elegir_skin,buffer,0,0,0,0,960,640);
+
+        if((mouse_x>90 && mouse_x<280) && (mouse_y>320 && mouse_y<549)){
+            blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){
+                pacBMP = load_bitmap("images/pacman/pacman.bmp",NULL);
+                pacman = create_bitmap(TAM,TAM);
+                salir = true;
+            }
+        }
+
+        if((mouse_x>388 && mouse_x<570) && (mouse_y>319 && mouse_y<542)){
+            blit(fondo_elegir_skin2,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){
+                pacBMP = load_bitmap("images/pacman/pachrome.bmp",NULL);
+                pacman = create_bitmap(TAM,TAM);
+                salir = true;
+            }
+        }
+
+        if((mouse_x>660 && mouse_x<860) && (mouse_y>320 && mouse_y<556)){
+            blit(fondo_elegir_skin3,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){
+                pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
+                pacman = create_bitmap(TAM,TAM);
+                salir = true;
+            }
+        }
+
+    masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,50,60);
+    blit(buffer,screen,0,0,0,0,960,640);
+
+
+    }
 }
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED
