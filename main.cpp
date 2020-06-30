@@ -14,6 +14,7 @@ void main()
 
     iniciar_allegro();
     Mapa oMapa;
+    Pacman oPacman;
 //    posicion_pacman_x = oPacman.getPosXPac();
 //    posicion_pacman_y = oPacman.getPosYPac();
     bool primera_vez = false;
@@ -28,7 +29,6 @@ void main()
 
     pantalla_inicial();
     pantalla_elegir_skin();
-    Pacman oPacman;
 
     play_midi(sountrack_stage_1,1);
 

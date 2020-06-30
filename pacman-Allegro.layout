@@ -2,81 +2,60 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="pacman.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="863" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="26" />
-			<Collapse line="33" />
-			<Collapse line="37" />
-			<Collapse line="41" />
-			<Collapse line="45" />
-			<Collapse line="50" />
-			<Collapse line="54" />
-			<Collapse line="57" />
-			<Collapse line="83" />
-			<Collapse line="87" />
-		</Folding>
-	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1931" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="fantasmas.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1909" topLine="18" />
-		</Cursor>
-		<Folding>
-			<Collapse line="5" />
-			<Collapse line="90" />
-			<Collapse line="94" />
-			<Collapse line="114" />
-			<Collapse line="116" />
-			<Collapse line="136" />
-		</Folding>
-	</File>
-	<File name="funciones_globales.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8788" topLine="109" />
-		</Cursor>
-		<Folding>
-			<Collapse line="10" />
-			<Collapse line="60" />
-			<Collapse line="66" />
-			<Collapse line="74" />
-			<Collapse line="76" />
-			<Collapse line="101" />
-			<Collapse line="102" />
-			<Collapse line="161" />
-			<Collapse line="168" />
-			<Collapse line="198" />
-			<Collapse line="206" />
-			<Collapse line="207" />
-		</Folding>
-	</File>
-	<File name="mapa.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4599" topLine="94" />
-		</Cursor>
-		<Folding>
-			<Collapse line="5" />
-			<Collapse line="90" />
-			<Collapse line="94" />
-			<Collapse line="99" />
-			<Collapse line="115" />
-			<Collapse line="131" />
-			<Collapse line="153" />
-			<Collapse line="154" />
-			<Collapse line="155" />
-			<Collapse line="156" />
-		</Folding>
-	</File>
 	<File name="variables.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="688" topLine="25" />
+		</Cursor>
+	</File>
+	<File name="fantasmas.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1909" topLine="10" />
+		</Cursor>
+		<Folding>
+			<Collapse line="48" />
+			<Collapse line="57" />
+			<Collapse line="63" />
+			<Collapse line="65" />
+			<Collapse line="81" />
+			<Collapse line="85" />
+			<Collapse line="99" />
+		</Folding>
+	</File>
+	<File name="funciones_globales.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8788" topLine="52" />
+		</Cursor>
+		<Folding>
+			<Collapse line="76" />
+			<Collapse line="138" />
+			<Collapse line="215" />
+			<Collapse line="219" />
+			<Collapse line="222" />
+			<Collapse line="231" />
+			<Collapse line="240" />
+		</Folding>
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1931" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="12" />
+		</Folding>
+	</File>
+	<File name="mapa.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4696" topLine="37" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="5" />
+			<Collapse line="124" />
+		</Folding>
+	</File>
+	<File name="pacman.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="863" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

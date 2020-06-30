@@ -247,8 +247,8 @@ void pantalla_elegir_skin(){
             }
         }
 
-    masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,50,60);
-    blit(buffer,screen,0,0,0,0,960,640);
+        masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
+        blit(buffer,screen,0,0,0,0,960,640);
 
 
     }
