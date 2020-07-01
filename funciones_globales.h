@@ -19,16 +19,12 @@ void iniciar_allegro(){
 
     //cargar la imagen
     bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
-    comida = load_bitmap("images/mapa/mapa_comida.bmp",NULL);
 //    pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
 //    pacman = create_bitmap(TAM,TAM);
     portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
     portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
     inicio = load_bitmap("images/menu/inicio.bmp",NULL);
     cursor = load_bitmap("images/menu/cursor.bmp",NULL);
-    fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
-    fantas = create_bitmap(TAM,TAM);
-    comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
     vidas_pacman = create_bitmap(TAM*3,TAM);
     letras_vidas=load_bitmap("images/menu/vidas.bmp",NULL);
@@ -39,7 +35,7 @@ void iniciar_allegro(){
     decena=create_bitmap(TAM,TAM);
     centena=create_bitmap(TAM,TAM);
     milesima=create_bitmap(TAM,TAM);
-    puntajemax=100; /////////////////////////////////////////WTF???? que hace esto aca?;
+    puntajemax=100; /////////////////////////////////////////WTF???? que hace esto aca?; Tenia q hacer el bitmap, y me termino dando paja
     //cargar imagenes -menu elegir skin-;
     cursor_elegir_skin = load_bitmap("images/menu/elegir_skin/cursor_skin.bmp",NULL);
     fondo_elegir_skin = load_bitmap("images/menu/elegir_skin/fondo.bmp",NULL);
@@ -225,6 +221,10 @@ void pantalla_elegir_skin(){
             if(mouse_b & 1){
                 pacBMP = load_bitmap("images/pacman/pacman.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
+                comida = load_bitmap("images/mapa/mapa_comida.bmp",NULL);
+                comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
+                fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
+                fantas = create_bitmap(TAM,TAM);
                 salir = true;
             }
         }
@@ -234,6 +234,10 @@ void pantalla_elegir_skin(){
             if(mouse_b & 1){
                 pacBMP = load_bitmap("images/pacman/pachrome.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
+                comida = load_bitmap("images/mapa/mapa_crhomida.bmp",NULL);
+                comida_grande = load_bitmap("images/mapa/mapa_crhomida_grande.bmp",NULL);
+                fantBMP = load_bitmap("images/pacman/fantas_crome.bmp",NULL);
+                fantas = create_bitmap(TAM,TAM);
                 salir = true;
             }
         }
@@ -243,6 +247,10 @@ void pantalla_elegir_skin(){
             if(mouse_b & 1){
                 pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
+                comida = load_bitmap("images/mapa/mapa_comida.bmp",NULL);
+                comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
+                fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
+                fantas = create_bitmap(TAM,TAM);
                 salir = true;
             }
         }
