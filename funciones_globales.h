@@ -18,7 +18,6 @@ void iniciar_allegro(){
     install_mouse(); //para usar el mouse con allegro;
 
     //cargar la imagen
-    bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
 //    pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
 //    pacman = create_bitmap(TAM,TAM);
     portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
@@ -225,6 +224,8 @@ void pantalla_elegir_skin(){
                 comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
                 fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
                 fantas = create_bitmap(TAM,TAM);
+                bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
+
                 salir = true;
             }
         }
@@ -238,6 +239,8 @@ void pantalla_elegir_skin(){
                 comida_grande = load_bitmap("images/mapa/mapa_crhomida_grande.bmp",NULL);
                 fantBMP = load_bitmap("images/pacman/fantas_crome.bmp",NULL);
                 fantas = create_bitmap(TAM,TAM);
+                bloque = load_bitmap("images/mapa/mapa_blocrome.bmp",NULL);
+
                 salir = true;
             }
         }
@@ -251,6 +254,8 @@ void pantalla_elegir_skin(){
                 comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
                 fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
                 fantas = create_bitmap(TAM,TAM);
+                bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
+
                 salir = true;
             }
         }
