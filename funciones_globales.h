@@ -6,15 +6,6 @@
 
 //protoripos
 void iniciar_sonido();
-void iniciar_allegro();
-void jugar();
-int pantalla_inicial();
-int inicia_audio(int izquierda, int derecha);
-void destruir();
-void dibujar_vidas_pacman(int vid);
-void dibujar_puntaje(int puntaje);
-void pantalla_elegir_skin();
-
 
 //funciones
 void iniciar_allegro(){
@@ -64,57 +55,28 @@ void iniciar_allegro(){
 //pone el bitmap en el inicio
 void poner_inicio(){
     blit(buffer,screen,0,0,0,0,1200,640);
-    blit(inicio,buffer,0,0,0,0,1200,640);
+    blit(inicio,buffer,0,0,0,0,960,640);
 
 }
 
-
+void mover_cursor(){
+    //movimiento del cursor
+    if (key[KEY_UP] && cy>256)  {cy-=TAM*3;}
+    else if (key[KEY_DOWN] && cy<544)  {cy+=TAM*3;}
+    rest(100);
+    clear_keybuf();
+}
 //impresion de la pantalla y funcionalidad
-int pantalla_inicial(){
-   bool salir = false;
-    clear(buffer);
-    while(!salir){
-        blit(inicio,buffer,0,0,0,0,960,640);
-
-        if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 1;
+void pantalla_inicial(){
+    bool continuar=true;
+    while (continuar){
+        poner_inicio();
+        draw_sprite (buffer,cursor,cx,cy);
+        mover_cursor();
+        //pantalla();
+        if (key[KEY_ENTER] && cy==256) continuar= false;
     }
 }
-        if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 2;
-    }
-}
-        if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 3;
-    }
-}
-        if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 0;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
-        blit(buffer,screen,0,0,0,0,960,640);}}
-
-
 
 //void se_presiono_una_tecla(Mapa oMapa){
 //    // detecta la tecla que se precinó para asignarle el numero correspondiente a la dirección
@@ -251,10 +213,10 @@ void pantalla_elegir_skin(){
     bool salir = false;
     clear(buffer);
     while(!salir){
-        blit(fondo_elegir_skin,buffer,0,0,0,0,1200,640);
+        blit(fondo_elegir_skin,buffer,0,0,0,0,960,640);
 
         if((mouse_x>90 && mouse_x<280) && (mouse_y>320 && mouse_y<549)){
-            blit(fondo_elegir_skin1,buffer,0,0,0,0,1200,640);
+            blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 pacBMP = load_bitmap("images/pacman/pacman.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
@@ -269,7 +231,7 @@ void pantalla_elegir_skin(){
         }
 
         if((mouse_x>388 && mouse_x<570) && (mouse_y>319 && mouse_y<542)){
-            blit(fondo_elegir_skin2,buffer,0,0,0,0,1200,640);
+            blit(fondo_elegir_skin2,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 pacBMP = load_bitmap("images/pacman/pachrome.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
@@ -284,7 +246,7 @@ void pantalla_elegir_skin(){
         }
 
         if((mouse_x>660 && mouse_x<860) && (mouse_y>320 && mouse_y<556)){
-            blit(fondo_elegir_skin3,buffer,0,0,0,0,1200,640);
+            blit(fondo_elegir_skin3,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
@@ -299,83 +261,10 @@ void pantalla_elegir_skin(){
         }
 
         masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
-        blit(buffer,screen,0,0,0,0,1200,640);
+        blit(buffer,screen,0,0,0,0,960,640);
 
 
     }
 }
-
-
-void jugar(){
-    pantalla_elegir_skin();
-    Mapa oMapa;
-    Pacman oPacman;
-//    posicion_pacman_x = oPacman.getPosXPac();
-//    posicion_pacman_y = oPacman.getPosYPac();
-    bool primera_vez = false;
-
-    Fantasma oFantasma1(TAM*12,TAM*10,0);
-    Fantasma oFantasma2(TAM*13,TAM*10,1);
-    Fantasma oFantasma3(TAM*14,TAM*10,2);
-    Fantasma oFantasma4(TAM*15,TAM*10,3);
-    Fantasma oFantasma5(TAM*16,TAM*10,4);
-
-
-
-
-    play_midi(sountrack_stage_1,1);
-
-    while(!key[KEY_ESC] || game_over){
-        if(!primera_vez){
-            //para pausar la pantalla al comienzo
-            pantalla_princio(&primera_vez,oMapa,oPacman);
-        }
-        dibujar_vidas_pacman(oPacman.getVidas());
-        dibujar_puntaje(puntaje);
-
-//        se_presiono_una_tecla(oMapa);
-        oPacman.mover_pacman();
-
-        if(oPacman.comidaGrande()){
-        oFantasma1.cambiarEstado();
-        oFantasma2.cambiarEstado();
-        oFantasma3.cambiarEstado();
-        oFantasma4.cambiarEstado();
-        oFantasma5.cambiarEstado();
-        }
-
-        oFantasma1.moverFantasma();
-        oFantasma2.moverFantasma();
-        oFantasma3.moverFantasma();
-        oFantasma4.moverFantasma();
-        oFantasma5.moverFantasma();
-
-//      imprime el pacman con la boca abierta
-        clear(buffer);
-        oPacman.Comer();
-        oPacman.imprimirPacmanComiendo();
-        oFantasma1.dibujarFantasma();
-        oFantasma2.dibujarFantasma();
-        oFantasma3.dibujarFantasma();
-        oFantasma4.dibujarFantasma();
-        oFantasma5.dibujarFantasma();
-        oMapa.imprimirMapa();
-
-        rest(125);
-
-
-        //imprime el pacman con la boca cerrada
-        clear(pacman);
-        oPacman.imprimirPacmanQuieto();
-        oMapa.imprimirMapa();
-        rest(125);
-        oMapa.imprimirMapa();
-      //  oPacman.restarVida();
-//        dibujar_vidas_pacman();
-
-        if(!oMapa.hayComida() || oPacman.getVidas() == 0){ //si no hay comida... termina el juego
-            game_over = true;
-        }
-    }}
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED
