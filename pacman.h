@@ -22,6 +22,8 @@ class Pacman:public Mapa{
         int getDir(){return dir;}
         void Comer();
         bool comidaGrande();
+        bool hayComida();
+
 };
 
 Pacman::Pacman(){
@@ -106,4 +108,16 @@ for(int fil=0; fil<MAXFILAS; fil++){
 }
 
 }}
+
+
+bool Pacman::hayComida(){
+    for(int fil=0; fil<MAXFILAS; fil++){
+        for(int col=0; col<MAXCOL; col++){
+            if((mapaP[fil][col] == ' ') || (mapaP[fil][col] == 'C' )){
+                return true;
+            }
+        }
+    }
+    return false;
+}
 #endif // PACMAN_H_INCLUDED

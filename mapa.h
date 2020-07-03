@@ -151,15 +151,6 @@ bool Mapa::bordeMapa1(int aux, int posicion_pacman_y, int posicion_pacman_x){
 }
 
 
-bool Mapa::hayComida(){
-    for(int fil=0; fil<MAXFILAS; fil++){
-        for(int col=0; col<MAXCOL; col++){
-            if(mapaP[fil][col] == ' ' || mapaP[fil][col] == 'C' ){
-                return true;
-            }
-        }
-    }
-    return false;
-}
+
 
 #endif // MAPA_H_INCLUDED

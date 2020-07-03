@@ -13,18 +13,20 @@ void main()
 {
 
     iniciar_allegro();
+
     Mapa oMapa;
     Pacman oPacman;
-//    posicion_pacman_x = oPacman.getPosXPac();
-//    posicion_pacman_y = oPacman.getPosYPac();
-    bool primera_vez = false;
-
     Fantasma oFantasma1(TAM*12,TAM*10,0);
     Fantasma oFantasma2(TAM*13,TAM*10,1);
     Fantasma oFantasma3(TAM*14,TAM*10,2);
     Fantasma oFantasma4(TAM*15,TAM*10,3);
     Fantasma oFantasma5(TAM*16,TAM*10,4);
-//    Fantasma oFantasma6(TAM*12,TAM*11,1);
+
+//    posicion_pacman_x = oPacman.getPosXPac();
+//    posicion_pacman_y = oPacman.getPosYPac();
+    bool primera_vez = false;
+
+
 
 
     pantalla_inicial();
@@ -32,7 +34,9 @@ void main()
 
     play_midi(sountrack_stage_1,1);
 
-    while(!key[KEY_ESC] && !game_over){
+    bool game_over = false;
+    while(!game_over){
+
         if(!primera_vez){
             //para pausar la pantalla al comienzo
             pantalla_princio(&primera_vez,oMapa,oPacman);
@@ -66,7 +70,7 @@ void main()
         oFantasma3.dibujarFantasma();
         oFantasma4.dibujarFantasma();
         oFantasma5.dibujarFantasma();
-//        oFantasma6.dibujarFantasma();
+
         oMapa.imprimirMapa();
 
         rest(125);
@@ -78,10 +82,9 @@ void main()
         oMapa.imprimirMapa();
         rest(125);
         oMapa.imprimirMapa();
-      //  oPacman.restarVida();
-//        dibujar_vidas_pacman();
+//        oPacman.restarVida();
 
-        if(!oMapa.hayComida() || oPacman.getVidas() == 0){ //si no hay comida... termina el juego
+        if(!oPacman.hayComida() || key[KEY_ESC] || oPacman.getVidas()== -1){ //si no hay comida... termina el juego
             game_over = true;
         }
     }

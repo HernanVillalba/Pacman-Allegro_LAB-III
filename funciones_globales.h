@@ -6,6 +6,15 @@
 
 //protoripos
 void iniciar_sonido();
+void pantalla_elegir_skin();
+void iniciar_sonido();
+void iniciar_allegro();
+void jugar();
+int pantalla_inicial();
+int inicia_audio(int izquierda, int derecha);
+void destruir();
+void dibujar_vidas_pacman(int vid);
+void dibujar_puntaje(int puntaje);
 
 //funciones
 void iniciar_allegro(){
@@ -52,31 +61,39 @@ void iniciar_allegro(){
     portal_sountrack = load_wav ("sounds/Map/the-portal-sound-effect.wav");
 
 }
+
 //pone el bitmap en el inicio
-void poner_inicio(){
-    blit(buffer,screen,0,0,0,0,1200,640);
-    blit(inicio,buffer,0,0,0,0,960,640);
+int pantalla_inicial(){
+   bool salir = false;
+    clear(buffer);
+    while(!salir){
+        blit(inicio,buffer,0,0,0,0,960,640);
 
-}
-
-void mover_cursor(){
-    //movimiento del cursor
-    if (key[KEY_UP] && cy>256)  {cy-=TAM*3;}
-    else if (key[KEY_DOWN] && cy<544)  {cy+=TAM*3;}
-    rest(100);
-    clear_keybuf();
-}
-//impresion de la pantalla y funcionalidad
-void pantalla_inicial(){
-    bool continuar=true;
-    while (continuar){
-        poner_inicio();
-        draw_sprite (buffer,cursor,cx,cy);
-        mover_cursor();
-        //pantalla();
-        if (key[KEY_ENTER] && cy==256) continuar= false;
+        if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
+           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){ return 1;
     }
 }
+        if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
+           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){ return 2;
+    }
+}
+        if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
+           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){ return 3;
+    }
+}
+        if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
+           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){ return 0;
+    }
+}
+
+ masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
+        blit(buffer,screen,0,0,0,0,960,640);}}
+
+
 
 //void se_presiono_una_tecla(Mapa oMapa){
 //    // detecta la tecla que se precinó para asignarle el numero correspondiente a la dirección

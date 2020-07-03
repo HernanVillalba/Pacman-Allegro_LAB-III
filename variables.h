@@ -5,7 +5,6 @@
 const int MAXFILAS = 20;
 const int MAXCOL = 30;
 const int TAM = 32;
-bool game_over = false;
 
 // imagenes
 BITMAP *buffer;
@@ -45,7 +44,6 @@ SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
 
 
-int cx=TAM*10, cy=TAM*8; //Ubicacion del cursor
 int puntaje=0;
 int puntajemax;
 int anterior_dir_Pacman;

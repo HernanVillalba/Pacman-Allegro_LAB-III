@@ -114,14 +114,14 @@ void Fantasma::moverFantasma(){
 
 void Fantasma::choqueFantasma(){
     //Choque fantasma, tanto muerte del pac, como del fantasma
-    if ((pos_y == fy && pos_x==fx)){
+    if ((pos_y == fy && pos_x==fx) || (anterior_py == fy && anterior_px==fx)){
         if (estadoFantas){
             clear(pacman);
             clear(buffer);
             blit(buffer,screen,0,0,0,0,960,640);
             pos_x=TAM*14;
             pos_y=TAM*17;
-            vidas--;
+            restarVida();
             if (puntaje<100) puntaje=0;
             else puntaje-=100;
         }
