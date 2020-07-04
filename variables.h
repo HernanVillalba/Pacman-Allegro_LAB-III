@@ -42,6 +42,7 @@ MIDI *sountrack_stage_1;
 SAMPLE *big_food;
 SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
+const char *RUTA_sountrack_stage_1; //para poner la ruta de musica del juego
 
 
 int puntaje=0;

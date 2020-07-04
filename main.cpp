@@ -29,10 +29,10 @@ void main()
 
 
 
-    pantalla_inicial();
+//    pantalla_inicial();
     pantalla_elegir_skin();
 
-    play_midi(sountrack_stage_1,1);
+//    play_midi(sountrack_stage_1,1);
 
     bool game_over = false;
     while(!game_over){

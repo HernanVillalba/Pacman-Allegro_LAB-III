@@ -47,7 +47,7 @@
 1593784581 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\pacman.h
 	"mapa.h"
 
-1593486985 source:c:\users\hernan\documents\github\pacman_allegro\main.cpp
+1593826022 source:c:\users\hernan\documents\github\pacman_allegro\main.cpp
 	<allegro.h>
 	<conio.h>
 	<stdlib.h>
@@ -57,19 +57,19 @@
 	"pacman.h"
 	"fantasmas.h"
 
-1593463019 c:\users\hernan\documents\github\pacman_allegro\variables.h
+1593825611 c:\users\hernan\documents\github\pacman_allegro\variables.h
 
-1593483513 c:\users\hernan\documents\github\pacman_allegro\funciones_globales.h
+1593826763 c:\users\hernan\documents\github\pacman_allegro\funciones_globales.h
 	"mapa.h"
 	"fantasmas.h"
 	"pacman.h"
 
-1593454507 c:\users\hernan\documents\github\pacman_allegro\mapa.h
+1593820028 c:\users\hernan\documents\github\pacman_allegro\mapa.h
 
-1593454507 c:\users\hernan\documents\github\pacman_allegro\fantasmas.h
+1593820028 c:\users\hernan\documents\github\pacman_allegro\fantasmas.h
 	"mapa.h"
 	"pacman.h"
 
-1593464232 c:\users\hernan\documents\github\pacman_allegro\pacman.h
+1593820028 c:\users\hernan\documents\github\pacman_allegro\pacman.h
 	"mapa.h"
 

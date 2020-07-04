@@ -29,8 +29,8 @@ void iniciar_allegro(){
     //cargar la imagen
 //    pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
 //    pacman = create_bitmap(TAM,TAM);
-    portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
-    portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
+//    portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
+//    portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
     inicio = load_bitmap("images/menu/inicio.bmp",NULL);
     cursor = load_bitmap("images/menu/cursor.bmp",NULL);
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
@@ -55,7 +55,7 @@ void iniciar_allegro(){
 
     //carga de los sonidos
     iniciar_sonido();
-    sountrack_stage_1 = load_midi("sounds/Map/sountrack_game-stage_01.mid");
+//    sountrack_stage_1 = load_midi("sounds/Map/sountrack_game-stage_01.mid");
     big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
     bolitas = load_wav("sounds/pacman/wakawaka_pacman.wav");
     portal_sountrack = load_wav ("sounds/Map/the-portal-sound-effect.wav");
@@ -233,8 +233,15 @@ void pantalla_elegir_skin(){
         blit(fondo_elegir_skin,buffer,0,0,0,0,960,640);
 
         if((mouse_x>90 && mouse_x<280) && (mouse_y>320 && mouse_y<549)){
+
             blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
+                //sonidos
+                RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01.mid";
+                sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
+                play_midi(sountrack_stage_1,1);
+
+                //imagenes
                 pacBMP = load_bitmap("images/pacman/pacman.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
                 comida = load_bitmap("images/mapa/mapa_comida.bmp",NULL);
@@ -242,7 +249,8 @@ void pantalla_elegir_skin(){
                 fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
                 fantas = create_bitmap(TAM,TAM);
                 bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
-
+                portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
+                portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
                 salir = true;
             }
         }
@@ -257,22 +265,31 @@ void pantalla_elegir_skin(){
                 fantBMP = load_bitmap("images/pacman/fantas_crome.bmp",NULL);
                 fantas = create_bitmap(TAM,TAM);
                 bloque = load_bitmap("images/mapa/mapa_blocrome.bmp",NULL);
-
+                portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
+                portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
                 salir = true;
             }
         }
 
         if((mouse_x>660 && mouse_x<860) && (mouse_y>320 && mouse_y<556)){
+                //SKIN DIABOLICA
             blit(fondo_elegir_skin3,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
+                //sonido
+                RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01_diabolico.mid";
+                sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
+                play_midi(sountrack_stage_1,300);
+
+                //imagenes
                 pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
-                comida = load_bitmap("images/mapa/mapa_comida.bmp",NULL);
-                comida_grande = load_bitmap("images/mapa/mapa_comida_grande.bmp",NULL);
-                fantBMP = load_bitmap("images/pacman/fantas.bmp",NULL);
+                comida = load_bitmap("images/mapa/mapa_diabomida.bmp",NULL);
+                comida_grande = load_bitmap("images/mapa/mapa_diabomida_grande.bmp",NULL);
+                fantBMP = load_bitmap("images/pacman/fantas_diabolico.bmp",NULL);
                 fantas = create_bitmap(TAM,TAM);
-                bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
-
+                bloque = load_bitmap("images/mapa/mapa_blocbolico.bmp",NULL);
+                portal_IZQ = load_bitmap("images/mapa/mapa_portbolico_izq.bmp",NULL);
+                portal_DER = load_bitmap("images/mapa/mapa_portbolico_der.bmp",NULL);
                 salir = true;
             }
         }
