@@ -26,21 +26,17 @@ void main()
 //    posicion_pacman_y = oPacman.getPosYPac();
     bool primera_vez = false;
 
+    pantalla_inicial();
 
-
-
-//    pantalla_inicial();
     pantalla_elegir_skin();
-
-//    play_midi(sountrack_stage_1,1);
 
     bool game_over = false;
     while(!game_over){
 
-        if(!primera_vez){
-            //para pausar la pantalla al comienzo
-            pantalla_princio(&primera_vez,oMapa,oPacman);
-        }
+//        if(!primera_vez){
+//            //para pausar la pantalla al comienzo
+//            pantalla_princio(&primera_vez,oMapa,oPacman);
+//        }
         dibujar_vidas_pacman(oPacman.getVidas());
         dibujar_puntaje(puntaje);
 

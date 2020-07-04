@@ -71,27 +71,25 @@ int pantalla_inicial(){
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 1;
-    }
-}
+            if(mouse_b & 1){ return 1;}
+        }
         if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 2;
-    }
-}
+            if(mouse_b & 1){return 2;}
+        }
         if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 3;
-    }
-}
+            if(mouse_b & 1){ return 3;}
+        }
         if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 0;
-    }
-}
+            if(mouse_b & 1){ return 0;}
+        }
 
  masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
-        blit(buffer,screen,0,0,0,0,960,640);}}
+        blit(buffer,screen,0,0,0,0,960,640);
+        }
+}
 
 
 
@@ -226,7 +224,6 @@ void iniciar_sonido(){
 }
 
 void pantalla_elegir_skin(){
-//    960,640);
     bool salir = false;
     clear(buffer);
     while(!salir){
@@ -296,8 +293,6 @@ void pantalla_elegir_skin(){
 
         masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
         blit(buffer,screen,0,0,0,0,960,640);
-
-
     }
 }
 

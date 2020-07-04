@@ -1,10 +1,10 @@
 #ifndef VARIABLES_H_INCLUDED
 #define VARIABLES_H_INCLUDED
 
-//constantes
+//constantes mapa
 const int MAXFILAS = 20;
 const int MAXCOL = 30;
-const int TAM = 32;
+const int TAM = 32; //en pixeles
 
 // imagenes
 BITMAP *buffer;
