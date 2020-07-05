@@ -56,9 +56,6 @@ void iniciar_allegro(){
     //carga de los sonidos
     iniciar_sonido();
 //    sountrack_stage_1 = load_midi("sounds/Map/sountrack_game-stage_01.mid");
-    big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
-    bolitas = load_wav("sounds/pacman/wakawaka_pacman.wav");
-    portal_sountrack = load_wav ("sounds/Map/the-portal-sound-effect.wav");
 
 }
 
@@ -229,7 +226,7 @@ void iniciar_sonido(){
        system("pause");
        return;
     }
-    set_volume(150, 150);
+    set_volume(500, 500);
 }
 
 void pantalla_elegir_skin(){
@@ -242,10 +239,14 @@ void pantalla_elegir_skin(){
 
             blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
-                //sonidos
+                //sounds
                 RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
-                play_midi(sountrack_stage_1,1);
+                play_midi(sountrack_stage_1,300);
+                big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
+                bolitas = load_wav("sounds/pacman/food_pacman.wav");
+                portal_sountrack = load_wav ("sounds/Map/portal_sound_pacman.wav");
+                dead_sound = load_wav("sounds/Pacman/dead_sound_pacbolico.wav");
 
                 //imagenes
                 pacBMP = load_bitmap("images/pacman/pacman.bmp",NULL);
@@ -257,6 +258,7 @@ void pantalla_elegir_skin(){
                 bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
                 portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
                 portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
+                pac_dead_BMP = load_bitmap ("images/pacman/muerte_pacbolico.bmp",NULL);
                 salir = true;
             }
         }
@@ -264,6 +266,15 @@ void pantalla_elegir_skin(){
         if((mouse_x>388 && mouse_x<570) && (mouse_y>319 && mouse_y<542)){
             blit(fondo_elegir_skin2,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
+                //sounds
+                RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01.mid";
+                sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
+                play_midi(sountrack_stage_1,1);
+                big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
+                bolitas = load_wav("sounds/pacman/food_pacman.wav");
+                portal_sountrack = load_wav ("sounds/Map/portal_sound_pacman.wav");
+                dead_sound = load_wav("sounds/Pacman/dead_sound_pacbolico.wav");
+
                 pacBMP = load_bitmap("images/pacman/pachrome.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
                 comida = load_bitmap("images/mapa/mapa_crhomida.bmp",NULL);
@@ -273,6 +284,7 @@ void pantalla_elegir_skin(){
                 bloque = load_bitmap("images/mapa/mapa_blocrome.bmp",NULL);
                 portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
                 portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
+                pac_dead_BMP = load_bitmap ("images/pacman/muerte_pacbolico.bmp",NULL);
                 salir = true;
             }
         }
@@ -281,12 +293,16 @@ void pantalla_elegir_skin(){
                 //SKIN DIABOLICA
             blit(fondo_elegir_skin3,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
-                //sonido
+                //sounds
+                big_food = load_wav("sounds/pacman/bigfood_sound_pacbolico.wav");
+                bolitas = load_wav("sounds/pacman/food_pacbolico.wav");
+                portal_sountrack = load_wav ("sounds/Map/portal_sound_pacbolico.wav");
+                dead_sound = load_wav("sounds/Pacman/dead_sound_pacbolico.wav");
                 RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01_diabolico.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
                 play_midi(sountrack_stage_1,300);
 
-                //imagenes
+                //images
                 pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
                 comida = load_bitmap("images/mapa/mapa_diabomida.bmp",NULL);
@@ -296,6 +312,7 @@ void pantalla_elegir_skin(){
                 bloque = load_bitmap("images/mapa/mapa_blocbolico.bmp",NULL);
                 portal_IZQ = load_bitmap("images/mapa/mapa_portbolico_izq.bmp",NULL);
                 portal_DER = load_bitmap("images/mapa/mapa_portbolico_der.bmp",NULL);
+                pac_dead_BMP = load_bitmap ("images/pacman/muerte_pacbolico.bmp",NULL);
                 salir = true;
             }
         }
@@ -305,12 +322,30 @@ void pantalla_elegir_skin(){
     }
 }
 
+void obtener_posicio_personajes(Pacman oPacman, Fantasma oGhost1,Fantasma oGhost2,Fantasma oGhost3,Fantasma oGhost4,Fantasma oGhost5){
+    //para la colision entre pac y ghost;
+        pac_x = oPacman.getPosXPac();
+        pac_y = oPacman.getPosYPac();
+        //en x
+        vec_ghost_x[0] = oGhost1.get_ghost_x();
+        vec_ghost_x[1] = oGhost2.get_ghost_x();
+        vec_ghost_x[2] = oGhost3.get_ghost_x();
+        vec_ghost_x[3] = oGhost4.get_ghost_x();
+        vec_ghost_x[4] = oGhost5.get_ghost_x();
+        //en y
+        vec_ghost_y[0] = oGhost1.get_ghost_y();
+        vec_ghost_y[1] = oGhost2.get_ghost_y();
+        vec_ghost_y[2] = oGhost3.get_ghost_y();
+        vec_ghost_y[3] = oGhost4.get_ghost_y();
+        vec_ghost_y[4] = oGhost5.get_ghost_y();
+}
+
 bool pacman_colision_ghost(int pac_x, int pac_y, int *vec_ghost_x, int *vec_ghost_y){
-    for(int i=0;i<5;i++){
-        if((pac_x == vec_ghost_x[i]) &&(pac_y == vec_ghost_y[i])){
-            return true;
+        if(((pac_x == vec_ghost_x[0])&&(pac_y == vec_ghost_y[0])) || ((pac_x == vec_ghost_x[1])&&(pac_y == vec_ghost_y[1])) ||
+           ((pac_x == vec_ghost_x[2])&&(pac_y == vec_ghost_y[2])) || ((pac_x == vec_ghost_x[3])&&(pac_y == vec_ghost_y[3])) ||
+           ((pac_x == vec_ghost_x[4])&&(pac_y == vec_ghost_y[4])) || ((pac_x == vec_ghost_x[5])&&(pac_y == vec_ghost_y[5]))){
+                return true;
         }
-    }
-    return false;
+        else return false;
 }
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

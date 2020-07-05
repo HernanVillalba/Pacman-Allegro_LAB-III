@@ -18,30 +18,44 @@ class Pacman:public Mapa{
         void restarVida();
         int getPosXPac();
         int getPosYPac();
-        void mover_pacman();
+        void moverPacman();
         int getDir(){return dir;}
         void Comer();
         bool comidaGrande();
         bool hayComida();
-        bool colisionWithGhost(int,int,int,int);
         void posicionInicial();
+        void DibujarMuerte(Mapa);
 };
 
 Pacman::Pacman(){
     vidas = 3;
-    pos_x = TAM*14;
-    pos_y = TAM*17;
+    pos_x = TAM*10;
+    pos_y = TAM*13;
+//        pos_x = TAM*14;
+//    pos_y = TAM*17;
+
     dir   = 2;
+}
+
+void Pacman::DibujarMuerte(Mapa oMapa){
+    play_sample(dead_sound,255,100,1000,0);
+    int i;
+    for(i=0;i<7; i++){
+        clear(pacman);
+        clear(buffer);
+        oMapa.planoMapa();
+        oMapa.imprimirMapa();
+        blit(pac_dead_BMP,pacman,i*TAM,0,0,0,TAM,TAM);
+        draw_sprite(buffer,pacman,pos_x,pos_y);
+        oMapa.planoMapa();
+        oMapa.imprimirMapa();
+        rest(125+i*100);
+    }
 }
 
 void Pacman::posicionInicial(){
     pos_x = TAM*14;
     pos_y = TAM*17;
-}
-
-bool Pacman::colisionWithGhost(int pac_x,int pac_y, int ghost_x, int ghost_y){
-    if((pac_x/TAM && pac_y/TAM) == (ghost_x/TAM && ghost_y/TAM)) return true;
-    else return false;
 }
 
 int Pacman::getPosXPac(){
@@ -70,7 +84,7 @@ void Pacman::restarVida(){
     vidas--;
 }
 
-void Pacman::mover_pacman(){
+void Pacman::moverPacman(){
 
     anterior_px=pos_x;
     anterior_py=pos_y;
@@ -111,10 +125,9 @@ void Pacman::Comer(){
 //                el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman
 //                si las coordenadas del pacman coincide donde está la comida, pongo un punto para que las borre;
                         if(mapaP[fil][col] == 'C'){
-                            play_sample(big_food,70,100,1000,0);
+                            play_sample(big_food,60,100,1000,0);
                         }
-                        else if(mapaP[fil][col] == ' ') play_sample(bolitas,70,70,1000,0);
-                        else{}
+                        else if(mapaP[fil][col] == ' ') play_sample(bolitas,100,70,1000,0);
                         mapaP[fil][col] = '.'; puntaje++;
                 }
             }//for chico

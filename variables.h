@@ -36,6 +36,7 @@ BITMAP *centena;
 BITMAP *milesima;
 BITMAP *score;
 BITMAP *maxscore;
+BITMAP *pac_dead_BMP;
 //menu slegir skin
 BITMAP *cursor_elegir_skin;
 BITMAP *fondo_elegir_skin;
@@ -48,6 +49,7 @@ MIDI *sountrack_stage_1;
 SAMPLE *big_food;
 SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
+SAMPLE *dead_sound;
 const char *RUTA_sountrack_stage_1; //para poner la ruta de musica del juego
 
 //pacman

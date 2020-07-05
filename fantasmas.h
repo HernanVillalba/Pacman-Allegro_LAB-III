@@ -34,6 +34,7 @@ private:
         "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };*/
 public:
+    Fantasma();
     Fantasma(int x, int y, int col); //construimos el fantasma
     void dibujarFantasma();
     bool bordeMapa2();
@@ -49,6 +50,10 @@ public:
     int get_ghost_y(){return fy;}
     void posicionInicialGhost();
 };
+
+Fantasma::Fantasma(){
+
+}
 
 Fantasma::Fantasma(int x, int y, int col){
     fx=x;
