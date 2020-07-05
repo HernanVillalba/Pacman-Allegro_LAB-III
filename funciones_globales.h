@@ -39,7 +39,6 @@ void iniciar_allegro(){
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
     vidas_pacman = create_bitmap(TAM*3,TAM);
     letras_vidas=load_bitmap("images/menu/vidas.bmp",NULL);
-//    ready = load_bitmap("images/menu/ready.bmp",NULL);
     numeros=load_bitmap("images/menu/numeros.bmp",NULL);
     score=load_bitmap("images/menu/puntaje.bmp",NULL);
     maxscore=load_bitmap("images/menu/maxpuntaje.bmp",NULL);
@@ -75,7 +74,7 @@ int pantalla_inicial(){
    bool salir = false;
     clear(buffer);
     while(!salir){
-        blit(inicio,buffer,0,0,0,0,1200,640);
+        blit(inicio,buffer,0,0,0,0,960,640);
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
@@ -107,6 +106,23 @@ int pantalla_inicial(){
 }
 
 
+
+//void se_presiono_una_tecla(Mapa oMapa){
+//    // detecta la tecla que se precinó para asignarle el numero correspondiente a la dirección
+//
+//    //para que el pacman no se detenga si hay un borde 'X'
+//    //o sea, si el pacman avanza hacia la izquierda y preciona arriba y justo hay un borde, que se quede con la anterior direccion
+//    char der = oMapa.getbordeDer(posicion_pacman_x, posicion_pacman_y); //dir = 0
+//    char arri = oMapa.getbordeArri(posicion_pacman_x, posicion_pacman_y); //dir = 1
+//    char izq = oMapa.getbordeIzq(posicion_pacman_x, posicion_pacman_y); //dir = 2
+//    char aba = oMapa.getbordeAba(posicion_pacman_x, posicion_pacman_y); //dir = 3
+//
+//    if((key[KEY_RIGHT] || key[KEY_D]) && der != 'X') dir = 0; //DER vale 0
+//    else if((key[KEY_UP] || key[KEY_W]) && arri != 'X') dir = 1; //ARRIB vale 1
+//    else if((key[KEY_LEFT] || key[KEY_A]) && izq != 'X') dir = 2; //IZQ vale 2
+//    else if((key[KEY_DOWN] || key[KEY_S]) && aba != 'X') dir = 3; //ABAJ vale 3
+//}
+
 int inicia_audio(int izquierda, int derecha){
     if (install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, NULL) != 0) {
        allegro_message("Error: inicializando sistema de sonido\n%s\n", allegro_error);
@@ -116,6 +132,33 @@ int inicia_audio(int izquierda, int derecha){
 	set_volume(izquierda, derecha);
     return 0;
 }
+
+//void mover_pacman(Mapa oMapa){
+////    char der = oMapa.getbordeDer(px,py); //dir = 0
+////    char arri = oMapa.getbordeArri(px,py); //dir = 1
+////    char izq = oMapa.getbordeIzq(px,py); //dir = 2
+////    char aba = oMapa.getbordeAba(px,py); //dir = 3
+////
+////    if(dir == 0 && der == 'X'){
+////        anterior_dir_Pacman = dir;
+////    }
+////    if(dir == 1 && arri == 'X'){
+////        anterior_dir_Pacman = dir;
+////    }
+////    if(dir == 2 && izq == 'X'){
+////        anterior_dir_Pacman = dir;
+////    }
+////    if(dir == 3 && aba == 'X'){
+////        anterior_dir_Pacman = dir;
+////    }
+//
+//    oMapa.portalMapa();
+//
+//    if(dir == 0 && oMapa.bordeMapa1()) posicion_pacman_x += TAM;
+//    if(dir == 1 && oMapa.bordeMapa1()) posicion_pacman_y -= TAM;
+//    if(dir == 2 && oMapa.bordeMapa1()) posicion_pacman_x -= TAM;
+//    if(dir == 3 && oMapa.bordeMapa1()) posicion_pacman_y += TAM;
+//}
 
 void destruir(){
     destroy_bitmap(buffer);
@@ -328,7 +371,7 @@ void menu_idioma(){
         blit(idioma,buffer,0,0,0,0,1200,640);
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
-            blit(elegir_idioma1,buffer,0,0,0,0,1200,640);
+            blit(elegir_idioma1,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
 
 
@@ -404,7 +447,7 @@ void jugar(){
             oGhost4.posicionInicialGhost();
             oGhost5.posicionInicialGhost();
             play_midi(sountrack_stage_1,300);
-//            blit(ready,buffer,0,0,10*TAM,24*TAM,93,25);
+            //mensaje de ready ///////////////////
             rest(5000);
         }
 
@@ -414,13 +457,13 @@ void jugar(){
 //        se_presiono_una_tecla(oMapa);
         oPacman.moverPacman();
 
-        if(oPacman.comidaGrande()){
-        oGhost1.cambiarEstado();
-        oGhost2.cambiarEstado();
-        oGhost3.cambiarEstado();
-        oGhost4.cambiarEstado();
-        oGhost5.cambiarEstado();
-        }
+//        if(oPacman.comidaGrande()){
+//        oGhost1.cambiarEstado();
+//        oGhost2.cambiarEstado();
+//        oGhost3.cambiarEstado();
+//        oGhost4.cambiarEstado();
+//        oGhost5.cambiarEstado();
+//        }
 
         oGhost1.moverFantasma();
         oGhost2.moverFantasma();
@@ -455,8 +498,10 @@ void jugar(){
         oMapa.imprimirMapa();
 
     }
-        stop_midi();
-}
+    if(game_over){
+        allegro_message("LOSER! :)");
+    }}
+
 
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED
