@@ -19,10 +19,9 @@ void main()
     int opc;
     while (!continuar){
     opc = pantalla_inicial();
-        switch (opc)
-   {
-    case 1:jugar();break;
-    case 2:/*puntaje()*/break;
+        switch (opc){
+            case 1:jugar();break;
+        case 2:/*puntaje()*/break;
     case 3:menu_idioma(); break;
     case 0:break;
     }

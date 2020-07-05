@@ -10,29 +10,6 @@ private:
     int colorfant;
     int primerfy,primerfx;
     bool estadoFantas;
-/*
-    char mapa[MAXFILAS][MAXCOL] = {
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XJ   J JXJ         JXJ J   JX",
-        "X XXX X X XXXXXXXXX X X XXX X",
-        "X XJ JX X XJ     JX X XJ JX X",
-        "X X XXX X X XXXXX X X XXX X X",
-        "XJ J J   J J     J J   J J JX",
-        "XXXXX X XXXXXXXXXXXXX X XXXXX",
-        "XNNNX XJ  JXXXXXXXJ  JX XNNNX",
-        "XXXXX XXXXJ   J   JXXXX XXXXX",
-        "P       JX XXXNXXX XJ       P",
-        "XXXXX XX X XJJYJJX X XX XXXXX",
-        "XXXXX XX X XNNNNNX X XX XXXXX",
-        "XJ    XX X XXXXXXX X XX    JX",
-        "X XXX XXJ J       J JXX XX  X",
-        "XJ JX XX XXXXXXXXXXX XX XJ JX",
-        "XXX XJ  J J       J J  JX XXX",
-        "XJ JX XXXX XXXXXXX XXXX XJ JX",
-        "X XXX XXXXJ   .   JXXXX XXX X",
-        "XJ   J    JXXXXXXXJ    J   JX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-};*/
 public:
     Fantasma();
     Fantasma(int x, int y, int col); //construimos el fantasma
@@ -152,5 +129,5 @@ void Fantasma::choqueFantasma(){
  bool Fantasma::getEstado(){
     if(estadoFantas) return true;
     else return false;
- }
+}
 #endif // FANTASMAS_H_INCLUDED
