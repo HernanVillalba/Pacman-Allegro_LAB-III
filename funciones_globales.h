@@ -39,7 +39,7 @@ void iniciar_allegro(){
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
     vidas_pacman = create_bitmap(TAM*3,TAM);
     letras_vidas=load_bitmap("images/menu/vidas.bmp",NULL);
-    ready = load_bitmap("images/menu/ready,bmp",NULL);
+    ready = load_bitmap("images/menu/ready.bmp",NULL);
     numeros=load_bitmap("images/menu/numeros.bmp",NULL);
     score=load_bitmap("images/menu/puntaje.bmp",NULL);
     maxscore=load_bitmap("images/menu/maxpuntaje.bmp",NULL);
@@ -75,7 +75,7 @@ int pantalla_inicial(){
    bool salir = false;
     clear(buffer);
     while(!salir){
-        blit(inicio,buffer,0,0,0,0,960,640);
+        blit(inicio,buffer,0,0,0,0,1200,640);
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
@@ -372,7 +372,7 @@ void menu_idioma(){
         blit(idioma,buffer,0,0,0,0,1200,640);
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
-            blit(elegir_idioma1,buffer,0,0,0,0,960,640);
+            blit(elegir_idioma1,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){
 
 
@@ -448,7 +448,7 @@ void jugar(){
             oGhost4.posicionInicialGhost();
             oGhost5.posicionInicialGhost();
             play_midi(sountrack_stage_1,300);
-            //mensaje de ready ///////////////////
+            blit(ready,buffer,0,0,10*TAM,24*TAM,93,25);
             rest(5000);
         }
 
