@@ -29,11 +29,8 @@ class Pacman:public Mapa{
 
 Pacman::Pacman(){
     vidas = 3;
-    pos_x = TAM*10;
-    pos_y = TAM*13;
-//        pos_x = TAM*14;
-//    pos_y = TAM*17;
-
+    pos_x = TAM*14;
+    pos_y = TAM*17;
     dir   = 2;
 }
 
@@ -50,6 +47,7 @@ void Pacman::DibujarMuerte(Mapa oMapa){
         oMapa.planoMapa();
         oMapa.imprimirMapa();
         rest(125+i*100);
+        dir=2;
     }
 }
 

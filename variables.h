@@ -4,8 +4,6 @@
 ////////////////////////// DECLARACIONES VARIABLES
 
 //terminar juego o iniciarlo
-bool primera_vez = false;
-bool game_over = false;
 
 //constantes mapa
 const int MAXFILAS = 20;
@@ -51,6 +49,14 @@ SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
 SAMPLE *dead_sound;
 const char *RUTA_sountrack_stage_1; //para poner la ruta de musica del juego
+
+//elegir idioma
+BITMAP *idioma;
+BITMAP *elegir_idioma1;
+BITMAP *elegir_idioma2;
+BITMAP *elegir_idioma3;
+BITMAP *elegir_idioma4;
+BITMAP *japo;
 
 //pacman
 int pac_x, pac_y;

@@ -15,6 +15,9 @@ int inicia_audio(int izquierda, int derecha);
 void destruir();
 void dibujar_vidas_pacman(int vid);
 void dibujar_puntaje(int puntaje);
+void menu_idioma();
+void mostrar_japo();
+
 
 //funciones
 void iniciar_allegro(){
@@ -51,6 +54,13 @@ void iniciar_allegro(){
     fondo_elegir_skin2 = load_bitmap("images/menu/elegir_skin/fondo_skin2.bmp",NULL);
     fondo_elegir_skin3 = load_bitmap("images/menu/elegir_skin/fondo_skin3.bmp",NULL);
 
+    idioma = load_bitmap("images/menu/idioma/idioma.bmp",NULL);
+    elegir_idioma1 = load_bitmap("images/menu/idioma/idioma_1.bmp",NULL);
+    elegir_idioma2 = load_bitmap("images/menu/idioma/idioma_2.bmp",NULL);
+    elegir_idioma3 = load_bitmap("images/menu/idioma/idioma_3.bmp",NULL);
+    elegir_idioma4 = load_bitmap("images/menu/idioma/idioma_4.bmp",NULL);
+    japo = load_bitmap("images/menu/idioma/japones.bmp",NULL);
+
 
 
     //carga de los sonidos
@@ -70,7 +80,7 @@ int pantalla_inicial(){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 pantalla_elegir_skin();
-                return 0;
+                return 1;
             }
         }
         if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
@@ -82,9 +92,7 @@ int pantalla_inicial(){
         }
         if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){
-                allegro_message("No esta codeado aun :(");
-                exit(0);
+            if(mouse_b & 1){ return 3;
             }
         }
         if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
@@ -173,6 +181,12 @@ void destruir(){
     destroy_bitmap(milesima);
     destroy_bitmap(score);
     destroy_bitmap(letras_vidas);
+    destroy_bitmap(elegir_idioma1);
+    destroy_bitmap(elegir_idioma2);
+    destroy_bitmap(elegir_idioma3);
+    destroy_bitmap(elegir_idioma4);
+    destroy_bitmap(japo);
+
 }
 
 void dibujar_vidas_pacman(int vid){
@@ -348,4 +362,146 @@ bool pacman_colision_ghost(int pac_x, int pac_y, int *vec_ghost_x, int *vec_ghos
         }
         else return false;
 }
+
+void menu_idioma(){
+   bool salir = false;
+    clear(buffer);
+    rest(100);
+    while(!salir){
+        blit(idioma,buffer,0,0,0,0,1200,640);
+
+        if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
+            blit(elegir_idioma1,buffer,0,0,0,0,960,640);
+            if(mouse_b & 1){
+
+
+            }
+        }
+        if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
+            blit(elegir_idioma2,buffer,0,0,0,0,1200,640);
+            if(mouse_b & 1){
+
+            }
+        }
+        if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
+            blit(elegir_idioma3,buffer,0,0,0,0,1200,640);
+            if(mouse_b & 1){
+                    mostrar_japo();
+}
+        }
+        if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
+            blit(elegir_idioma4,buffer,0,0,0,0,1200,640);
+            if(mouse_b & 1) salir=true;
+        }
+
+        masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
+        blit(buffer,screen,0,0,0,0,1200,640);
+    }
+}
+
+void mostrar_japo(){
+
+    rest(100);
+    while(!key[KEY_ESC]){
+            blit(japo,buffer,0,0,0,0,1200,640);
+            }
+    }
+
+void jugar(){
+
+    bool game_over = false;
+    bool primera_vez = false;
+
+    Mapa oMapa;
+    Pacman oPacman;
+    Fantasma oGhost1(TAM*12,TAM*10,0);
+    Fantasma oGhost2(TAM*13,TAM*10,1);
+    Fantasma oGhost3(TAM*14,TAM*10,2);
+    Fantasma oGhost4(TAM*15,TAM*10,3);
+    Fantasma oGhost5(TAM*16,TAM*10,4);
+
+
+    int ghost_x,ghost_y;
+    int i;
+
+    while(!game_over){
+        if(!primera_vez){
+            //para pausar la pantalla al comienzo
+            pantalla_princio(&primera_vez,oMapa,oPacman);
+        }
+        if(!oPacman.hayComida() || key[KEY_ESC] || oPacman.getVidas()== -1){ //si no hay comida... termina el juego
+            game_over = true;
+            break;
+        }
+
+        obtener_posicio_personajes(oPacman,oGhost1,oGhost2,oGhost3,oGhost4,oGhost5);
+
+        if(pacman_colision_ghost(pac_x, pac_y, vec_ghost_x, vec_ghost_y)){
+            stop_midi();
+            oPacman.DibujarMuerte(oMapa);
+            oPacman.restarVida();
+            oPacman.posicionInicial();
+            oGhost1.posicionInicialGhost();
+            oGhost2.posicionInicialGhost();
+            oGhost3.posicionInicialGhost();
+            oGhost4.posicionInicialGhost();
+            oGhost5.posicionInicialGhost();
+            play_midi(sountrack_stage_1,300);
+            //mensaje de ready ///////////////////
+            rest(5000);
+        }
+
+        dibujar_vidas_pacman(oPacman.getVidas());
+        dibujar_puntaje(puntaje);
+
+//        se_presiono_una_tecla(oMapa);
+        oPacman.moverPacman();
+
+//        if(oPacman.comidaGrande()){
+//        oGhost1.cambiarEstado();
+//        oGhost2.cambiarEstado();
+//        oGhost3.cambiarEstado();
+//        oGhost4.cambiarEstado();
+//        oGhost5.cambiarEstado();
+//        }
+
+        oGhost1.moverFantasma();
+        oGhost2.moverFantasma();
+        oGhost3.moverFantasma();
+        oGhost4.moverFantasma();
+        oGhost5.moverFantasma();
+
+//      imprime el pacman con la boca abierta
+        clear(buffer);
+        oPacman.Comer();
+        oPacman.imprimirPacmanComiendo();
+        if(oGhost1.getEstado() || !oGhost1.getEstado()){
+            //dibuja los fantasmas depende del estado, o sea, si son comestibles o no;
+            //lo sin importar el estado porque aún no están los diseños;
+            oGhost1.dibujarFantasma();
+            oGhost2.dibujarFantasma();
+            oGhost3.dibujarFantasma();
+            oGhost4.dibujarFantasma();
+            oGhost5.dibujarFantasma();
+        }
+
+        oMapa.imprimirMapa();
+
+        rest(125);
+
+
+        //imprime el pacman con la boca cerrada
+        clear(pacman);
+        oPacman.imprimirPacmanQuieto();
+        oMapa.imprimirMapa();
+        rest(125);
+        oMapa.imprimirMapa();
+
+    }
+    if(game_over){
+        allegro_message("LOSER! :)");
+    }}
+
+
+
 #endif // FUNCIONES_GLOBALES_H_INCLUDED
