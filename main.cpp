@@ -1,12 +1,14 @@
 #include <allegro.h>
 #include <conio.h>
 #include <stdlib.h>
+#include <cstdio>
 
 #include "variables.h"
 #include "funciones_globales.h"
 #include "mapa.h"
 #include "pacman.h"
 #include "fantasmas.h"
+#include "puntaje.h"
 
 
 void main()
@@ -16,56 +18,71 @@ void main()
 
     Mapa oMapa;
     Pacman oPacman;
-    Fantasma oFantasma1(TAM*12,TAM*10,0);
-    Fantasma oFantasma2(TAM*13,TAM*10,1);
-    Fantasma oFantasma3(TAM*14,TAM*10,2);
-    Fantasma oFantasma4(TAM*15,TAM*10,3);
-    Fantasma oFantasma5(TAM*16,TAM*10,4);
-
-//    posicion_pacman_x = oPacman.getPosXPac();
-//    posicion_pacman_y = oPacman.getPosYPac();
-    bool primera_vez = false;
-
+    Fantasma oGhost1(TAM*12,TAM*10,0);
+    Fantasma oGhost2(TAM*13,TAM*10,1);
+    Fantasma oGhost3(TAM*14,TAM*10,2);
+    Fantasma oGhost4(TAM*15,TAM*10,3);
+    Fantasma oGhost5(TAM*16,TAM*10,4);
     pantalla_inicial();
 
-    pantalla_elegir_skin();
+    int ghost_x,ghost_y;
 
-    bool game_over = false;
     while(!game_over){
-
 //        if(!primera_vez){
 //            //para pausar la pantalla al comienzo
 //            pantalla_princio(&primera_vez,oMapa,oPacman);
 //        }
+
+        //para la colision entre pac y ghost;
+        pac_x = oPacman.getPosXPac();
+        pac_y = oPacman.getPosYPac();
+        //en x
+        vec_ghost_x[0] = oGhost1.get_ghost_x();
+        vec_ghost_x[1] = oGhost2.get_ghost_x();
+        vec_ghost_x[2] = oGhost3.get_ghost_x();
+        vec_ghost_x[3] = oGhost4.get_ghost_x();
+        vec_ghost_x[4] = oGhost5.get_ghost_x();
+        //en y
+        vec_ghost_y[0] = oGhost1.get_ghost_y();
+        vec_ghost_y[1] = oGhost2.get_ghost_y();
+        vec_ghost_y[2] = oGhost3.get_ghost_y();
+        vec_ghost_y[3] = oGhost4.get_ghost_y();
+        vec_ghost_y[4] = oGhost5.get_ghost_y();
+
+
         dibujar_vidas_pacman(oPacman.getVidas());
         dibujar_puntaje(puntaje);
 
 //        se_presiono_una_tecla(oMapa);
         oPacman.mover_pacman();
 
-        if(oPacman.comidaGrande()){
-        oFantasma1.cambiarEstado();
-        oFantasma2.cambiarEstado();
-        oFantasma3.cambiarEstado();
-        oFantasma4.cambiarEstado();
-        oFantasma5.cambiarEstado();
-        }
+//        if(oPacman.comidaGrande()){
+//        oGhost1.cambiarEstado();
+//        oGhost2.cambiarEstado();
+//        oGhost3.cambiarEstado();
+//        oGhost4.cambiarEstado();
+//        oGhost5.cambiarEstado();
+//        }
 
-        oFantasma1.moverFantasma();
-        oFantasma2.moverFantasma();
-        oFantasma3.moverFantasma();
-        oFantasma4.moverFantasma();
-        oFantasma5.moverFantasma();
+        oGhost1.moverFantasma();
+        oGhost2.moverFantasma();
+        oGhost3.moverFantasma();
+        oGhost4.moverFantasma();
+        oGhost5.moverFantasma();
 
 //      imprime el pacman con la boca abierta
         clear(buffer);
         oPacman.Comer();
         oPacman.imprimirPacmanComiendo();
-        oFantasma1.dibujarFantasma();
-        oFantasma2.dibujarFantasma();
-        oFantasma3.dibujarFantasma();
-        oFantasma4.dibujarFantasma();
-        oFantasma5.dibujarFantasma();
+        if(oGhost1.getEstado() || !oGhost1.getEstado()){
+            //dibuja los fantasmas depende del estado, o sea, si son comestibles o no;
+            //lo sin importar el estado porque aún no están los diseños;
+            oGhost1.dibujarFantasma();
+            oGhost2.dibujarFantasma();
+            oGhost3.dibujarFantasma();
+            oGhost4.dibujarFantasma();
+            oGhost5.dibujarFantasma();
+        }
 
         oMapa.imprimirMapa();
 
@@ -78,11 +95,24 @@ void main()
         oMapa.imprimirMapa();
         rest(125);
         oMapa.imprimirMapa();
-//        oPacman.restarVida();
+
+        if(pacman_colision_ghost(pac_x, pac_y, vec_ghost_x, vec_ghost_y)){
+                //hay que optimizarlo ya que tarda en procesar la muerte
+            oPacman.restarVida();
+            oPacman.posicionInicial();
+            oGhost1.posicionInicialGhost();
+            oGhost2.posicionInicialGhost();
+            oGhost3.posicionInicialGhost();
+            oGhost4.posicionInicialGhost();
+            oGhost5.posicionInicialGhost();
+        }
 
         if(!oPacman.hayComida() || key[KEY_ESC] || oPacman.getVidas()== -1){ //si no hay comida... termina el juego
             game_over = true;
         }
+    }
+    if(game_over){
+        allegro_message("LOSER! :)");
     }
 destruir();
 }

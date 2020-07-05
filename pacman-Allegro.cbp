@@ -37,6 +37,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="mapa.h" />
 		<Unit filename="pacman.h" />
+		<Unit filename="puntaje.h" />
 		<Unit filename="variables.h" />
 		<Extensions>
 			<code_completion />

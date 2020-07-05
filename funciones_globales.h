@@ -71,24 +71,33 @@ int pantalla_inicial(){
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 1;}
+            if(mouse_b & 1){
+                pantalla_elegir_skin();
+                return 0;
+            }
         }
         if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){return 2;}
+            if(mouse_b & 1){
+                allegro_message("No esta codeado aun :(");
+                exit(0);
+            }
         }
         if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 3;}
+            if(mouse_b & 1){
+                allegro_message("No esta codeado aun :(");
+                exit(0);
+            }
         }
         if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
            // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
-            if(mouse_b & 1){ return 0;}
+            if(mouse_b & 1){ exit(0);}
         }
 
- masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
+        masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
         blit(buffer,screen,0,0,0,0,960,640);
-        }
+    }
 }
 
 
@@ -296,4 +305,12 @@ void pantalla_elegir_skin(){
     }
 }
 
+bool pacman_colision_ghost(int pac_x, int pac_y, int *vec_ghost_x, int *vec_ghost_y){
+    for(int i=0;i<5;i++){
+        if((pac_x == vec_ghost_x[i]) &&(pac_y == vec_ghost_y[i])){
+            return true;
+        }
+    }
+    return false;
+}
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

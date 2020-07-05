@@ -1,6 +1,12 @@
 #ifndef VARIABLES_H_INCLUDED
 #define VARIABLES_H_INCLUDED
 
+////////////////////////// DECLARACIONES VARIABLES
+
+//terminar juego o iniciarlo
+bool primera_vez = false;
+bool game_over = false;
+
 //constantes mapa
 const int MAXFILAS = 20;
 const int MAXCOL = 30;
@@ -44,6 +50,9 @@ SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
 const char *RUTA_sountrack_stage_1; //para poner la ruta de musica del juego
 
+//pacman
+int pac_x, pac_y;
+int vec_ghost_x[5],vec_ghost_y[5];
 
 int puntaje=0;
 int puntajemax;
