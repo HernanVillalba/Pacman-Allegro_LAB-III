@@ -35,7 +35,6 @@ BITMAP *milesima;
 BITMAP *score;
 BITMAP *maxscore;
 BITMAP *pac_dead_BMP;
-BITMAP *ready;
 //menu slegir skin
 BITMAP *cursor_elegir_skin;
 BITMAP *fondo_elegir_skin;
