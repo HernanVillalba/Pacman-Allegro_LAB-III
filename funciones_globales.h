@@ -39,6 +39,7 @@ void iniciar_allegro(){
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
     vidas_pacman = create_bitmap(TAM*3,TAM);
     letras_vidas=load_bitmap("images/menu/vidas.bmp",NULL);
+    ready = load_bitmap("images/menu/ready,bmp",NULL);
     numeros=load_bitmap("images/menu/numeros.bmp",NULL);
     score=load_bitmap("images/menu/puntaje.bmp",NULL);
     maxscore=load_bitmap("images/menu/maxpuntaje.bmp",NULL);

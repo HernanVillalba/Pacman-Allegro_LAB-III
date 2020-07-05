@@ -31,23 +31,25 @@ Pacman::Pacman(){
     vidas = 3;
     pos_x = TAM*14;
     pos_y = TAM*17;
+
     dir   = 2;
 }
 
 void Pacman::DibujarMuerte(Mapa oMapa){
+    clear(screen);
     play_sample(dead_sound,255,100,1000,0);
     int i;
     for(i=0;i<7; i++){
         clear(pacman);
         clear(buffer);
-        oMapa.planoMapa();
+        clear(screen);
+//        oMapa.planoMapa();
         oMapa.imprimirMapa();
         blit(pac_dead_BMP,pacman,i*TAM,0,0,0,TAM,TAM);
         draw_sprite(buffer,pacman,pos_x,pos_y);
         oMapa.planoMapa();
         oMapa.imprimirMapa();
         rest(125+i*100);
-        dir=2;
     }
 }
 
