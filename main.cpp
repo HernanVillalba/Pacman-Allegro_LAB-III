@@ -9,6 +9,7 @@
 #include "pacman.h"
 #include "fantasmas.h"
 #include "puntaje.h"
+#include "jugar.h"
 
 
 void main()

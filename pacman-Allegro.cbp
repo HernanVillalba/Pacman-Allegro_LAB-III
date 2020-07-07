@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="fantasmas.h" />
 		<Unit filename="funciones_globales.h" />
+		<Unit filename="jugar.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="mapa.h" />
 		<Unit filename="pacman.h" />
