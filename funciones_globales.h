@@ -34,8 +34,12 @@ void iniciar_allegro(){
 //    pacman = create_bitmap(TAM,TAM);
 //    portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
 //    portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
-    inicio = load_bitmap("images/menu/inicio.bmp",NULL);
-    cursor = load_bitmap("images/menu/cursor.bmp",NULL);
+    inicio = load_bitmap("images/menu/inicio/inicio.bmp",NULL);
+    elegir_inicio1 = load_bitmap("images/menu/inicio/inicio_1.bmp",NULL);
+    elegir_inicio2 = load_bitmap("images/menu/inicio/inicio_2.bmp",NULL);
+    elegir_inicio3 = load_bitmap("images/menu/inicio/inicio_3.bmp",NULL);
+    elegir_inicio4 = load_bitmap("images/menu/inicio/inicio_4.bmp",NULL);
+
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
     vidas_pacman = create_bitmap(TAM*3,TAM);
     letras_vidas=load_bitmap("images/menu/vidas.bmp",NULL);
@@ -74,34 +78,34 @@ int pantalla_inicial(){
    bool salir = false;
     clear(buffer);
     while(!salir){
-        blit(inicio,buffer,0,0,0,0,960,640);
+        blit(inicio,buffer,0,0,0,0,1200,640);
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio1,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 pantalla_elegir_skin();
                 return 1;
             }
         }
         if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio2,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 allegro_message("No esta codeado aun :(");
                 exit(0);
             }
         }
         if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio3,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){ return 3;
             }
         }
         if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
-           // blit(fondo_elegir_skin1,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio4,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){ exit(0);}
         }
 
         masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
-        blit(buffer,screen,0,0,0,0,960,640);
+        blit(buffer,screen,0,0,0,0,1200,640);
     }
 }
 
@@ -171,7 +175,6 @@ void destruir(){
     destroy_bitmap(portal_IZQ);
     destroy_bitmap(portal_DER);
     destroy_bitmap(inicio);
-    destroy_bitmap(cursor);
     destroy_bitmap(vidas_pacman);
     destroy_bitmap(vidas_pacmanBMP);
     destroy_bitmap(numeros);
@@ -373,8 +376,13 @@ void menu_idioma(){
         blit(idioma,buffer,0,0,0,0,1200,640);
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
-            blit(elegir_idioma1,buffer,0,0,0,0,960,640);
+            blit(elegir_idioma1,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){
+                idioma = load_bitmap("images/menu/idioma/idioma.bmp",NULL);
+                elegir_idioma1 = load_bitmap("images/menu/idioma/idioma_1.bmp",NULL);
+                elegir_idioma2 = load_bitmap("images/menu/idioma/idioma_2.bmp",NULL);
+                elegir_idioma3 = load_bitmap("images/menu/idioma/idioma_3.bmp",NULL);
+                elegir_idioma4 = load_bitmap("images/menu/idioma/idioma_4.bmp",NULL);
 
 
             }
@@ -382,18 +390,23 @@ void menu_idioma(){
         if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
             blit(elegir_idioma2,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){
+                idioma = load_bitmap("images/menu/languaje/language.bmp",NULL);
+                elegir_idioma1 = load_bitmap("images/menu/languaje/language_1.bmp",NULL);
+                elegir_idioma2 = load_bitmap("images/menu/languaje/language_2.bmp",NULL);
+                elegir_idioma3 = load_bitmap("images/menu/languaje/language_3.bmp",NULL);
+                elegir_idioma4 = load_bitmap("images/menu/languaje/language_4.bmp",NULL);
 
             }
         }
         if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
             blit(elegir_idioma3,buffer,0,0,0,0,1200,640);
-            if(mouse_b & 1){
-                    mostrar_japo();
+            if(mouse_b & 1){ mostrar_japo();
+
 }
         }
         if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
             blit(elegir_idioma4,buffer,0,0,0,0,1200,640);
-            if(mouse_b & 1) salir=true;
+            if(mouse_b & 1) {salir=true; rest(500);}
         }
 
         masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
@@ -402,11 +415,12 @@ void menu_idioma(){
 }
 
 void mostrar_japo(){
+    while (!key[KEY_ESC]){
+    blit(japo,buffer,0,0,0,0,1200,640);
+    masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
+    blit(buffer,screen,0,0,0,0,1200,640);
+    }
 
-    rest(100);
-    while(!key[KEY_ESC]){
-            blit(japo,buffer,0,0,0,0,1200,640);
-            }
     }
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

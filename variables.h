@@ -19,7 +19,11 @@ BITMAP *pacman;
 BITMAP *portal_IZQ;
 BITMAP *portal_DER;
 BITMAP *inicio; //pantalla de inicio
-BITMAP *cursor; // cursor
+BITMAP *elegir_inicio1;
+BITMAP *elegir_inicio2;
+BITMAP *elegir_inicio3;
+BITMAP *elegir_inicio4;
+
 BITMAP *fantBMP;
 BITMAP *fantas;
 BITMAP *comida_grande;
