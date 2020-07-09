@@ -277,7 +277,8 @@ void pantalla_elegir_skin(){
                 bloque = load_bitmap("images/mapa/mapa_bloque.bmp",NULL);
                 portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
                 portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
-                pac_dead_BMP = load_bitmap ("images/pacman/muerte_pacbolico.bmp",NULL);
+                pac_dead_BMP = load_bitmap ("images/pacman/muerte_pac.bmp",NULL);
+
                 salir = true;
             }
         }
@@ -303,7 +304,7 @@ void pantalla_elegir_skin(){
                 bloque = load_bitmap("images/mapa/mapa_blocrome.bmp",NULL);
                 portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
                 portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
-                pac_dead_BMP = load_bitmap ("images/pacman/muerte_pacbolico.bmp",NULL);
+                pac_dead_BMP = load_bitmap ("images/pacman/muerte_pacrome.bmp",NULL);
                 salir = true;
             }
         }
