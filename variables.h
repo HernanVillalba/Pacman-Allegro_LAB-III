@@ -9,6 +9,7 @@
 const int MAXFILAS = 20;
 const int MAXCOL = 30;
 const int TAM = 32; //en pixeles
+const char *ARCHIVO_PUNTAJE = "maxscores.dat";
 
 // imagenes
 BITMAP *buffer;

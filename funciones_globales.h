@@ -3,6 +3,7 @@
 #include "mapa.h"
 #include "fantasmas.h"
 #include "pacman.h"
+#include "puntaje.h"
 
 //protoripos
 void iniciar_sonido();
@@ -81,26 +82,25 @@ int pantalla_inicial(){
         blit(inicio,buffer,0,0,0,0,1200,640);
 
         if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
-            blit(elegir_inicio1,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio1,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){
                 pantalla_elegir_skin();
                 return 1;
             }
         }
         if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
-            blit(elegir_inicio2,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio2,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){
-                allegro_message("No esta codeado aun :(");
-                exit(0);
+                return 2;
             }
         }
         if((mouse_x>388 && mouse_x<630) && (mouse_y>455 && mouse_y<481)){
-            blit(elegir_inicio3,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio3,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){ return 3;
             }
         }
         if((mouse_x>388 && mouse_x<544) && (mouse_y>552 && mouse_y<572)){
-            blit(elegir_inicio4,buffer,0,0,0,0,960,640);
+            blit(elegir_inicio4,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){ exit(0);}
         }
 
@@ -376,7 +376,7 @@ void menu_idioma(){
     while(!salir){
         blit(idioma,buffer,0,0,0,0,1200,640);
 
-        if((mouse_x>388 && mouse_x<595) && (mouse_y>255 && mouse_y<287)){
+        if((mouse_x>388 && mouse_x<645) && (mouse_y>255 && mouse_y<287)){
             blit(elegir_idioma1,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){
                 idioma = load_bitmap("images/menu/idioma/idioma.bmp",NULL);
@@ -384,11 +384,15 @@ void menu_idioma(){
                 elegir_idioma2 = load_bitmap("images/menu/idioma/idioma_2.bmp",NULL);
                 elegir_idioma3 = load_bitmap("images/menu/idioma/idioma_3.bmp",NULL);
                 elegir_idioma4 = load_bitmap("images/menu/idioma/idioma_4.bmp",NULL);
-
+                inicio = load_bitmap("images/menu/inicio/inicio.bmp",NULL);
+                elegir_inicio1 = load_bitmap("images/menu/inicio/inicio_1.bmp",NULL);
+                elegir_inicio2 = load_bitmap("images/menu/inicio/inicio_2.bmp",NULL);
+                elegir_inicio3 = load_bitmap("images/menu/inicio/inicio_3.bmp",NULL);
+                elegir_inicio4 = load_bitmap("images/menu/inicio/inicio_4.bmp",NULL);
 
             }
         }
-        if((mouse_x>388 && mouse_x<710) && (mouse_y>353 && mouse_y<384)){
+        if((mouse_x>388 && mouse_x<650) && (mouse_y>353 && mouse_y<384)){
             blit(elegir_idioma2,buffer,0,0,0,0,1200,640);
             if(mouse_b & 1){
                 idioma = load_bitmap("images/menu/languaje/language.bmp",NULL);
@@ -396,6 +400,11 @@ void menu_idioma(){
                 elegir_idioma2 = load_bitmap("images/menu/languaje/language_2.bmp",NULL);
                 elegir_idioma3 = load_bitmap("images/menu/languaje/language_3.bmp",NULL);
                 elegir_idioma4 = load_bitmap("images/menu/languaje/language_4.bmp",NULL);
+                inicio = load_bitmap("images/menu/start/start.bmp",NULL);
+                elegir_inicio1 = load_bitmap("images/menu/start/start_1.bmp",NULL);
+                elegir_inicio2 = load_bitmap("images/menu/start/start_2.bmp",NULL);
+                elegir_inicio3 = load_bitmap("images/menu/start/start_3.bmp",NULL);
+                elegir_inicio4 = load_bitmap("images/menu/start/start_4.bmp",NULL);
 
             }
         }
@@ -423,5 +432,19 @@ void mostrar_japo(){
     }
 
     }
+
+void mostrar_puntaje(){
+Puntuacion oPuntuacion;
+    int x;
+    int score[4];
+    char name[4][4];
+    for (x=0;x<4;x++){
+    if (oPuntuacion.leerDeArchivo(x))
+        strcpy(name[x],oPuntuacion.getName());
+        score[x]=oPuntuacion.getScore();
+    }
+    oPuntuacion.spritear();
+
+}
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

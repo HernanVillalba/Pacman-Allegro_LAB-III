@@ -16,7 +16,6 @@ void jugar(){
 
 
     int ghost_x,ghost_y;
-    int i;
 
     while(!game_over){
         if(!primera_vez){

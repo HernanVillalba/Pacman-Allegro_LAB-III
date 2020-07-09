@@ -1,8 +1,7 @@
 #include <allegro.h>
 #include <conio.h>
-#include <stdlib.h>
+#include <cstdlib>
 #include <cstdio>
-
 #include "variables.h"
 #include "funciones_globales.h"
 #include "mapa.h"
@@ -22,10 +21,10 @@ void main()
     opc = pantalla_inicial();
         switch (opc){
             case 1:jugar();break;
-        case 2:/*puntaje()*/break;
-    case 3:menu_idioma(); break;
-    case 0:break;
-    }
+            case 2:mostrar_puntaje();break;
+            case 3:menu_idioma(); break;
+            case 0:break;
+        }
     clear(screen);
     }
 
