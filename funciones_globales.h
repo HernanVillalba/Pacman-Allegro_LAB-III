@@ -435,15 +435,8 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
-    int x;
-    int score[4];
-    char name[4][4];
-    for (x=0;x<4;x++){
-    if (oPuntuacion.leerDeArchivo(x))
-        strcpy(name[x],oPuntuacion.getName());
-        score[x]=oPuntuacion.getScore();
-    }
-    oPuntuacion.spritear();
+oPuntuacion.crearPuntaje();
+oPuntuacion.ordenarScores();
 
 }
 

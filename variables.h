@@ -32,6 +32,7 @@ BITMAP *muerte;
 BITMAP *vidas_pacmanBMP;
 BITMAP *vidas_pacman;
 BITMAP *letras_vidas;
+//puntaje
 BITMAP *numeros;
 BITMAP *unidad;
 BITMAP *decena;
@@ -39,6 +40,7 @@ BITMAP *centena;
 BITMAP *milesima;
 BITMAP *score;
 BITMAP *maxscore;
+
 BITMAP *pac_dead_BMP;
 BITMAP *ready;
 //menu slegir skin

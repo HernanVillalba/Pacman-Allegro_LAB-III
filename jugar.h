@@ -91,7 +91,10 @@ void jugar(){
         rest(125);
         oMapa.imprimirMapa();
 
+
+
     }
+
     stop_midi();
 }
 
