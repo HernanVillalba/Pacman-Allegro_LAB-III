@@ -3,7 +3,7 @@
 #include "mapa.h"
 #include "pacman.h"
 
-class Fantasma:public Pacman{
+class Fantasma:public Mapa{
 private:
     int fdir;
     int fx,fy;
@@ -19,13 +19,14 @@ public:
     bool caminoFantasma();
     bool salidaFantasma();
     void centroFantasma();
-    void choqueFantasma();
-    void cambiarEstado();
+    bool choqueFantasma(Pacman);
+    void cambiarEstado(){estadoFantas=0;}
     void volverFantasma();
     bool getEstado();
     int get_ghost_x(){return fx;}
     int get_ghost_y(){return fy;}
     void posicionInicialGhost();
+    void setEstado(){estadoFantas=true;}
 };
 
 Fantasma::Fantasma(){
@@ -43,8 +44,9 @@ Fantasma::Fantasma(int x, int y, int col){
 }
 
 void Fantasma::posicionInicialGhost(){
-    fx = TAM*12;
-    fy = TAM*10;
+    fx = primerfx;
+    fy = primerfy;
+    estadoFantas=true;
 }
 
 void Fantasma::dibujarFantasma(){
@@ -80,10 +82,7 @@ void Fantasma::centroFantasma(){
     else if(mapaF[fy/TAM][fx/TAM]=='h') fdir=0;
 }
 
-void Fantasma::cambiarEstado(){
-    //vuelve a los fantasmas comestibles
-    estadoFantas=0;
-}
+
 bool Fantasma::caminoFantasma(){
     //Los fantas leen los bifurcaciones
     if (mapaF[fy/TAM][fx/TAM]=='J')return true;
@@ -91,7 +90,6 @@ bool Fantasma::caminoFantasma(){
 }
 void Fantasma::moverFantasma(){
     //Los fantasmas se mueven
-    choqueFantasma();
     Fantasma::centroFantasma();
     if     (fdir == 0 && bordeMapa2())  fx += TAM;
     else if(fdir == 1 && bordeMapa2())  fy -= TAM;
@@ -104,18 +102,18 @@ void Fantasma::moverFantasma(){
     else if (fx>898) fx=0;
  }
 
-void Fantasma::choqueFantasma(){
+bool Fantasma::choqueFantasma(Pacman p){
     //Choque fantasma, tanto muerte del pac, como del fantasma
-    if ((pos_y == fy && pos_x==fx) || (anterior_py == fy && anterior_px==fx)){
+    if ((p.getPosYPac() == fy && p.getPosXPac()==fx) || (p.getAnty() == fy && p.getAntx()==fx)){
         if (estadoFantas){
             clear(pacman);
             clear(buffer);
             blit(buffer,screen,0,0,0,0,960,640);
-            pos_x=TAM*14;
-            pos_y=TAM*17;
-            restarVida();
+            p.posicionInicial();
+            p.restarVida();
             if (puntaje<100) puntaje=0;
             else puntaje-=100;
+            return true;
         }
         else{
             clear(buffer);
@@ -123,6 +121,7 @@ void Fantasma::choqueFantasma(){
             fx=primerfx;
             puntaje+=50;
             estadoFantas=1;
+            return false;
         }
     }
 }

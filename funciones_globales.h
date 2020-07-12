@@ -30,11 +30,7 @@ void iniciar_allegro(){
     buffer = create_bitmap(1200,640);
     install_mouse(); //para usar el mouse con allegro;
 
-    //cargar la imagen
-//    pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
-//    pacman = create_bitmap(TAM,TAM);
-//    portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
-//    portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
+
     inicio = load_bitmap("images/menu/inicio/inicio.bmp",NULL);
     elegir_inicio1 = load_bitmap("images/menu/inicio/inicio_1.bmp",NULL);
     elegir_inicio2 = load_bitmap("images/menu/inicio/inicio_2.bmp",NULL);
@@ -108,61 +104,6 @@ int pantalla_inicial(){
         blit(buffer,screen,0,0,0,0,1200,640);
     }
 }
-
-
-
-//void se_presiono_una_tecla(Mapa oMapa){
-//    // detecta la tecla que se precinó para asignarle el numero correspondiente a la dirección
-//
-//    //para que el pacman no se detenga si hay un borde 'X'
-//    //o sea, si el pacman avanza hacia la izquierda y preciona arriba y justo hay un borde, que se quede con la anterior direccion
-//    char der = oMapa.getbordeDer(posicion_pacman_x, posicion_pacman_y); //dir = 0
-//    char arri = oMapa.getbordeArri(posicion_pacman_x, posicion_pacman_y); //dir = 1
-//    char izq = oMapa.getbordeIzq(posicion_pacman_x, posicion_pacman_y); //dir = 2
-//    char aba = oMapa.getbordeAba(posicion_pacman_x, posicion_pacman_y); //dir = 3
-//
-//    if((key[KEY_RIGHT] || key[KEY_D]) && der != 'X') dir = 0; //DER vale 0
-//    else if((key[KEY_UP] || key[KEY_W]) && arri != 'X') dir = 1; //ARRIB vale 1
-//    else if((key[KEY_LEFT] || key[KEY_A]) && izq != 'X') dir = 2; //IZQ vale 2
-//    else if((key[KEY_DOWN] || key[KEY_S]) && aba != 'X') dir = 3; //ABAJ vale 3
-//}
-
-int inicia_audio(int izquierda, int derecha){
-    if (install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, NULL) != 0) {
-       allegro_message("Error: inicializando sistema de sonido\n%s\n", allegro_error);
-       return 1;
-    }
-
-	set_volume(izquierda, derecha);
-    return 0;
-}
-
-//void mover_pacman(Mapa oMapa){
-////    char der = oMapa.getbordeDer(px,py); //dir = 0
-////    char arri = oMapa.getbordeArri(px,py); //dir = 1
-////    char izq = oMapa.getbordeIzq(px,py); //dir = 2
-////    char aba = oMapa.getbordeAba(px,py); //dir = 3
-////
-////    if(dir == 0 && der == 'X'){
-////        anterior_dir_Pacman = dir;
-////    }
-////    if(dir == 1 && arri == 'X'){
-////        anterior_dir_Pacman = dir;
-////    }
-////    if(dir == 2 && izq == 'X'){
-////        anterior_dir_Pacman = dir;
-////    }
-////    if(dir == 3 && aba == 'X'){
-////        anterior_dir_Pacman = dir;
-////    }
-//
-//    oMapa.portalMapa();
-//
-//    if(dir == 0 && oMapa.bordeMapa1()) posicion_pacman_x += TAM;
-//    if(dir == 1 && oMapa.bordeMapa1()) posicion_pacman_y -= TAM;
-//    if(dir == 2 && oMapa.bordeMapa1()) posicion_pacman_x -= TAM;
-//    if(dir == 3 && oMapa.bordeMapa1()) posicion_pacman_y += TAM;
-//}
 
 void destruir(){
     destroy_bitmap(buffer);
@@ -346,6 +287,7 @@ void obtener_posicio_personajes(Pacman oPacman, Fantasma oGhost1,Fantasma oGhost
     //para la colision entre pac y ghost;
         pac_x = oPacman.getPosXPac();
         pac_y = oPacman.getPosYPac();
+
         //en x
         vec_ghost_x[0] = oGhost1.get_ghost_x();
         vec_ghost_x[1] = oGhost2.get_ghost_x();
@@ -360,12 +302,16 @@ void obtener_posicio_personajes(Pacman oPacman, Fantasma oGhost1,Fantasma oGhost
         vec_ghost_y[4] = oGhost5.get_ghost_y();
 }
 
-bool pacman_colision_ghost(int pac_x, int pac_y, int *vec_ghost_x, int *vec_ghost_y){
-        if(((pac_x == vec_ghost_x[0])&&(pac_y == vec_ghost_y[0])) || ((pac_x == vec_ghost_x[1])&&(pac_y == vec_ghost_y[1])) ||
-           ((pac_x == vec_ghost_x[2])&&(pac_y == vec_ghost_y[2])) || ((pac_x == vec_ghost_x[3])&&(pac_y == vec_ghost_y[3])) ||
-           ((pac_x == vec_ghost_x[4])&&(pac_y == vec_ghost_y[4])) || ((pac_x == vec_ghost_x[5])&&(pac_y == vec_ghost_y[5]))){
-                return true;
-        }
+bool pacman_colision_ghost(int pac_x, int pac_y, int antx, int anty, int *vec_ghost_x, int *vec_ghost_y){
+        if(
+        ((pac_x == vec_ghost_x[0])&&(pac_y == vec_ghost_y[0])) ||
+        ((pac_x == vec_ghost_x[1])&&(pac_y == vec_ghost_y[1])) ||
+        ((pac_x == vec_ghost_x[2])&&(pac_y == vec_ghost_y[2])) ||
+        ((pac_x == vec_ghost_x[3])&&(pac_y == vec_ghost_y[3])) ||
+        ((pac_x == vec_ghost_x[4])&&(pac_y == vec_ghost_y[4]))
+           )
+        {return true;}
+
         else return false;
 }
 
@@ -435,7 +381,6 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
-oPuntuacion.crearPuntaje();
 oPuntuacion.ordenarScores();
 
 }

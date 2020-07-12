@@ -43,7 +43,7 @@ class Mapa{
         "XXXXX XXXXJ   J   JXXXX XXXXX",
         "P    J  JX XXXNXXX XJ  J    P",
         "XXXXX XX X XhhYHHX X XX XXXXX",
-        "XXXXX XX X XNNNNNX X XX XXXXX",
+        "XXXXX XX X XYYYYYX X XX XXXXX",
         "XJ   JXX X XXXXXXX X XXJ   JX",
         "X XXX XXJ J       J JXX XX  X",
         "XJ JX XX XXXXXXXXXXX XX XJ JX",
@@ -60,29 +60,7 @@ class Mapa{
         bool bordeMapa2();
         bool hayComida();
         bool comidaGrande(int,int);
-
-        //estos get son para devolver la posición del pacman + 1;
-//        char getbordeIzq(int,int);
-//        char getbordeDer(int,int);
-//        char getbordeArri(int,int);
-//        char getbordeAba(int,int);
 };
-
-//char Mapa::getbordeIzq(int px, int py){
-//    return mapaP[py/TAM][(px/TAM)-1];
-//}
-//
-//char Mapa::getbordeDer(int px, int py){
-//    return mapaP[py/TAM][(px/TAM)+1];
-//}
-//
-//char Mapa::getbordeArri(int px, int py){
-//    return mapaP[(py/TAM)-1][px/TAM];
-//}
-//
-//char Mapa::getbordeAba(int px, int py){
-//    return mapaP[(py/TAM)+1][px/TAM];
-//}
 
 void Mapa::planoMapa(){
     //aca dibujo los limites del mapa, en este caso son las 'X' de la matriz
@@ -100,19 +78,7 @@ void Mapa::planoMapa(){
             if(mapaP[fil][col] == 'C'){
                 draw_sprite(buffer,comida_grande,col*TAM,fil*TAM);
             }
-//            if ((posicion_pacman_y / TAM == fil) && (posicion_pacman_x/TAM == col) && (mapaP[fil][col] != 'P')
-//                && ((mapaP[fil][col] == ' ') ||(mapaP[posicion_pacman_y/TAM][posicion_pacman_x/TAM] == 'C'))){
-//                el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman
-//                si las coordenadas del pacman coincide donde está la comida, pongo un punto para que las borre;
-//                if(mapaP[fil][col] == 'C'){
-//                    play_sample(big_food,70,100,1000,0);
-//                }
-//                else if(mapaP[fil][col] == ' ') play_sample(bolitas,70,70,1000,0);
-//                else{}
-//
-//
-//                mapaP[fil][col] = '.'; puntaje++;
-//            }
+
             if(mapaP[fil][col] == 'P'){
                 //dibuja los portales
                 if(fil==9 && col ==0)draw_sprite(buffer,portal_IZQ,col*TAM,fil*TAM);
