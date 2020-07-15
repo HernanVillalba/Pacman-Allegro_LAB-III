@@ -11,6 +11,7 @@ class Puntuacion{
         Puntuacion();
         bool guardarEnArchivo(int*);
         bool leerDeArchivo(int);
+        bool leerDeArchivo();
         bool crearPuntaje();
         void cargarPuntaje(int,int*);
         void spritear(int*);
@@ -46,10 +47,12 @@ bool Puntuacion::guardarEnArchivo(int *v){
                 return false;
             }
             fseek(p,pos *sizeof(Puntuacion),0);
-            leyo = fread(this,sizeof(Puntuacion),1,p);
+            leyo= fread(this,sizeof(Puntuacion),1,p);
             fclose(p);
             return leyo;
         }
+
+
 Puntuacion::Puntuacion(int p){
     score=p;
     for(int x=0;x<4;x++){
@@ -57,7 +60,7 @@ Puntuacion::Puntuacion(int p){
     }
 }
 Puntuacion::Puntuacion(){
-    score=0;
+    score=180;
      for(int x=0;x<4;x++){
         nombre[x]='s';
     }

@@ -28,7 +28,7 @@ void jugar(){
         }
 
 
-        obtener_posicio_personajes(oPacman,oGhost1,oGhost2,oGhost3,oGhost4,oGhost5);
+       // obtener_posicio_personajes(oPacman,oGhost1,oGhost2,oGhost3,oGhost4,oGhost5);
 
 //        if(pacman_colision_ghost(pac_x, pac_y, antx, anty, vec_ghost_x, vec_ghost_y)){
 //            stop_midi();

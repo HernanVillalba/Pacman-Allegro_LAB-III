@@ -228,13 +228,13 @@ void pantalla_elegir_skin(){
             blit(fondo_elegir_skin2,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 //sounds
-                RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01.mid";
+                RUTA_sountrack_stage_1 = "sounds/Map/sountrack_pacrome.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
                 play_midi(sountrack_stage_1,1);
-                big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
-                bolitas = load_wav("sounds/pacman/food_pacman.wav");
-                portal_sountrack = load_wav ("sounds/Map/portal_sound_pacman.wav");
-                dead_sound = load_wav("sounds/Pacman/dead_sound_pacbolico.wav");
+                big_food = load_wav("sounds/pacman/bigfood_sound_pacrome.wav");
+                bolitas = load_wav("sounds/pacman/food_pacrome.wav");
+                portal_sountrack = load_wav ("sounds/Map/portal_sound_pacrome.wav");
+                dead_sound = load_wav("sounds/Pacman/dead_sound_pacrome.wav");
 
                 pacBMP = load_bitmap("images/pacman/pachrome.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
@@ -381,6 +381,7 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
+//oPuntuacion.crearPuntaje();
 oPuntuacion.ordenarScores();
 
 }
