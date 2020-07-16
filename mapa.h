@@ -60,6 +60,7 @@ class Mapa{
         bool bordeMapa2();
         bool hayComida();
         bool comidaGrande(int,int);
+        void setMapap();
 };
 
 void Mapa::planoMapa(){

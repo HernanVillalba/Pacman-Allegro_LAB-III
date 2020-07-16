@@ -5,7 +5,9 @@ void jugar(){
 
     bool game_over = false;
     bool primera_vez = false;
-
+    Pacman oPacman;
+    while (oPacman.getVidas()>-1){
+    Puntuacion oPuntuacion;
     Mapa oMapa;
     Pacman oPacman;
     Fantasma oGhost1(TAM*12,TAM*11,0);
@@ -126,6 +128,7 @@ void jugar(){
 
         dibujar_vidas_pacman(oPacman.getVidas());
         dibujar_puntaje(puntaje);
+        oPuntuacion.maxPunt();
 
 //        se_presiono_una_tecla(oMapa);
         oPacman.moverPacman();
@@ -175,6 +178,6 @@ void jugar(){
     stop_midi();
 }
 
-
+}
 
 #endif // JUGAR_H_INCLUDED

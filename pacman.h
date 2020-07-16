@@ -39,8 +39,6 @@ Pacman::Pacman(){
 void Pacman::DibujarMuerte(Mapa oMapa){
     play_sample(dead_sound,255,100,1000,0);
     int i;
-    if(puntaje<100) puntaje=0;
-    else puntaje-=100;
     for(i=0;i<7; i++){
         clear(pacman);
         clear(buffer);

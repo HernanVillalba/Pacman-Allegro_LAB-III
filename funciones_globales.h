@@ -165,9 +165,6 @@ int nunidad,ndecena,ncentena,nmilesima;
         draw_sprite(buffer,decena,33*TAM,5*TAM);
         draw_sprite(buffer,unidad,34*TAM,5*TAM);
         blit(buffer,screen,0,0,0,0,1200,640);
-
-
-
 }
 
 void pantalla_princio(bool *primera_vez,Mapa oMapa,Pacman oPacman){
@@ -381,8 +378,9 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
-//oPuntuacion.crearPuntaje();
+oPuntuacion.crearPuntaje();
 oPuntuacion.ordenarScores();
+//oPuntuacion.ordenaryGuardar();
 
 }
 
