@@ -40,12 +40,12 @@ class Mapa{
         "XJ J J   J J     J J   J J JX",
         "XXXXX X XXXXXXXXXXXXX X XXXXX",
         "XNNNX XJ  JXXXXXXXJ  JX XNNNX",
-        "XXXXX XXXXJ   J   JXXXX XXXXX",
-        "P    J  JX XXXNXXX XJ  J    P",
-        "XXXXX XX X XhhYHHX X XX XXXXX",
-        "XXXXX XX X XYYYYYX X XX XXXXX",
-        "XJ   JXX X XXXXXXX X XXJ   JX",
-        "X XXX XXJ J       J JXX XX  X",
+        "XXXXX XXXXj...j...jXXXX XXXXX",
+        "P....J  JX.XXXNXXX.XJ  J....P",
+        "XXXXX XX X.XhhYHHX.X XX XXXXX",
+        "XXXXX XX X.XYYYYYX.X XX XXXXX",
+        "XJ   JXX X.XXXXXXX.X XXJ   JX",
+        "X XXX XXJ.j.......j.JXX XX  X",
         "XJ JX XX XXXXXXXXXXX XX XJ JX",
         "XXX XJ  J J       J J  JX XXX",
         "XJ JX XXXX XXXXXXX XXXX XJ JX",
@@ -61,7 +61,26 @@ class Mapa{
         bool hayComida();
         bool comidaGrande(int,int);
         char getMapa(int y, int x){return mapaF[x][y];}
+        void setMapap();
+        void puerta();
+
 };
+
+void Mapa::puerta(){
+    mapaP[9][14]='C';
+
+}
+
+void Mapa::setMapap(){
+
+    for (int x=0;x<MAXCOL;x++){
+        for (int y=0;y<MAXFILAS;y++)
+            {mapaP[y][x]=getMapa(y,x);
+            if (mapaP[y][x]=='J') mapaP[y][x]=' ';
+            if (mapaP[y][x]=='j') mapaP[y][x]='.';
+        }
+    }
+}
 
 void Mapa::planoMapa(){
     //aca dibujo los limites del mapa, en este caso son las 'X' de la matriz

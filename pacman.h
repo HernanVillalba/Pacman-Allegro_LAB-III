@@ -27,6 +27,7 @@ class Pacman:public Mapa{
         bool hayComida();
         void posicionInicial();
         void DibujarMuerte(Mapa);
+        bool escapePacman();
 };
 
 Pacman::Pacman(){
@@ -36,18 +37,23 @@ Pacman::Pacman(){
     dir   = 2;
 }
 
+bool Pacman::escapePacman(){
+    if ((pos_y / TAM == 9) && (pos_x/TAM == 14)) return true;
+    else return false;
+
+}
 void Pacman::DibujarMuerte(Mapa oMapa){
     play_sample(dead_sound,255,100,1000,0);
     int i;
     for(i=0;i<7; i++){
         clear(pacman);
         clear(buffer);
-        oMapa.planoMapa();
-        oMapa.imprimirMapa();
+        planoMapa();
+        imprimirMapa();
         blit(pac_dead_BMP,pacman,i*TAM,0,0,0,TAM,TAM);
         draw_sprite(buffer,pacman,pos_x,pos_y);
-        oMapa.planoMapa();
-        oMapa.imprimirMapa();
+        planoMapa();
+        imprimirMapa();
         rest(125+i*100);
         dir=2;
     }

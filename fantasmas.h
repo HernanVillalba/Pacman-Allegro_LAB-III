@@ -85,7 +85,7 @@ void Fantasma::centroFantasma(){
 
 bool Fantasma::caminoFantasma(){
     //Los fantas leen los bifurcaciones
-    if (mapaF[fy/TAM][fx/TAM]=='J')return true;
+    if (mapaF[fy/TAM][fx/TAM]=='J' || mapaF[fy/TAM][fx/TAM]=='j')return true;
             else return false;
 }
 void Fantasma::moverFantasma(){
