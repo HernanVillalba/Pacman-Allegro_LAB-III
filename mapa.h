@@ -60,7 +60,7 @@ class Mapa{
         bool bordeMapa2();
         bool hayComida();
         bool comidaGrande(int,int);
-        void setMapap();
+        char getMapa(int y, int x){return mapaF[x][y];}
 };
 
 void Mapa::planoMapa(){
