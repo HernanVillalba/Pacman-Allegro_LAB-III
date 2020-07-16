@@ -2,12 +2,11 @@
 #define JUGAR_H_INCLUDED
 
 void jugar(){
-
-
-    Pacman oPacman;
-    while (oPacman.getVidas()>-1){
+    int v=3;
+    while (v>-1){
     bool game_over = false;
     bool primera_vez = false;
+    Pacman oPacman(v);
     Puntuacion oPuntuacion;
     Mapa oMapa;
     Fantasma oGhost1(TAM*12,TAM*11,0);
@@ -167,17 +166,16 @@ void jugar(){
         //imprime el pacman con la boca cerrada
         clear(pacman);
         oPacman.imprimirPacmanQuieto();
-        oMapa.imprimirMapa();
+        oPacman.imprimirMapa();
         rest(125);
         oPacman.imprimirMapa();
         if(!oPacman.hayComida()){
             oPacman.puerta();
         }
 
-
     }
-
-    oPacman.setMapap();
+    v=oPacman.getVidas();
+    oMapa.setMapap();
 
     stop_midi();
 }

@@ -75,9 +75,9 @@ void Mapa::setMapap(){
 
     for (int x=0;x<MAXCOL;x++){
         for (int y=0;y<MAXFILAS;y++)
-            {mapaP[y][x]=getMapa(y,x);
-            if (mapaP[y][x]=='J') mapaP[y][x]=' ';
-            if (mapaP[y][x]=='j') mapaP[y][x]='.';
+            {mapaP[x][y]=getMapa(y,x);
+            if (mapaP[x][y]=='J') mapaP[x][y]=' ';
+            if (mapaP[x][y]=='j') mapaP[x][y]='.';
         }
     }
 }

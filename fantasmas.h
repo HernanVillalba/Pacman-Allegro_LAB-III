@@ -11,7 +11,6 @@ private:
     int primerfy,primerfx;
     bool estadoFantas;
 public:
-    Fantasma();
     Fantasma(int x, int y, int col); //construimos el fantasma
     void dibujarFantasma();
     bool bordeMapa2();
@@ -29,9 +28,7 @@ public:
     void setEstado(){estadoFantas=true;}
 };
 
-Fantasma::Fantasma(){
 
-}
 
 Fantasma::Fantasma(int x, int y, int col){
     fx=x;

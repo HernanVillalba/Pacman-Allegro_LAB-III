@@ -12,6 +12,7 @@ class Pacman:public Mapa{
 
     public:
         Pacman();
+        Pacman(int v);
         void imprimirPacmanComiendo();
         void imprimirPacmanQuieto();
         int getVidas(){return vidas;}
@@ -27,11 +28,17 @@ class Pacman:public Mapa{
         bool hayComida();
         void posicionInicial();
         void DibujarMuerte(Mapa);
+        void setVidas(int v){vidas=v;}
         bool escapePacman();
 };
 
 Pacman::Pacman(){
-    vidas = 3;
+    pos_x = TAM*14;
+    pos_y = TAM*17;
+    dir   = 2;
+}
+Pacman::Pacman(int v){
+    vidas = v;
     pos_x = TAM*14;
     pos_y = TAM*17;
     dir   = 2;

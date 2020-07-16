@@ -384,9 +384,5 @@ oPuntuacion.ordenarScores();
 
 }
 
-void agregar_fantasma(){
-int x=rand()%5, y=x+12;
-Fantasma oGhost(TAM*y,TAM*12,x);
-oGhost.dibujarFantasma();
-}
+
 #endif // FUNCIONES_GLOBALES_H_INCLUDED
