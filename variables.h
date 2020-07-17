@@ -56,6 +56,7 @@ SAMPLE *big_food;
 SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
 SAMPLE *dead_sound;
+SAMPLE *dead_ghost;
 const char *RUTA_sountrack_stage_1; //para poner la ruta de musica del juego
 
 //elegir idioma

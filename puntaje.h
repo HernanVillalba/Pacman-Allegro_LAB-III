@@ -62,7 +62,7 @@ Puntuacion::Puntuacion(int p){
     }
 }
 Puntuacion::Puntuacion(){
-    punt=1500;
+    punt=1600;
      for(int x=0;x<4;x++){
         nombre[x]='s';
     }

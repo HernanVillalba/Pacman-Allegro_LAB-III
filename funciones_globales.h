@@ -62,6 +62,7 @@ void iniciar_allegro(){
     elegir_idioma4 = load_bitmap("images/menu/idioma/idioma_4.bmp",NULL);
     japo = load_bitmap("images/menu/idioma/japones.bmp",NULL);
 
+    dead_ghost = load_wav("sounds/Pacman/dead_ghost.wav");
 
 
     //carga de los sonidos
@@ -378,9 +379,8 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
-oPuntuacion.crearPuntaje();
 oPuntuacion.ordenarScores();
-//oPuntuacion.ordenaryGuardar();
+oPuntuacion.ordenaryGuardar();
 
 }
 

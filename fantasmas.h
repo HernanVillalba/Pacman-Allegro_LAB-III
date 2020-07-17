@@ -113,11 +113,14 @@ bool Fantasma::choqueFantasma(Pacman p){
             return true;
         }
         else{
-            clear(buffer);
+            clear(fantas);
             fy=primerfy;
             fx=primerfx;
             puntaje+=50;
             estadoFantas=1;
+            play_sample(dead_ghost,150,70,1000,0);
+            rest(300);
+
             return false;
         }
     }

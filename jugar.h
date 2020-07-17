@@ -24,8 +24,7 @@ void jugar(){
             pantalla_princio(&primera_vez,oMapa,oPacman);
         }
         if(key[KEY_ESC] || oPacman.getVidas()== -1 || oPacman.escapePacman()){ //si no hay comida... termina el juego
-            game_over = true;
-            break;
+            game_over = true; break;
         }
 
 
@@ -174,9 +173,9 @@ void jugar(){
         }
 
     }
+
     v=oPacman.getVidas();
     oMapa.setMapap();
-
     stop_midi();
 }
 
