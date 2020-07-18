@@ -12,12 +12,15 @@ class Pacman:public Mapa{
 
     public:
         Pacman();
+        Pacman(int v);
         void imprimirPacmanComiendo();
         void imprimirPacmanQuieto();
-        int getVidas();
-        void restarVida();
-        int getPosXPac();
-        int getPosYPac();
+        int getVidas(){return vidas;}
+        void restarVida(){vidas--;}
+        int getPosXPac(){return pos_x;}
+        int getPosYPac(){return pos_y;}
+        int getAntx(){return anterior_px;}
+        int getAnty(){return anterior_py;}
         void moverPacman();
         int getDir(){return dir;}
         void Comer();
@@ -25,27 +28,39 @@ class Pacman:public Mapa{
         bool hayComida();
         void posicionInicial();
         void DibujarMuerte(Mapa);
+        void setVidas(int v){vidas=v;}
+        bool escapePacman();
 };
 
 Pacman::Pacman(){
-    vidas = 3;
+    pos_x = TAM*14;
+    pos_y = TAM*17;
+    dir   = 2;
+}
+Pacman::Pacman(int v){
+    vidas = v;
     pos_x = TAM*14;
     pos_y = TAM*17;
     dir   = 3;
 }
 
+bool Pacman::escapePacman(){
+    if ((pos_y / TAM == 9) && (pos_x/TAM == 14)) return true;
+    else return false;
+
+}
 void Pacman::DibujarMuerte(Mapa oMapa){
     play_sample(dead_sound,255,100,1000,0);
     int i;
     for(i=0;i<7; i++){
         clear(pacman);
         clear(buffer);
-        oMapa.planoMapa();
-        oMapa.imprimirMapa();
+        planoMapa();
+        imprimirMapa();
         blit(pac_dead_BMP,pacman,i*TAM,0,0,0,TAM,TAM);
         draw_sprite(buffer,pacman,pos_x,pos_y);
-        oMapa.planoMapa();
-        oMapa.imprimirMapa();
+        planoMapa();
+        imprimirMapa();
         rest(125+i*100);
         dir=2;
     }
@@ -54,14 +69,7 @@ void Pacman::DibujarMuerte(Mapa oMapa){
 void Pacman::posicionInicial(){
     pos_x = TAM*14;
     pos_y = TAM*17;
-}
 
-int Pacman::getPosXPac(){
-    return pos_x;
-}
-
-int Pacman::getPosYPac(){
-    return pos_y;
 }
 
 void Pacman::imprimirPacmanComiendo(){
@@ -72,14 +80,6 @@ void Pacman::imprimirPacmanComiendo(){
 void Pacman::imprimirPacmanQuieto(){
     blit(pacBMP,pacman,4*TAM,0,0,0,TAM,TAM);
     draw_sprite(buffer,pacman,pos_x,pos_y);
-}
-
-int Pacman::getVidas(){
-    return vidas;
-}
-
-void Pacman::restarVida(){
-    vidas--;
 }
 
 void Pacman::moverPacman(){

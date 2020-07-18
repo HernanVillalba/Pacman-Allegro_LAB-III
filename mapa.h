@@ -40,12 +40,12 @@ class Mapa{
         "XJ J J   J J     J J   J J JX",
         "XXXXX X XXXXXXXXXXXXX X XXXXX",
         "XNNNX XJ  JXXXXXXXJ  JX XNNNX",
-        "XXXXX XXXXJ   J   JXXXX XXXXX",
-        "P    J  JX XXXNXXX XJ  J    P",
-        "XXXXX XX X XhhYHHX X XX XXXXX",
-        "XXXXX XX X XNNNNNX X XX XXXXX",
-        "XJ   JXX X XXXXXXX X XXJ   JX",
-        "X XXX XXJ J       J JXX XX  X",
+        "XXXXX XXXXj...j...jXXXX XXXXX",
+        "P....J  JX.XXXNXXX.XJ  J....P",
+        "XXXXX XX X.XhhYHHX.X XX XXXXX",
+        "XXXXX XX X.XYYYYYX.X XX XXXXX",
+        "XJ   JXX X.XXXXXXX.X XXJ   JX",
+        "X XXX XXJ.j.......j.JXX XX  X",
         "XJ JX XX XXXXXXXXXXX XX XJ JX",
         "XXX XJ  J J       J J  JX XXX",
         "XJ JX XXXX XXXXXXX XXXX XJ JX",
@@ -60,13 +60,27 @@ class Mapa{
         bool bordeMapa2();
         bool hayComida();
         bool comidaGrande(int,int);
+        char getMapa(int y, int x){return mapaF[x][y];}
+        void setMapap();
+        void puerta();
 
-        //estos get son para devolver la posición del pacman + 1;
-//        char getbordeIzq(int,int);
-//        char getbordeDer(int,int);
-//        char getbordeArri(int,int);
-//        char getbordeAba(int,int);
 };
+
+void Mapa::puerta(){
+    mapaP[9][14]='C';
+
+}
+
+void Mapa::setMapap(){
+
+    for (int x=0;x<MAXCOL;x++){
+        for (int y=0;y<MAXFILAS;y++)
+            {mapaP[x][y]=getMapa(y,x);
+            if (mapaP[x][y]=='J') mapaP[x][y]=' ';
+            if (mapaP[x][y]=='j') mapaP[x][y]='.';
+        }
+    }
+}
 
 void Mapa::planoMapa(){
     //aca dibujo los limites del mapa, en este caso son las 'X' de la matriz
@@ -84,19 +98,7 @@ void Mapa::planoMapa(){
             if(mapaP[fil][col] == 'C'){
                 draw_sprite(buffer,comida_grande,col*TAM,fil*TAM);
             }
-//            if ((posicion_pacman_y / TAM == fil) && (posicion_pacman_x/TAM == col) && (mapaP[fil][col] != 'P')
-//                && ((mapaP[fil][col] == ' ') ||(mapaP[posicion_pacman_y/TAM][posicion_pacman_x/TAM] == 'C'))){
-//                el "!= 'P' es para que no ponga un punto en esa posición y no borre los portales al pasar por ahi el pacman
-//                si las coordenadas del pacman coincide donde está la comida, pongo un punto para que las borre;
-//                if(mapaP[fil][col] == 'C'){
-//                    play_sample(big_food,70,100,1000,0);
-//                }
-//                else if(mapaP[fil][col] == ' ') play_sample(bolitas,70,70,1000,0);
-//                else{}
-//
-//
-//                mapaP[fil][col] = '.'; puntaje++;
-//            }
+
             if(mapaP[fil][col] == 'P'){
                 //dibuja los portales
                 if(fil==9 && col ==0)draw_sprite(buffer,portal_IZQ,col*TAM,fil*TAM);
