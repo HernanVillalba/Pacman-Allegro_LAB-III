@@ -19,7 +19,7 @@ class Puntuacion{
         int getScore(){return punt;}
         int setScore();
         void ordenarScores();
-        void maxPunt();
+        void maxPunt(int);
         void ordenaryGuardar();
 };
 
@@ -39,7 +39,7 @@ bool Puntuacion::guardarEnArchivo(int *v, int x){
             ////////////////////////////////FALTA AGREGAR UN IF QUE PREGUNTE SI ES MAX SCORE PARA GUARDARLO O NO;
         }
 
- bool Puntuacion::leerDeArchivo(int pos){
+ bool Puntuacion::leerDeArchivo(){
             //trae la info contenida en el archivo y la carga en el objeto;
             bool leyo;
             FILE *p = fopen(ARCHIVO_PUNTAJE,"rb");
@@ -48,12 +48,14 @@ bool Puntuacion::guardarEnArchivo(int *v, int x){
                 exit(1);
                 return false;
             }
-            fseek(p,pos *sizeof(Puntuacion),0);
-            leyo= fread(this,sizeof(Puntuacion),1,p);
+            for(int x=0;x<4;x++){
+            fseek(p,x *sizeof(Puntuacion),0);
+            if(fread(this,sizeof(Puntuacion),1,p)==1){
+                    vec_punt[x]=punt;}
             fclose(p);
-            return leyo;
+            return true;
         }
-
+ }
 
 Puntuacion::Puntuacion(int p){
     punt=p;
@@ -122,36 +124,32 @@ void Puntuacion::spritear(int *v){
 
 void Puntuacion::ordenarScores(){
 
-    int v[4]={0}, aux, nm[4][4], auxn, x,y;
-    for(x=0;x<4;x++){
-   if(leerDeArchivo(x)){
-    v[x]=punt;
-   }}
-   for(x=0;x<4;x++){
-    for(y=0;y<3;y++){
-        if(v[y]<v[y+1]){
-            aux=v[y];
-            v[y]=v[y+1];
-            v[y+1]=aux;
+    int aux, nm[4][4], auxn;
+
+   for(int x=0;x<4;x++){
+    for(int y=0;y<3;y++){
+        if(vec_punt[y]<vec_punt[y+1]){
+            aux=vec_punt[y];
+            vec_punt[y]=vec_punt[y+1];
+            vec_punt[y+1]=aux;
         }
     }
    }
 
-    spritear(v);
+    spritear(vec_punt);
 }
 
-void Puntuacion::maxPunt(){
-    leerDeArchivo(3);
+void Puntuacion::maxPunt(int puntero){
 int nunidad,ndecena,ncentena,nmilesima;
         //decomponemos el num
-        if (this->punt>=9999) this->punt=9999;
-        nmilesima=this->punt/1000;
-        this->punt=this->punt%1000;
-        ncentena=this->punt/100;
-        this->punt=this->punt%100;
-        ndecena=this->punt/10;
-        this->punt=this->punt%10;
-        nunidad=this->punt/1;
+        if (puntero>=9999) puntero=9999;
+        nmilesima=puntero/1000;
+        puntero=puntero%1000;
+        ncentena=puntero/100;
+        puntero=puntero%100;
+        ndecena=puntero/10;
+        puntero=puntero%10;
+        nunidad=puntero/1;
 
         //usamos la descomposicion para buscar el num
         blit(numeros,unidad,nunidad*TAM,0,0,0,TAM,TAM);
@@ -167,28 +165,6 @@ int nunidad,ndecena,ncentena,nmilesima;
         draw_sprite(buffer,unidad,34*TAM,3*TAM);
         blit(buffer,screen,0,0,0,0,1200,640);
 
-}
-
-void Puntuacion::ordenaryGuardar(){
-
-    int v[4]={0}, aux, nm[4][4], auxn, x,y;
-    for(x=0;x<4;x++){
-   if(leerDeArchivo(x)){
-    v[x]=punt;
-   }}
-   for(x=0;x<4;x++){
-    for(y=0;y<3;y++){
-        if(v[y]<v[y+1]){
-            aux=v[y];
-            v[y]=v[y+1];
-            v[y+1]=aux;
-        } //if
-    } //for y
-   } // for x
-   for (x=0;x<4;x++){
-        guardarEnArchivo(v,x);
-
-}
 }
 
 

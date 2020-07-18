@@ -15,6 +15,7 @@ const char *ARCHIVO_PUNTAJE = "maxscores.dat";
 BITMAP *buffer;
 BITMAP *bloque;
 BITMAP *comida;
+BITMAP *escape;
 BITMAP *pacBMP;
 BITMAP *pacman;
 BITMAP *portal_IZQ;
@@ -57,6 +58,7 @@ SAMPLE *bolitas;
 SAMPLE *portal_sountrack;
 SAMPLE *dead_sound;
 SAMPLE *dead_ghost;
+SAMPLE *win;
 const char *RUTA_sountrack_stage_1; //para poner la ruta de musica del juego
 
 //elegir idioma
@@ -70,9 +72,9 @@ BITMAP *japo;
 //pacman
 int pac_x, pac_y;
 int vec_ghost_x[5],vec_ghost_y[5];
+int vec_punt[4];
+int puntaje;
 
-int puntaje=0;
-int puntajemax;
-int anterior_dir_Pacman;
+
 
 #endif // VARIABLES_H_INCLUDED

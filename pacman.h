@@ -45,7 +45,9 @@ Pacman::Pacman(int v){
 }
 
 bool Pacman::escapePacman(){
-    if ((pos_y / TAM == 9) && (pos_x/TAM == 14)) return true;
+    if ((pos_y / TAM == 9) && (pos_x/TAM == 14)){
+    play_sample(win,60,100,1000,0);
+    return true;}
     else return false;
 
 }

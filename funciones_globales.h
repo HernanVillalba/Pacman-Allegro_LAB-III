@@ -47,7 +47,7 @@ void iniciar_allegro(){
     decena=create_bitmap(TAM,TAM);
     centena=create_bitmap(TAM,TAM);
     milesima=create_bitmap(TAM,TAM);
-    puntajemax=100; /////////////////////////////////////////WTF???? que hace esto aca?; Tenia q hacer el bitmap, y me termino dando paja
+
     //cargar imagenes -menu elegir skin-;
     cursor_elegir_skin = load_bitmap("images/menu/elegir_skin/cursor_skin.bmp",NULL);
     fondo_elegir_skin = load_bitmap("images/menu/elegir_skin/fondo.bmp",NULL);
@@ -61,9 +61,9 @@ void iniciar_allegro(){
     elegir_idioma3 = load_bitmap("images/menu/idioma/idioma_3.bmp",NULL);
     elegir_idioma4 = load_bitmap("images/menu/idioma/idioma_4.bmp",NULL);
     japo = load_bitmap("images/menu/idioma/japones.bmp",NULL);
-
+    escape= load_bitmap("images/mapa/escape.bmp",NULL);
     dead_ghost = load_wav("sounds/Pacman/dead_ghost.wav");
-
+    win = load_wav("sounds/Map/win.wav");
 
     //carga de los sonidos
     iniciar_sonido();
@@ -200,7 +200,6 @@ void pantalla_elegir_skin(){
                 //sounds
                 RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
-                play_midi(sountrack_stage_1,300);
                 big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
                 bolitas = load_wav("sounds/pacman/food_pacman.wav");
                 portal_sountrack = load_wav ("sounds/Map/portal_sound_pacman.wav");
@@ -228,7 +227,7 @@ void pantalla_elegir_skin(){
                 //sounds
                 RUTA_sountrack_stage_1 = "sounds/Map/sountrack_pacrome.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
-                play_midi(sountrack_stage_1,1);
+//                play_midi(sountrack_stage_1,1);
                 big_food = load_wav("sounds/pacman/bigfood_sound_pacrome.wav");
                 bolitas = load_wav("sounds/pacman/food_pacrome.wav");
                 portal_sountrack = load_wav ("sounds/Map/portal_sound_pacrome.wav");
@@ -259,7 +258,7 @@ void pantalla_elegir_skin(){
                 dead_sound = load_wav("sounds/Pacman/dead_sound_pacbolico.wav");
                 RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01_diabolico.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
-                play_midi(sountrack_stage_1,300);
+//                play_midi(sountrack_stage_1,300);
 
                 //images
                 pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
@@ -379,8 +378,9 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
+//oPuntuacion.crearPuntaje();
 oPuntuacion.ordenarScores();
-oPuntuacion.ordenaryGuardar();
+//oPuntuacion.ordenaryGuardar();
 
 }
 

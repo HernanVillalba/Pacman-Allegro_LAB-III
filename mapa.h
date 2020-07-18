@@ -67,7 +67,7 @@ class Mapa{
 };
 
 void Mapa::puerta(){
-    mapaP[9][14]='C';
+    mapaP[9][14]='E';
 
 }
 
@@ -104,6 +104,9 @@ void Mapa::planoMapa(){
                 if(fil==9 && col ==0)draw_sprite(buffer,portal_IZQ,col*TAM,fil*TAM);
                 if(fil==9 && col ==28)draw_sprite(buffer,portal_DER,col*TAM,fil*TAM);
             }
+             if(mapaP[fil][col] == 'E'){
+                draw_sprite(buffer,escape,col*TAM,fil*TAM);
+             }
         }
     }
 }
