@@ -30,11 +30,7 @@ void iniciar_allegro(){
     buffer = create_bitmap(1200,640);
     install_mouse(); //para usar el mouse con allegro;
 
-    //cargar la imagen
-//    pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
-//    pacman = create_bitmap(TAM,TAM);
-//    portal_IZQ = load_bitmap("images/mapa/mapa_portal_izq.bmp",NULL);
-//    portal_DER = load_bitmap("images/mapa/mapa_portal_der.bmp",NULL);
+
     inicio = load_bitmap("images/menu/inicio/inicio.bmp",NULL);
     elegir_inicio1 = load_bitmap("images/menu/inicio/inicio_1.bmp",NULL);
     elegir_inicio2 = load_bitmap("images/menu/inicio/inicio_2.bmp",NULL);
@@ -51,7 +47,7 @@ void iniciar_allegro(){
     decena=create_bitmap(TAM,TAM);
     centena=create_bitmap(TAM,TAM);
     milesima=create_bitmap(TAM,TAM);
-    puntajemax=100; /////////////////////////////////////////WTF???? que hace esto aca?; Tenia q hacer el bitmap, y me termino dando paja
+
     //cargar imagenes -menu elegir skin-;
     cursor_elegir_skin = load_bitmap("images/menu/elegir_skin/cursor_skin.bmp",NULL);
     fondo_elegir_skin = load_bitmap("images/menu/elegir_skin/fondo.bmp",NULL);
@@ -65,8 +61,9 @@ void iniciar_allegro(){
     elegir_idioma3 = load_bitmap("images/menu/idioma/idioma_3.bmp",NULL);
     elegir_idioma4 = load_bitmap("images/menu/idioma/idioma_4.bmp",NULL);
     japo = load_bitmap("images/menu/idioma/japones.bmp",NULL);
-
-
+    escape= load_bitmap("images/mapa/escape.bmp",NULL);
+    dead_ghost = load_wav("sounds/Pacman/dead_ghost.wav");
+    win = load_wav("sounds/Map/win.wav");
 
     //carga de los sonidos
     iniciar_sonido();
@@ -107,17 +104,6 @@ int pantalla_inicial(){
         masked_blit(cursor_elegir_skin,buffer,0,0,mouse_x,mouse_y,45,48);
         blit(buffer,screen,0,0,0,0,1200,640);
     }
-}
-
-
-int inicia_audio(int izquierda, int derecha){
-    if (install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, NULL) != 0) {
-       allegro_message("Error: inicializando sistema de sonido\n%s\n", allegro_error);
-       return 1;
-    }
-
-	set_volume(izquierda, derecha);
-    return 0;
 }
 
 void destruir(){
@@ -180,9 +166,6 @@ int nunidad,ndecena,ncentena,nmilesima;
         draw_sprite(buffer,decena,33*TAM,5*TAM);
         draw_sprite(buffer,unidad,34*TAM,5*TAM);
         blit(buffer,screen,0,0,0,0,1200,640);
-
-
-
 }
 
 void pantalla_princio(bool *primera_vez,Mapa oMapa,Pacman oPacman){
@@ -217,7 +200,6 @@ void pantalla_elegir_skin(){
                 //sounds
                 RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
-                play_midi(sountrack_stage_1,300);
                 big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
                 bolitas = load_wav("sounds/pacman/food_pacman.wav");
                 portal_sountrack = load_wav ("sounds/Map/portal_sound_pacman.wav");
@@ -243,13 +225,13 @@ void pantalla_elegir_skin(){
             blit(fondo_elegir_skin2,buffer,0,0,0,0,960,640);
             if(mouse_b & 1){
                 //sounds
-                RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01.mid";
+                RUTA_sountrack_stage_1 = "sounds/Map/sountrack_pacrome.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
-                play_midi(sountrack_stage_1,1);
-                big_food = load_wav("sounds/pacman/bigfood_sound_pacman.wav");
-                bolitas = load_wav("sounds/pacman/food_pacman.wav");
-                portal_sountrack = load_wav ("sounds/Map/portal_sound_pacman.wav");
-                dead_sound = load_wav("sounds/Pacman/dead_sound_pacbolico.wav");
+//                play_midi(sountrack_stage_1,1);
+                big_food = load_wav("sounds/pacman/bigfood_sound_pacrome.wav");
+                bolitas = load_wav("sounds/pacman/food_pacrome.wav");
+                portal_sountrack = load_wav ("sounds/Map/portal_sound_pacrome.wav");
+                dead_sound = load_wav("sounds/Pacman/dead_sound_pacrome.wav");
 
                 pacBMP = load_bitmap("images/pacman/pachrome.bmp",NULL);
                 pacman = create_bitmap(TAM,TAM);
@@ -276,7 +258,7 @@ void pantalla_elegir_skin(){
                 dead_sound = load_wav("sounds/Pacman/dead_sound_pacbolico.wav");
                 RUTA_sountrack_stage_1 = "sounds/Map/sountrack_game-stage_01_diabolico.mid";
                 sountrack_stage_1 = load_midi(RUTA_sountrack_stage_1);
-                play_midi(sountrack_stage_1,300);
+//                play_midi(sountrack_stage_1,300);
 
                 //images
                 pacBMP = load_bitmap("images/pacman/pacdiabolico.bmp",NULL);
@@ -302,6 +284,7 @@ void obtener_posicio_personajes(Pacman oPacman, Fantasma oGhost1,Fantasma oGhost
     //para la colision entre pac y ghost;
         pac_x = oPacman.getPosXPac();
         pac_y = oPacman.getPosYPac();
+
         //en x
         vec_ghost_x[0] = oGhost1.get_ghost_x();
         vec_ghost_x[1] = oGhost2.get_ghost_x();
@@ -316,12 +299,16 @@ void obtener_posicio_personajes(Pacman oPacman, Fantasma oGhost1,Fantasma oGhost
         vec_ghost_y[4] = oGhost5.get_ghost_y();
 }
 
-bool pacman_colision_ghost(int pac_x, int pac_y, int *vec_ghost_x, int *vec_ghost_y){
-        if(((pac_x == vec_ghost_x[0])&&(pac_y == vec_ghost_y[0])) || ((pac_x == vec_ghost_x[1])&&(pac_y == vec_ghost_y[1])) ||
-           ((pac_x == vec_ghost_x[2])&&(pac_y == vec_ghost_y[2])) || ((pac_x == vec_ghost_x[3])&&(pac_y == vec_ghost_y[3])) ||
-           ((pac_x == vec_ghost_x[4])&&(pac_y == vec_ghost_y[4])) || ((pac_x == vec_ghost_x[5])&&(pac_y == vec_ghost_y[5]))){
-                return true;
-        }
+bool pacman_colision_ghost(int pac_x, int pac_y, int antx, int anty, int *vec_ghost_x, int *vec_ghost_y){
+        if(
+        ((pac_x == vec_ghost_x[0])&&(pac_y == vec_ghost_y[0])) ||
+        ((pac_x == vec_ghost_x[1])&&(pac_y == vec_ghost_y[1])) ||
+        ((pac_x == vec_ghost_x[2])&&(pac_y == vec_ghost_y[2])) ||
+        ((pac_x == vec_ghost_x[3])&&(pac_y == vec_ghost_y[3])) ||
+        ((pac_x == vec_ghost_x[4])&&(pac_y == vec_ghost_y[4]))
+           )
+        {return true;}
+
         else return false;
 }
 
@@ -391,9 +378,11 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
-oPuntuacion.crearPuntaje();
+//oPuntuacion.crearPuntaje();
 oPuntuacion.ordenarScores();
+//oPuntuacion.ordenaryGuardar();
 
 }
+
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED

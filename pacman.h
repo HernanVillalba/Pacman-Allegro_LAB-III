@@ -41,7 +41,7 @@ Pacman::Pacman(int v){
     vidas = v;
     pos_x = TAM*14;
     pos_y = TAM*17;
-    dir   = 3;
+    dir   = 2;
 }
 
 bool Pacman::escapePacman(){
