@@ -33,24 +33,11 @@ void jugar(){
             oPacman.setVidas(-3);
         }
 
-
-       // obtener_posicio_personajes(oPacman,oGhost1,oGhost2,oGhost3,oGhost4,oGhost5);
-
-//        if(pacman_colision_ghost(pac_x, pac_y, antx, anty, vec_ghost_x, vec_ghost_y)){
-//            stop_midi();
-//            oPacman.DibujarMuerte(oMapa);
-//            oPacman.restarVida();
-//            oPacman.posicionInicial();
-//            oGhost1.posicionInicialGhost();
-//            oGhost2.posicionInicialGhost();
-//            oGhost3.posicionInicialGhost();
-//            oGhost4.posicionInicialGhost();
-//            oGhost5.posicionInicialGhost();
-//            play_midi(sountrack_stage_1,300);
-//            //mensaje de ready ///////////////////
-//            draw_sprite(screen,ready,11*TAM,6*TAM);
-//            rest(5000);
-//        }
+        if(key[KEY_P]){
+            allegro_message("Pausa! :)\nPrecione 'aceptar' para volver al juego.");
+//            cout<<"PAUSA :)"<<endl;
+//            system("pause");
+        }
 
         if (oGhost1.choqueFantasma(oPacman)){
             stop_midi();
@@ -182,11 +169,11 @@ void jugar(){
         oPacman.imprimirMapa();
         if(!oPacman.hayComida()){
             oPacman.puerta();
-//            oGhost1.posicionInicialGhost();
-//            oGhost2.posicionInicialGhost();
-//            oGhost3.posicionInicialGhost();
-//            oGhost4.posicionInicialGhost();
-//            oGhost5.posicionInicialGhost();
+            oGhost1.posicionInicialGhost();
+            oGhost2.posicionInicialGhost();
+            oGhost3.posicionInicialGhost();
+            oGhost4.posicionInicialGhost();
+            oGhost5.posicionInicialGhost();
         }
 
     }
