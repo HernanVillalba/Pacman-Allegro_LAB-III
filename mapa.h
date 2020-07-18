@@ -68,22 +68,6 @@ class Mapa{
 //        char getbordeAba(int,int);
 };
 
-//char Mapa::getbordeIzq(int px, int py){
-//    return mapaP[py/TAM][(px/TAM)-1];
-//}
-//
-//char Mapa::getbordeDer(int px, int py){
-//    return mapaP[py/TAM][(px/TAM)+1];
-//}
-//
-//char Mapa::getbordeArri(int px, int py){
-//    return mapaP[(py/TAM)-1][px/TAM];
-//}
-//
-//char Mapa::getbordeAba(int px, int py){
-//    return mapaP[(py/TAM)+1][px/TAM];
-//}
-
 void Mapa::planoMapa(){
     //aca dibujo los limites del mapa, en este caso son las 'X' de la matriz
     for(int fil=0; fil<MAXFILAS; fil++){

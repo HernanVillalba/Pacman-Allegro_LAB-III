@@ -31,7 +31,7 @@ Pacman::Pacman(){
     vidas = 3;
     pos_x = TAM*14;
     pos_y = TAM*17;
-    dir   = 2;
+    dir   = 3;
 }
 
 void Pacman::DibujarMuerte(Mapa oMapa){

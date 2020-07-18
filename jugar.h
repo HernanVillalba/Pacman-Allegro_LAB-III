@@ -1,6 +1,7 @@
 #ifndef JUGAR_H_INCLUDED
 #define JUGAR_H_INCLUDED
-
+#include <iostream>
+using namespace std;
 void jugar(){
 
     bool game_over = false;
@@ -21,6 +22,11 @@ void jugar(){
         if(!primera_vez){
             //para pausar la pantalla al comienzo
             pantalla_princio(&primera_vez,oMapa,oPacman);
+        }
+        if(key[KEY_P]){
+            allegro_message("Pausa! :)\nPrecione 'aceptar' para volver al juego.");
+//            cout<<"PAUSA :)"<<endl;
+//            system("pause");
         }
         if(!oPacman.hayComida() || key[KEY_ESC] || oPacman.getVidas()== -1){ //si no hay comida... termina el juego
             game_over = true;
@@ -48,16 +54,7 @@ void jugar(){
         dibujar_vidas_pacman(oPacman.getVidas());
         dibujar_puntaje(puntaje);
 
-//        se_presiono_una_tecla(oMapa);
         oPacman.moverPacman();
-
-//        if(oPacman.comidaGrande()){
-//        oGhost1.cambiarEstado();
-//        oGhost2.cambiarEstado();
-//        oGhost3.cambiarEstado();
-//        oGhost4.cambiarEstado();
-//        oGhost5.cambiarEstado();
-//        }
 
         oGhost1.moverFantasma();
         oGhost2.moverFantasma();
@@ -90,9 +87,6 @@ void jugar(){
         oMapa.imprimirMapa();
         rest(125);
         oMapa.imprimirMapa();
-
-
-
     }
 
     stop_midi();

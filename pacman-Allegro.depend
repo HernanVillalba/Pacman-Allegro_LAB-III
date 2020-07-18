@@ -51,10 +51,10 @@
 1593987003 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\pacman.h
 	"mapa.h"
 
-1594087602 source:c:\users\hernan\documents\github\pacman_allegro\main.cpp
+1594512401 source:c:\users\hernan\documents\github\pacman_allegro\main.cpp
 	<allegro.h>
 	<conio.h>
-	<stdlib.h>
+	<cstdlib>
 	<cstdio>
 	"variables.h"
 	"funciones_globales.h"
@@ -64,27 +64,29 @@
 	"puntaje.h"
 	"jugar.h"
 
-1594087602 c:\users\hernan\documents\github\pacman_allegro\variables.h
+1594512401 c:\users\hernan\documents\github\pacman_allegro\variables.h
 
-1594092573 c:\users\hernan\documents\github\pacman_allegro\funciones_globales.h
+1595081759 c:\users\hernan\documents\github\pacman_allegro\funciones_globales.h
 	"mapa.h"
 	"fantasmas.h"
 	"pacman.h"
+	"puntaje.h"
 
-1593820028 c:\users\hernan\documents\github\pacman_allegro\mapa.h
+1595081435 c:\users\hernan\documents\github\pacman_allegro\mapa.h
 
 1593987657 c:\users\hernan\documents\github\pacman_allegro\fantasmas.h
 	"mapa.h"
 	"pacman.h"
 
-1593987076 c:\users\hernan\documents\github\pacman_allegro\pacman.h
+1595081435 c:\users\hernan\documents\github\pacman_allegro\pacman.h
 	"mapa.h"
 
-1593915447 c:\users\hernan\documents\github\pacman_allegro\puntaje.h
+1594512401 c:\users\hernan\documents\github\pacman_allegro\puntaje.h
 
 1594326148 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\puntaje.h
 
-1594092595 c:\users\hernan\documents\github\pacman_allegro\jugar.h
+1595081435 c:\users\hernan\documents\github\pacman_allegro\jugar.h
+	<iostream>
 
 1594322045 c:\users\oski\desktop\facultad\04 lab 2\pacman\pacman_allegro\jugar.h
 
