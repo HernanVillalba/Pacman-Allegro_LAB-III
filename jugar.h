@@ -34,9 +34,8 @@ void jugar(){
         }
 
         if(key[KEY_P]){
-            allegro_message("Pausa! :)\nPrecione 'aceptar' para volver al juego.");
-//            cout<<"PAUSA :)"<<endl;
-//            system("pause");
+            allegro_message("Pausa! :)\n Pero ambos sabemos que el Pacman original no la tenia \n Presione 'aceptar' para volver al juego.");
+
         }
 
         if (oGhost1.choqueFantasma(oPacman)){
@@ -179,10 +178,12 @@ void jugar(){
     }
 
     v=oPacman.getVidas();
-    oMapa.setMapap();
+//    oMapa.setMapap();
     stop_midi();
 
 }
+   (buscar_newscore(puntaje));
+
 
 
 }

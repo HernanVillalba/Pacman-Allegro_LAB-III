@@ -14,7 +14,7 @@ class Puntuacion{
         bool leerDeArchivo();
         bool crearPuntaje();
         void cargarPuntaje(int,int*);
-        void spritear(int*);
+        void spritear(int*, int c[][4]);
         int getName(){return *nombre;}
         int getScore(){return punt;}
         int setScore();
@@ -51,7 +51,10 @@ bool Puntuacion::guardarEnArchivo(int *v, int x){
             for(int x=0;x<4;x++){
             fseek(p,x *sizeof(Puntuacion),0);
             if(fread(this,sizeof(Puntuacion),1,p)==1){
-                    vec_punt[x]=punt;}
+                    vec_punt[x]=punt;
+                    for (int y=0;y<4;y++){
+                        mat_nom[x][y]=nombre[y];
+                    }}
             fclose(p);
             return true;
         }
@@ -90,8 +93,9 @@ void Puntuacion::cargarPuntaje(int p, int*n){
     }
 }
 
-void Puntuacion::spritear(int *v){
+void Puntuacion::spritear(int *v, int c[][4]){
     clear(buffer);
+
     while (!key[KEY_ESC]){
     for(int x=0;x<4;x++){
     punt=v[x];
@@ -112,7 +116,18 @@ void Puntuacion::spritear(int *v){
         blit(numeros,centena,ncentena*TAM,0,0,0,TAM,TAM);
         blit(numeros,milesima,nmilesima*TAM,0,0,0,TAM,TAM);
 
+        blit(letras,let1,9*TAM,0,0,0,TAM,TAM);
+        blit(letras,let2,1*TAM,0,0,0,TAM,TAM);
+        blit(letras,let3,7*TAM,0,0,0,TAM,TAM);
+        blit(letras,let4,3*TAM,0,0,0,TAM,TAM);
+
+
         //imprimimos el num descompuesto
+        draw_sprite(buffer,let1,4*TAM,TAM*(x+1)*4);
+        draw_sprite(buffer,let2,5*TAM,TAM*(x+1)*4);
+        draw_sprite(buffer,let3,6*TAM,TAM*(x+1)*4);
+        draw_sprite(buffer,let4,7*TAM,TAM*(x+1)*4);
+
         draw_sprite(buffer,milesima,22*TAM,TAM*(x+1)*4);
         draw_sprite(buffer,centena,23*TAM,TAM*(x+1)*4);
         draw_sprite(buffer,decena,24*TAM,TAM*(x+1)*4);
@@ -124,7 +139,7 @@ void Puntuacion::spritear(int *v){
 
 void Puntuacion::ordenarScores(){
 
-    int aux, nm[4][4], auxn;
+    int aux;
 
    for(int x=0;x<4;x++){
     for(int y=0;y<3;y++){
@@ -135,8 +150,7 @@ void Puntuacion::ordenarScores(){
         }
     }
    }
-
-    spritear(vec_punt);
+    spritear(vec_punt,mat_nom);
 }
 
 void Puntuacion::maxPunt(int puntero){
@@ -158,6 +172,7 @@ int nunidad,ndecena,ncentena,nmilesima;
         blit(numeros,milesima,nmilesima*TAM,0,0,0,TAM,TAM);
 
         //imprimimos el num descompuesto
+
         draw_sprite(buffer,score,30*TAM,2*TAM);
         draw_sprite(buffer,milesima,31*TAM,3*TAM);
         draw_sprite(buffer,centena,32*TAM,3*TAM);

@@ -41,6 +41,11 @@ BITMAP *centena;
 BITMAP *milesima;
 BITMAP *score;
 BITMAP *maxscore;
+BITMAP *letras;
+BITMAP *let1;
+BITMAP *let2;
+BITMAP *let3;
+BITMAP *let4;
 
 BITMAP *pac_dead_BMP;
 BITMAP *ready;
@@ -74,6 +79,7 @@ int pac_x, pac_y;
 int vec_ghost_x[5],vec_ghost_y[5];
 int vec_punt[4];
 int puntaje;
+int mat_nom[4][4]={0};
 
 
 

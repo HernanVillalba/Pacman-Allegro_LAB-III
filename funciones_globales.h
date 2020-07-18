@@ -47,6 +47,11 @@ void iniciar_allegro(){
     decena=create_bitmap(TAM,TAM);
     centena=create_bitmap(TAM,TAM);
     milesima=create_bitmap(TAM,TAM);
+    letras=load_bitmap("images/menu/letras.bmp",NULL);
+    let1=create_bitmap(TAM,TAM);
+    let2=create_bitmap(TAM,TAM);
+    let3=create_bitmap(TAM,TAM);
+    let4=create_bitmap(TAM,TAM);
 
     //cargar imagenes -menu elegir skin-;
     cursor_elegir_skin = load_bitmap("images/menu/elegir_skin/cursor_skin.bmp",NULL);
@@ -378,9 +383,17 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
-//oPuntuacion.crearPuntaje();
+oPuntuacion.crearPuntaje();
 oPuntuacion.ordenarScores();
 //oPuntuacion.ordenaryGuardar();
+
+}
+bool buscar_newscore(int p){
+
+    for (int x=0;x<4;x++){
+       if(p>vec_punt[x]) {vec_punt[3]=p;return true;}
+        }
+    return false;
 
 }
 
