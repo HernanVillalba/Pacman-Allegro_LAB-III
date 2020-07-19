@@ -132,6 +132,9 @@ void Puntuacion::spritear(int *v, int c[][4]){
         draw_sprite(scores,centena,23*TAM,TAM*(x+1)*4);
         draw_sprite(scores,decena,24*TAM,TAM*(x+1)*4);
         draw_sprite(scores,unidad,25*TAM,TAM*(x+1)*4);
+        blit(numeros,unidad,(x+1)*TAM,0,0,0,TAM,TAM);
+
+        draw_sprite(scores,unidad,1*TAM,TAM*(x+1)*4);
         blit(scores,buffer,0,0,0,0,1200,640);
         blit(buffer,screen,0,0,0,0,1200,640);
 }
