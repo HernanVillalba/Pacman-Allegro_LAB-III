@@ -73,6 +73,7 @@ BITMAP *elegir_idioma2;
 BITMAP *elegir_idioma3;
 BITMAP *elegir_idioma4;
 BITMAP *japo;
+BITMAP *scores;
 
 //pacman
 int pac_x, pac_y;

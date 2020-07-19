@@ -123,15 +123,16 @@ void Puntuacion::spritear(int *v, int c[][4]){
 
 
         //imprimimos el num descompuesto
-        draw_sprite(buffer,let1,4*TAM,TAM*(x+1)*4);
-        draw_sprite(buffer,let2,5*TAM,TAM*(x+1)*4);
-        draw_sprite(buffer,let3,6*TAM,TAM*(x+1)*4);
-        draw_sprite(buffer,let4,7*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,let1,4*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,let2,5*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,let3,6*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,let4,7*TAM,TAM*(x+1)*4);
 
-        draw_sprite(buffer,milesima,22*TAM,TAM*(x+1)*4);
-        draw_sprite(buffer,centena,23*TAM,TAM*(x+1)*4);
-        draw_sprite(buffer,decena,24*TAM,TAM*(x+1)*4);
-        draw_sprite(buffer,unidad,25*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,milesima,22*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,centena,23*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,decena,24*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,unidad,25*TAM,TAM*(x+1)*4);
+        blit(scores,buffer,0,0,0,0,1200,640);
         blit(buffer,screen,0,0,0,0,1200,640);
 }
 }
@@ -173,7 +174,7 @@ int nunidad,ndecena,ncentena,nmilesima;
 
         //imprimimos el num descompuesto
 
-        draw_sprite(buffer,score,30*TAM,2*TAM);
+        draw_sprite(buffer,maxscore,30*TAM,1*TAM);
         draw_sprite(buffer,milesima,31*TAM,3*TAM);
         draw_sprite(buffer,centena,32*TAM,3*TAM);
         draw_sprite(buffer,decena,33*TAM,3*TAM);

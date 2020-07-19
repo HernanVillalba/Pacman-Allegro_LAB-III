@@ -40,18 +40,19 @@ void iniciar_allegro(){
     vidas_pacmanBMP = load_bitmap("images/pacman/pacman_vidas.bmp",NULL);
     vidas_pacman = create_bitmap(TAM*3,TAM);
     letras_vidas=load_bitmap("images/menu/vidas.bmp",NULL);
-    numeros=load_bitmap("images/menu/numeros.bmp",NULL);
-    score=load_bitmap("images/menu/puntaje.bmp",NULL);
-    maxscore=load_bitmap("images/menu/maxpuntaje.bmp",NULL);
+    numeros=load_bitmap("images/menu/puntaje/numeros.bmp",NULL);
+    score=load_bitmap("images/menu/puntaje/puntaje.bmp",NULL);
+    maxscore=load_bitmap("images/menu/puntaje/maxpuntaje.bmp",NULL);
     unidad=create_bitmap(TAM,TAM);
     decena=create_bitmap(TAM,TAM);
     centena=create_bitmap(TAM,TAM);
     milesima=create_bitmap(TAM,TAM);
-    letras=load_bitmap("images/menu/letras.bmp",NULL);
+    letras=load_bitmap("images/menu/puntaje/letras.bmp",NULL);
     let1=create_bitmap(TAM,TAM);
     let2=create_bitmap(TAM,TAM);
     let3=create_bitmap(TAM,TAM);
     let4=create_bitmap(TAM,TAM);
+    scores = load_bitmap("images/menu/puntaje/tabla_puntajes.bmp",NULL);
 
     //cargar imagenes -menu elegir skin-;
     cursor_elegir_skin = load_bitmap("images/menu/elegir_skin/cursor_skin.bmp",NULL);
@@ -337,6 +338,8 @@ void menu_idioma(){
                 elegir_inicio2 = load_bitmap("images/menu/inicio/inicio_2.bmp",NULL);
                 elegir_inicio3 = load_bitmap("images/menu/inicio/inicio_3.bmp",NULL);
                 elegir_inicio4 = load_bitmap("images/menu/inicio/inicio_4.bmp",NULL);
+                scores = load_bitmap("images/menu/puntaje/tabla_puntajes.bmp",NULL);
+
 
             }
         }
@@ -353,6 +356,7 @@ void menu_idioma(){
                 elegir_inicio2 = load_bitmap("images/menu/start/start_2.bmp",NULL);
                 elegir_inicio3 = load_bitmap("images/menu/start/start_3.bmp",NULL);
                 elegir_inicio4 = load_bitmap("images/menu/start/start_4.bmp",NULL);
+                scores = load_bitmap("images/menu/puntaje/table_scores.bmp",NULL);
 
             }
         }
@@ -396,6 +400,9 @@ bool buscar_newscore(int p){
     return false;
 
 }
+
+
+
 
 
 #endif // FUNCIONES_GLOBALES_H_INCLUDED
