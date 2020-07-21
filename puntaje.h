@@ -7,33 +7,37 @@ class Puntuacion{
         int nombre[4];
         int punt;
     public:
-        Puntuacion(int);
         Puntuacion();
         bool guardarEnArchivo(int*, int);
         bool leerDeArchivo(int);
         bool leerDeArchivo();
         bool crearPuntaje();
         void cargarPuntaje(int,int*);
-        void spritear(int*, int c[][4]);
+        void spritear();
         int getName(){return *nombre;}
         int getScore(){return punt;}
         int setScore();
         void ordenarScores();
         void maxPunt(int);
         void ordenaryGuardar();
+        void ordenarNombres(int);
+        int copiarNombre(int);
+        void cargarNewscore(int);
 };
 
-bool Puntuacion::guardarEnArchivo(int *v, int x){
+bool Puntuacion::guardarEnArchivo(int *v, int y){
  //guarda el max score en disco;
             bool escribio; //si escribio correctamente, devuelve true;
             FILE *p = fopen(ARCHIVO_PUNTAJE,"rb+");
             if(p == NULL){
                 allegro_message("No se pudo abrir el archivo MAX SCORE para guardar la puntuación.");
-                exit(1);
                 return false;
             }
-            fseek(p,x*sizeof(Puntuacion),SEEK_SET);
-            escribio = fwrite(&v[x],sizeof(Puntuacion),1,p);
+            for(int x=0;x<4;x++){
+            nombre[x]=mat_nom[y][x];}
+            this->punt=vec_punt[y];
+            fseek(p,y*sizeof(Puntuacion),SEEK_SET);
+            escribio = fwrite(this,sizeof(Puntuacion),1,p);
             fclose(p);
             return escribio;
             ////////////////////////////////FALTA AGREGAR UN IF QUE PREGUNTE SI ES MAX SCORE PARA GUARDARLO O NO;
@@ -45,33 +49,24 @@ bool Puntuacion::guardarEnArchivo(int *v, int x){
             FILE *p = fopen(ARCHIVO_PUNTAJE,"rb");
             if(p == NULL){
                 allegro_message("No se pudo abir el archivo de MAX SCORE para leerlo.");
-                exit(1);
                 return false;
             }
+            fseek(p,sizeof(Puntuacion),SEEK_SET);
             for(int x=0;x<4;x++){
-            fseek(p,x *sizeof(Puntuacion),0);
             if(fread(this,sizeof(Puntuacion),1,p)==1){
-                    vec_punt[x]=punt;
+                    vec_punt[x]=this->punt;
                     for (int y=0;y<4;y++){
-                        mat_nom[x][y]=nombre[y];
-                    }}
-            fclose(p);
-            return true;
+                        mat_nom[x][y]=this->nombre[y];
+                }
+            }
         }
+        fclose(p);
+        return true;
  }
 
-Puntuacion::Puntuacion(int p){
-    punt=p;
-    for(int x=0;x<4;x++){
-        nombre[x]='s';
-    }
-}
 Puntuacion::Puntuacion(){
-    punt=1600;
-     for(int x=0;x<4;x++){
-        nombre[x]='s';
-    }
-
+    punt=1200;
+  nombre[4]={0};
 }
 
 bool Puntuacion::crearPuntaje(){
@@ -79,7 +74,6 @@ bool Puntuacion::crearPuntaje(){
             FILE *p = fopen(ARCHIVO_PUNTAJE,"ab");
             if(p == NULL){
                 allegro_message("No se pudo abrir el archivo MAX SCORE para guardar la puntuación.");
-                exit(1);
                 return false;
             }
             escribio = fwrite(this,sizeof(Puntuacion),1,p);
@@ -93,12 +87,13 @@ void Puntuacion::cargarPuntaje(int p, int*n){
     }
 }
 
-void Puntuacion::spritear(int *v, int c[][4]){
+void Puntuacion::spritear(){
     clear(buffer);
 
     while (!key[KEY_ESC]){
     for(int x=0;x<4;x++){
-    punt=v[x];
+    punt=vec_punt[x];
+
     int nunidad,ndecena,ncentena,nmilesima;
         //decomponemos el num
         if (punt>=9999) punt=9999;
@@ -116,10 +111,10 @@ void Puntuacion::spritear(int *v, int c[][4]){
         blit(numeros,centena,ncentena*TAM,0,0,0,TAM,TAM);
         blit(numeros,milesima,nmilesima*TAM,0,0,0,TAM,TAM);
 
-        blit(letras,let1,9*TAM,0,0,0,TAM,TAM);
-        blit(letras,let2,1*TAM,0,0,0,TAM,TAM);
-        blit(letras,let3,7*TAM,0,0,0,TAM,TAM);
-        blit(letras,let4,3*TAM,0,0,0,TAM,TAM);
+        blit(letras,let1,mat_nom[x][0]*TAM,0,0,0,TAM,TAM);
+        blit(letras,let2,mat_nom[x][1]*TAM,0,0,0,TAM,TAM);
+        blit(letras,let3,mat_nom[x][2]*TAM,0,0,0,TAM,TAM);
+        blit(letras,let4,mat_nom[x][3]*TAM,0,0,0,TAM,TAM);
 
 
         //imprimimos el num descompuesto
@@ -128,10 +123,10 @@ void Puntuacion::spritear(int *v, int c[][4]){
         draw_sprite(scores,let3,6*TAM,TAM*(x+1)*4);
         draw_sprite(scores,let4,7*TAM,TAM*(x+1)*4);
 
-        draw_sprite(scores,milesima,22*TAM,TAM*(x+1)*4);
-        draw_sprite(scores,centena,23*TAM,TAM*(x+1)*4);
-        draw_sprite(scores,decena,24*TAM,TAM*(x+1)*4);
-        draw_sprite(scores,unidad,25*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,milesima,29*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,centena,30*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,decena,31*TAM,TAM*(x+1)*4);
+        draw_sprite(scores,unidad,32*TAM,TAM*(x+1)*4);
         blit(numeros,unidad,(x+1)*TAM,0,0,0,TAM,TAM);
 
         draw_sprite(scores,unidad,1*TAM,TAM*(x+1)*4);
@@ -151,10 +146,11 @@ void Puntuacion::ordenarScores(){
             aux=vec_punt[y];
             vec_punt[y]=vec_punt[y+1];
             vec_punt[y+1]=aux;
+            ordenarNombres(y);
         }
     }
    }
-    spritear(vec_punt,mat_nom);
+   spritear();
 }
 
 void Puntuacion::maxPunt(int puntero){
@@ -186,7 +182,59 @@ int nunidad,ndecena,ncentena,nmilesima;
 
 }
 
+void Puntuacion::ordenarNombres(int t){
+        int aux[4];
+    for (int x=0;x<4;x++){
+        aux[x]=mat_nom[t][x];
+        mat_nom[t][x]=mat_nom[t+1][x];
+        mat_nom[t+1][x]=aux[x];
+    }
+}
 
+void Puntuacion::cargarNewscore(int p){
+    bool continuar=true;
+    punt=p;
+         int nunidad,ndecena,ncentena,nmilesima;
+        //decomponemos el num
+        if (p>=9999) p=9999;
+        nmilesima=p/1000;
+        p=p%1000;
+        ncentena=p/100;
+        p=p%100;
+        ndecena=p/10;
+        p=p%10;
+        nunidad=p/1;
+    for (int x=0;x<4;x++){
+    while(!key[KEY_ENTER]){
+        //usamos la descomposicion para buscar el num
+        blit(numeros,unidad,nunidad*TAM,0,0,0,TAM,TAM);
+        blit(numeros,decena,ndecena*TAM,0,0,0,TAM,TAM);
+        blit(numeros,centena,ncentena*TAM,0,0,0,TAM,TAM);
+        blit(numeros,milesima,nmilesima*TAM,0,0,0,TAM,TAM);
+        blit(letras,let1,nombre[0]*TAM,0,0,0,TAM,TAM);
+        blit(letras,let2,nombre[1]*TAM,0,0,0,TAM,TAM);
+        blit(letras,let3,nombre[2]*TAM,0,0,0,TAM,TAM);
+        blit(letras,let4,nombre[3]*TAM,0,0,0,TAM,TAM);
+
+        draw_sprite(buffer,newscores,0,0);
+        draw_sprite(buffer,milesima,20*TAM,10*TAM);
+        draw_sprite(buffer,centena,21*TAM,10*TAM);
+        draw_sprite(buffer,decena,22*TAM,10*TAM);
+        draw_sprite(buffer,unidad,23*TAM,10*TAM);
+        draw_sprite(buffer,let1,10*TAM,TAM*10);
+        draw_sprite(buffer,let2,11*TAM,TAM*10);
+        draw_sprite(buffer,let3,12*TAM,TAM*10);
+        draw_sprite(buffer,let4,13*TAM,TAM*10);
+
+        blit(buffer,screen,0,0,0,0,1200,640);
+
+        if(key[KEY_UP] || key[KEY_W]) {clear(buffer);if(nombre[x]<=24){nombre[x]++;rest(50);}}
+        if(key[KEY_DOWN] || key[KEY_S]) {clear(buffer);if(nombre[x]>=0){nombre[x]--;rest(50);}}
+        }
+        rest(1000);
+
+    }
+}
 
 
 

@@ -4,12 +4,13 @@
 void jugar(){
     int v=3;
     puntaje=0;
+    Puntuacion oPuntuacion;
     while (v>-1){
     play_midi(sountrack_stage_1,300);
     bool game_over = false;
     bool primera_vez = false;
     Pacman oPacman(v);
-    Puntuacion oPuntuacion;
+
     oPuntuacion.leerDeArchivo();
     Mapa oMapa;
     Fantasma oGhost1(TAM*12,TAM*11,0);
@@ -178,13 +179,13 @@ void jugar(){
     }
 
     v=oPacman.getVidas();
-//    oMapa.setMapap();
     stop_midi();
 
 }
-   (buscar_newscore(puntaje));
 
-
+if(puntaje>vec_punt[3])
+    {clear(buffer);
+    oPuntuacion.cargarNewscore(puntaje);}
 
 }
 

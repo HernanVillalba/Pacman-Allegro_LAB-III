@@ -70,7 +70,7 @@ void iniciar_allegro(){
     escape= load_bitmap("images/mapa/escape.bmp",NULL);
     dead_ghost = load_wav("sounds/Pacman/dead_ghost.wav");
     win = load_wav("sounds/Map/win.wav");
-
+    newscores=load_bitmap("images/menu/puntaje/puntajenuevo.bmp",NULL);
     //carga de los sonidos
     iniciar_sonido();
 //    sountrack_stage_1 = load_midi("sounds/Map/sountrack_game-stage_01.mid");
@@ -387,7 +387,8 @@ void mostrar_japo(){
 
 void mostrar_puntaje(){
 Puntuacion oPuntuacion;
-oPuntuacion.crearPuntaje();
+//oPuntuacion.crearPuntaje();
+oPuntuacion.leerDeArchivo();
 oPuntuacion.ordenarScores();
 //oPuntuacion.ordenaryGuardar();
 

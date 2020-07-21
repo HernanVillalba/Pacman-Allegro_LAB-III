@@ -74,13 +74,14 @@ BITMAP *elegir_idioma3;
 BITMAP *elegir_idioma4;
 BITMAP *japo;
 BITMAP *scores;
+BITMAP *newscores;
 
 //pacman
 int pac_x, pac_y;
 int vec_ghost_x[5],vec_ghost_y[5];
 int vec_punt[4];
 int puntaje;
-int mat_nom[4][4]={0};
+int mat_nom[4][4];
 
 
 
