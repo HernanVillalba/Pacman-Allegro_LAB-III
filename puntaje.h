@@ -4,11 +4,11 @@
 
 class Puntuacion{
     private:
-        int nombre[4];
+        int nombre[4]={0};
         int punt;
     public:
         Puntuacion();
-        bool guardarEnArchivo(int*, int);
+        bool guardarEnArchivo();
         bool leerDeArchivo(int);
         bool leerDeArchivo();
         bool crearPuntaje();
@@ -23,9 +23,10 @@ class Puntuacion{
         void ordenarNombres(int);
         int copiarNombre(int);
         void cargarNewscore(int);
+        void solordenarScores();
 };
 
-bool Puntuacion::guardarEnArchivo(int *v, int y){
+bool Puntuacion::guardarEnArchivo(){
  //guarda el max score en disco;
             bool escribio; //si escribio correctamente, devuelve true;
             FILE *p = fopen(ARCHIVO_PUNTAJE,"rb+");
@@ -33,15 +34,17 @@ bool Puntuacion::guardarEnArchivo(int *v, int y){
                 allegro_message("No se pudo abrir el archivo MAX SCORE para guardar la puntuación.");
                 return false;
             }
-            for(int x=0;x<4;x++){
-            nombre[x]=mat_nom[y][x];}
-            this->punt=vec_punt[y];
-            fseek(p,y*sizeof(Puntuacion),SEEK_SET);
-            escribio = fwrite(this,sizeof(Puntuacion),1,p);
+            Puntuacion v[4];
+            for(int y=0;y<4;y++){
+                for(int x=0;x<4;x++){
+                    v[y].nombre[x]=mat_nom[y][x];} // for matriz
+                        v[y].punt=vec_punt[y];} // for vector
+            fseek(p,0,SEEK_SET);
+            escribio = fwrite(&v[0],sizeof(Puntuacion),4,p);
             fclose(p);
             return escribio;
-            ////////////////////////////////FALTA AGREGAR UN IF QUE PREGUNTE SI ES MAX SCORE PARA GUARDARLO O NO;
         }
+
 
  bool Puntuacion::leerDeArchivo(){
             //trae la info contenida en el archivo y la carga en el objeto;
@@ -51,22 +54,27 @@ bool Puntuacion::guardarEnArchivo(int *v, int y){
                 allegro_message("No se pudo abir el archivo de MAX SCORE para leerlo.");
                 return false;
             }
-            fseek(p,sizeof(Puntuacion),SEEK_SET);
-            for(int x=0;x<4;x++){
-            if(fread(this,sizeof(Puntuacion),1,p)==1){
+            int x=0;
+            fseek(p,0,SEEK_SET);
+
+            while(fread(this,sizeof(Puntuacion),1,p)==1){
                     vec_punt[x]=this->punt;
                     for (int y=0;y<4;y++){
                         mat_nom[x][y]=this->nombre[y];
                 }
+                x++;
             }
-        }
+
         fclose(p);
         return true;
  }
 
 Puntuacion::Puntuacion(){
-    punt=1200;
-  nombre[4]={0};
+    punt=0;
+    nombre[0]=0;
+    nombre[1]=0;
+    nombre[2]=0;
+    nombre[3]=0;
 }
 
 bool Puntuacion::crearPuntaje(){
@@ -80,12 +88,7 @@ bool Puntuacion::crearPuntaje(){
             fclose(p);
             return escribio;
 }
-void Puntuacion::cargarPuntaje(int p, int*n){
-        punt=p;
-        for(int x=0;x<4;x++){
-        nombre[x]=n[x];
-    }
-}
+
 
 void Puntuacion::spritear(){
     clear(buffer);
@@ -153,6 +156,22 @@ void Puntuacion::ordenarScores(){
    spritear();
 }
 
+void Puntuacion::solordenarScores(){
+
+    int aux;
+
+   for(int x=0;x<4;x++){
+    for(int y=0;y<3;y++){
+        if(vec_punt[y]<vec_punt[y+1]){
+            aux=vec_punt[y];
+            vec_punt[y]=vec_punt[y+1];
+            vec_punt[y+1]=aux;
+            ordenarNombres(y);
+        }
+    }
+   }
+}
+
 void Puntuacion::maxPunt(int puntero){
 int nunidad,ndecena,ncentena,nmilesima;
         //decomponemos el num
@@ -185,6 +204,8 @@ int nunidad,ndecena,ncentena,nmilesima;
 void Puntuacion::ordenarNombres(int t){
         int aux[4];
     for (int x=0;x<4;x++){
+            if(mat_nom[t][x]>26) mat_nom[t][x]=26;
+            if(mat_nom[t][x]<0) mat_nom[t][x]=0;
         aux[x]=mat_nom[t][x];
         mat_nom[t][x]=mat_nom[t+1][x];
         mat_nom[t+1][x]=aux[x];
@@ -194,6 +215,7 @@ void Puntuacion::ordenarNombres(int t){
 void Puntuacion::cargarNewscore(int p){
     bool continuar=true;
     punt=p;
+
          int nunidad,ndecena,ncentena,nmilesima;
         //decomponemos el num
         if (p>=9999) p=9999;
@@ -228,12 +250,16 @@ void Puntuacion::cargarNewscore(int p){
 
         blit(buffer,screen,0,0,0,0,1200,640);
 
-        if(key[KEY_UP] || key[KEY_W]) {clear(buffer);if(nombre[x]<=24){nombre[x]++;rest(50);}}
+        if(key[KEY_UP] || key[KEY_W]) {clear(buffer);if(nombre[x]<=25){nombre[x]++;rest(50);}}
         if(key[KEY_DOWN] || key[KEY_S]) {clear(buffer);if(nombre[x]>=0){nombre[x]--;rest(50);}}
         }
         rest(1000);
-
     }
+    vec_punt[3]=punt;
+        for (int y=0;y<4;y++){
+            mat_nom[3][y]=nombre[y];
+                }
+    guardarEnArchivo();
 }
 
 

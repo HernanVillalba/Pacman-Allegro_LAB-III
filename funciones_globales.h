@@ -18,6 +18,7 @@ void dibujar_vidas_pacman(int vid);
 void dibujar_puntaje(int puntaje);
 void menu_idioma();
 void mostrar_japo();
+void iniciar_vectriz();
 
 
 //funciones
@@ -71,6 +72,8 @@ void iniciar_allegro(){
     dead_ghost = load_wav("sounds/Pacman/dead_ghost.wav");
     win = load_wav("sounds/Map/win.wav");
     newscores=load_bitmap("images/menu/puntaje/puntajenuevo.bmp",NULL);
+
+    iniciar_vectriz();
     //carga de los sonidos
     iniciar_sonido();
 //    sountrack_stage_1 = load_midi("sounds/Map/sountrack_game-stage_01.mid");
@@ -390,9 +393,9 @@ Puntuacion oPuntuacion;
 //oPuntuacion.crearPuntaje();
 oPuntuacion.leerDeArchivo();
 oPuntuacion.ordenarScores();
-//oPuntuacion.ordenaryGuardar();
 
 }
+
 bool buscar_newscore(int p){
 
     for (int x=0;x<4;x++){
@@ -402,7 +405,16 @@ bool buscar_newscore(int p){
 
 }
 
+void iniciar_vectriz(){
+    for (int x=0;x<4;x++){
+        for(int y=0;y<4;y++){
+            mat_nom[x][y]=0;
+        }
+        vec_punt[x]=0;
+    }
 
+
+}
 
 
 

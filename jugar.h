@@ -5,6 +5,7 @@ void jugar(){
     int v=3;
     puntaje=0;
     Puntuacion oPuntuacion;
+
     while (v>-1){
     play_midi(sountrack_stage_1,300);
     bool game_over = false;
@@ -12,6 +13,7 @@ void jugar(){
     Pacman oPacman(v);
 
     oPuntuacion.leerDeArchivo();
+    oPuntuacion.solordenarScores();
     Mapa oMapa;
     Fantasma oGhost1(TAM*12,TAM*11,0);
     Fantasma oGhost2(TAM*13,TAM*11,1);
@@ -21,8 +23,10 @@ void jugar(){
 
 
     int ghost_x,ghost_y;
-
+    bool o=true;
     while(!game_over){
+
+
         if(!primera_vez){
             //para pausar la pantalla al comienzo
             pantalla_princio(&primera_vez,oMapa,oPacman);
@@ -169,11 +173,14 @@ void jugar(){
         oPacman.imprimirMapa();
         if(!oPacman.hayComida()){
             oPacman.puerta();
+            if(o){
             oGhost1.posicionInicialGhost();
             oGhost2.posicionInicialGhost();
             oGhost3.posicionInicialGhost();
             oGhost4.posicionInicialGhost();
             oGhost5.posicionInicialGhost();
+            o=false;}
+
         }
 
     }
