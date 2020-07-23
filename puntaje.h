@@ -34,7 +34,9 @@ bool Puntuacion::guardarEnArchivo(){
                 allegro_message("No se pudo abrir el archivo MAX SCORE para guardar la puntuación.");
                 return false;
             }
-            Puntuacion v[4];
+            Puntuacion * v;
+            v=(Puntuacion *) malloc(4 * sizeof(Puntuacion));
+                if(v==NULL) { free(v); return false;}
             for(int y=0;y<4;y++){
                 for(int x=0;x<4;x++){
                     v[y].nombre[x]=mat_nom[y][x];} // for matriz
